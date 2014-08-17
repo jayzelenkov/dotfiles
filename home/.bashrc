@@ -1,2 +1,1 @@
-source "$HOME/.homesick/repos/homeshick/homeshick.sh"
-
+[ -n "$PS1" ] && source ~/.bash_profile;
