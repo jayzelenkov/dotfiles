@@ -1,0 +1,32 @@
+[user]
+	name = Jevgeni Zelenkov
+	email = jevgeni.zelenkov@gmail.com
+[color]
+	ui = auto
+[credential]
+	helper = osxkeychain
+[branch]
+	autosetupmerge = true
+[push]
+	default = simple
+[rerere]
+	enabled = true
+[hub]
+	protocol = https
+[filter "media"]
+	clean = git-media-clean %f
+	smudge = git-media-smudge %f
+[difftool "Kaleidoscope"]
+	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+[diff]
+	tool = Kaleidoscope
+[difftool]
+	prompt = false
+[mergetool "Kaleidoscope"]
+	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+	trustExitCode = true
+[mergetool]
+	prompt = false
+[merge]
+	tool = Kaleidoscope
+
