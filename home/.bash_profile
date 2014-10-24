@@ -11,6 +11,7 @@ unset file;
 
 # Enable console colors
 export CLICOLOR=1
+export TERM="xterm-256color"
 
 # Case-insensitive globbing (used in pathname expansion)
 shopt -s nocaseglob;

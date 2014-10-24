@@ -25,3 +25,20 @@ function o() {
 function tre() {
 	tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
 }
+
+# `cdl` cd and list
+function cdl() {
+    cd $1; ll
+}
+
+# `take` mkdir and cd there
+function take() {
+    mkdir -p "$1"
+    cd "$1"
+}
+
+# `curlr` curl resume download
+function curlr() {            # curl - resume download
+  curl -L -O -C - $*
+}
+
