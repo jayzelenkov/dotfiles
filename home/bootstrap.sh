@@ -7,6 +7,7 @@ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/
 # download & exec Brewfile
 curl -O https://raw.githubusercontent.com/jzelenkov/dotfiles/master/home/Brewfile
 brew bundle Brewfile
+rm Brewfile
 
 # install ruby with ruby-install
 ruby-install ruby 2.1
@@ -16,11 +17,11 @@ git clone git://github.com/andsens/homeshick.git $HOME/.homesick/repos/homeshick
 source "$HOME/.homesick/repos/homeshick/homeshick.sh"
 
 # install & link homeshick castles
-homeshick clone https://github.com/jzelenkov/dotfiles.git
+homeshick clone -b https://github.com/jzelenkov/dotfiles.git
 homeshick link dotfiles
-homeshick clone https://github.com/jzelenkov/vim-castle.git
+homeshick clone -b https://github.com/jzelenkov/vim-castle.git
 homeshick link vim-castle
-homeshick clone https://github.com/jzelenkov/subl-castle.git
+homeshick clone -b https://github.com/jzelenkov/subl-castle.git
 homeshick link subl-castle
 
 # install homebrew cask
