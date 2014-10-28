@@ -5,7 +5,7 @@ cd $HOME
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 # download & exec Brewfile
-curl -fsSL https://raw.githubusercontent.com/jzelenkov/dotfiles/master/home/Brewfile
+curl -O https://raw.githubusercontent.com/jzelenkov/dotfiles/master/home/Brewfile
 brew bundle Brewfile
 
 # install ruby with ruby-install
