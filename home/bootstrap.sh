@@ -13,14 +13,15 @@ ruby-install ruby 2.1
 
 # install homeshick (for managing dotfiles)
 git clone git://github.com/andsens/homeshick.git $HOME/.homesick/repos/homeshick
+source "$HOME/.homesick/repos/homeshick/homeshick.sh"
 
 # install & link homeshick castles
-$HOME/.homesick/repos/homeshick/homeshick.sh clone https://github.com/jzelenkov/dotfiles.git
-$HOME/.homesick/repos/homeshick/homeshick.sh link dotfiles
-$HOME/.homesick/repos/homeshick/homeshick.sh clone https://github.com/jzelenkov/vim-castle.git
-$HOME/.homesick/repos/homeshick/homeshick.sh link vim-castle
-$HOME/.homesick/repos/homeshick/homeshick.sh clone https://github.com/jzelenkov/subl-castle.git
-$HOME/.homesick/repos/homeshick/homeshick.sh link subl-castle
+homeshick clone https://github.com/jzelenkov/dotfiles.git
+homeshick link dotfiles
+homeshick clone https://github.com/jzelenkov/vim-castle.git
+homeshick link vim-castle
+homeshick clone https://github.com/jzelenkov/subl-castle.git
+homeshick link subl-castle
 
 # install homebrew cask
 brew install caskroom/cask/brew-cask
