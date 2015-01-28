@@ -3,6 +3,7 @@ alias vvim='vim -u ~/.essential.vim'
 
 
 ## list
+alias l='ls'
 alias la='ls -Alh'                            # list all
 alias l.='ls -Alh|egrep ".*:[0-9]*\s\."'      # list hidden only items
 alias ll='ls -lh'                             # list visible only items
