@@ -1,20 +1,17 @@
+alias g='git'
 alias git='hub'
-alias vvim='vim -u ~/.essential.vim'
-
 
 ## list
 alias l='ls'
 alias la='ls -Alh'                            # list all
 alias l.='ls -Alh|egrep ".*:[0-9]*\s\."'      # list hidden only items
-alias ll='ls -lh'                             # list visible only items
+alias ll='ls -lha'                            # list visible only items
 alias lt='ls -lht'                            # list visible only items sorted by modification time
-
 
 ## common
 alias e='exit'
 alias h='history'
 alias md='mkdir -p'
-
 
 ## navigation
 alias c='cd ..'                               # up one dir
@@ -26,25 +23,17 @@ alias cdd='cd -'                              # goto last dir cd'ed from
 # git basics
 alias ga='git add'
 alias gaa='git add -A'
-alias gau='git add u'
 alias gst='git status -s'
 alias gb='git branch'
 alias gba='git branch -a'
 alias gco='git checkout'
 alias gc='git commit'
-function gg() {
-    git commit -a -m "$*"
-}
-
-# git remote
 alias gm='git merge'
 alias gf='git fetch'
 alias gr='git rebase'
 alias gp='git push'
 alias gl='git pull'
-alias gpo='git push -u origin'
 alias gpom='git push -u origin master'
-alias gph='git push -u heroku'
 alias gphm='git push -u heroku master'
 
 # git diff
@@ -57,31 +46,13 @@ alias gdcs='git diff --cached --stat'
 alias gdt='git difftool'
 alias gdtc='git difftool --cached'
 
-
 # git log
 alias glo='git log'
-alias glop='git log --pretty=oneline --abbrev-commit'
-alias glop5='git log --pretty=oneline --abbrev-commit -n 5'
+alias glop='git log --pretty=oneline --abbrev-commit -n 5'
 # graphical log (shows all branches and merge commits)
 alias glopg="git log --graph --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(bold white)— %an%C(reset)%C(bold yellow)%d%C(reset)' --abbrev-commit --date=relative"
-
-
-## git svn
-# alias gsf='git svn fetch'
-# alias gsr='git svn rebase'
-# alias gsd='git svn dcommit'
-
 
 # postgres
 alias pg_start='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
 alias pg_stop='pg_ctl -D /usr/local/var/postgres stop -s -m fast'
-
-
-## mvn
-# alias mcc='mvn clean compile'
-# alias mcco='mvn clean compile -o'
-# alias mcp='mvn clean package'
-# alias mcpo='mvn clean package -o'
-# alias mif='mvn clean compile && mvn install -DskipTests'
-# alias mifo='mvn clean compile -o && mvn install -o -DskipTests'
 
