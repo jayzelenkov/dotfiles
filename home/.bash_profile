@@ -52,5 +52,8 @@ complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes Syste
 source "$HOME/.homesick/repos/homeshick/homeshick.sh"
 
 # Enable chruby
-source /usr/local/share/chruby/chruby.sh
-source /usr/local/share/chruby/auto.sh
+source "/usr/local/opt/chruby/share/chruby/chruby.sh"
+source "/usr/local/opt/chruby/share/chruby/auto.sh"
+
+# enable nvm
+source $(brew --prefix nvm)/nvm.sh
