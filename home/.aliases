@@ -17,41 +17,6 @@ alias md='mkdir -p'
 alias c='cd ..'                               # up one dir
 alias cdd='cd -'                              # goto last dir cd'ed from
 
-
-## git
-
-# git basics
-alias ga='git add'
-alias gaa='git add -A'
-alias gst='git status -s'
-alias gb='git branch'
-alias gba='git branch -a'
-alias gco='git checkout'
-alias gc='git commit'
-alias gm='git merge'
-alias gf='git fetch'
-alias gr='git rebase'
-alias gp='git push'
-alias gl='git pull'
-alias gpom='git push -u origin master'
-alias gphm='git push -u heroku master'
-
-# git diff
-alias gd='git diff'
-alias gds='git diff --stat'
-alias gdc='git diff --cached'
-alias gdcs='git diff --cached --stat'
-
-# git difftool
-alias gdt='git difftool'
-alias gdtc='git difftool --cached'
-
-# git log
-alias glo='git log'
-alias glop='git log --pretty=oneline --abbrev-commit -n 5'
-# graphical log (shows all branches and merge commits)
-alias glopg="git log --graph --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(bold white)— %an%C(reset)%C(bold yellow)%d%C(reset)' --abbrev-commit --date=relative"
-
 # postgres
 alias pg_start='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
 alias pg_stop='pg_ctl -D /usr/local/var/postgres stop -s -m fast'
