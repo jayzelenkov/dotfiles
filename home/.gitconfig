@@ -16,17 +16,42 @@
 [filter "media"]
 	clean = git-media-clean %f
 	smudge = git-media-smudge %f
-[difftool "Kaleidoscope"]
-	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
 [diff]
 	tool = Kaleidoscope
 [difftool]
 	prompt = false
-[mergetool "Kaleidoscope"]
-	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
-	trustExitCode = true
-[mergetool]
-	prompt = false
 [merge]
 	tool = Kaleidoscope
-
+[mergetool]
+	prompt = false
+[difftool "Kaleidoscope"]
+	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+[mergetool "Kaleidoscope"]
+	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+	trustexitcode = true
+[core]
+	excludesfile = $HOME/.gitignore_global
+[alias]
+	a = add
+	aa = add -A
+	st = status
+	sst = status -s
+	b = branch
+	ba = branch -a
+	co = checkout
+	c = commit
+	m = merge
+	f = fetch
+	r = rebase
+	p = push
+	l = pull
+	pom = push -u origin master
+	d = diff
+	ds = diff --stat
+	dc = diff --cached
+	dcs = diff --cached --stat
+	dt = difftool
+	dtc = difftool --cached
+	lo = log
+	lop = log --pretty=oneline --abbrev-commit -n 10
+	lopg= log --graph --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(bold white)— %an%C(reset)%C(bold yellow)%d%C(reset)' --abbrev-commit --date=relative
