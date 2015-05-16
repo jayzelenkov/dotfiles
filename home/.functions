@@ -1,13 +1,3 @@
-# `v` with no arguments opens the current directory in Vim, otherwise opens the
-# given location
-function v() {
-	if [ $# -eq 0 ]; then
-		vim .;
-	else
-		vim "$@";
-	fi;
-}
-
 # `o` with no arguments opens the current directory, otherwise opens the given
 # location
 function o() {
@@ -42,3 +32,10 @@ function curlr() {            # curl - resume download
   curl -L -O -C - $*
 }
 
+# `flac2mp3` convert all flac files in the current directory to mp3
+function flac2mp3() {
+  for f in *.flac; do
+    fname=${f%.*} # get filename without extension
+    ffmpeg -i "$fname.flac" -ab 320k -map_metadata 0 -id3v2_version 3 "$fname.mp3"
+  done
+}
