@@ -1,29 +1,18 @@
-# Shell prompt based on the Solarized Dark theme.
-# Screenshot: http://i.imgur.com/EkEtphC.png
-# Heavily inspired by @necolas’s prompt: https://github.com/necolas/dotfiles
-# iTerm → Profiles → Text → use 13pt Monaco with 1.1 vertical spacing.
-
 if [[ $COLORTERM = gnome-* && $TERM = xterm ]] && infocmp gnome-256color >/dev/null 2>&1; then
 	export TERM='gnome-256color';
 elif infocmp xterm-256color >/dev/null 2>&1; then
 	export TERM='xterm-256color';
 fi;
 
-# Base16 Shell
-BASE16_SHELL="$HOME/.config/base16-shell/base16-default.dark.sh"
-[[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
-
-
-white="\[\033[1;37m\]"
-grey="\[\033[1;30m\]"
-light_grey="\[\033[0;37m\]"
-cyan="\[\033[0;36m\]"
-light_cyan="\[\033[1;36m\]"
-no_colour="\[\033[0m\]"
+bold_white="\[\e[1;37m\]"
+white="\[\e[0;37m\]"
+cyan="\[\e[0;36m\]"
+green="\[\e[0;32m\]"
+no_color="\[\e[0m\]"
 GIT_PS1_SHOWCOLORHINTS=1
 GIT_PS1_SHOWDIRTYSTATE=1
 GIT_PS1_SHOWSTASHSTATE=1
 GIT_PS1_SHOWUNTRACKEDFILES=1
 GIT_PS1_SHOWUPSTREAM="verbose name git"
 GIT_PS1_DESCRIBESTYLE=default
-PROMPT_COMMAND='__git_ps1 "$light_cyan\u$white at $light_grey\h$white in $cyan\w$no_colour" "$light_grey\n→ $no_colour" '
+PROMPT_COMMAND='__git_ps1 "$green\u$bold_white at $white\h$bold_white in $cyan\w$no_color" "$white\n→ $no_color" '
