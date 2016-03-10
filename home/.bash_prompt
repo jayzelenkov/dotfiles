@@ -4,15 +4,18 @@ elif infocmp xterm-256color >/dev/null 2>&1; then
 	export TERM='xterm-256color';
 fi;
 
+     black="\[\e[0;30m\]"
+bold_black="\[\e[1;30m\]"
 bold_white="\[\e[1;37m\]"
-white="\[\e[0;37m\]"
-cyan="\[\e[0;36m\]"
-green="\[\e[0;32m\]"
-no_color="\[\e[0m\]"
+     white="\[\e[0;37m\]"
+      cyan="\[\e[0;36m\]"
+     green="\[\e[0;32m\]"
+  no_color="\[\e[0m\]"
 GIT_PS1_SHOWCOLORHINTS=1
 GIT_PS1_SHOWDIRTYSTATE=1
 GIT_PS1_SHOWSTASHSTATE=1
 GIT_PS1_SHOWUNTRACKEDFILES=1
 GIT_PS1_SHOWUPSTREAM="verbose name git"
 GIT_PS1_DESCRIBESTYLE=default
-PROMPT_COMMAND='__git_ps1 "$green\u$bold_white at $white\h$bold_white in $cyan\w$no_color" "$white\n→ $no_color" '
+
+export PROMPT_COMMAND='__git_ps1 "$green\u$bold_black at $black\h$bold_black in $cyan\w$no_color" "$white\n→$no_color "'

@@ -1,5 +1,5 @@
 [user]
-	name = Jev Zelenkov
+	name = Jay Zelenkov
 	email = jzelenkov@me.com
 [color]
 	ui = auto
@@ -31,27 +31,3 @@
 	trustexitcode = true
 [core]
 	excludesfile = $HOME/.gitignore_global
-[alias]
-	a = add
-	aa = add -A
-	st = status
-	sst = status -s
-	b = branch
-	ba = branch -a
-	co = checkout
-	c = commit
-	m = merge
-	f = fetch
-	r = rebase
-	p = push
-	l = pull
-	pom = push -u origin master
-	d = diff
-	ds = diff --stat
-	dc = diff --cached
-	dcs = diff --cached --stat
-	dt = difftool
-	dtc = difftool --cached
-	lo = log
-	lop = log --pretty=oneline --abbrev-commit -n 10
-	lopg= log --graph --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(bold white)— %an%C(reset)%C(bold yellow)%d%C(reset)' --abbrev-commit --date=relative

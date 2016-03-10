@@ -1,8 +1,5 @@
 # Add ~/bin to path
 export PATH="$HOME/bin:$PATH";
 
-# Add Homebew to path
-export PATH="/usr/local/bin:$PATH";
-
 # Add texlive to path
 export PATH="/usr/local/texlive/2014/bin/x86_64-darwin:$PATH";
