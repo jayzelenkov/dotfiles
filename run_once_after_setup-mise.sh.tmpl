@@ -1,0 +1,93 @@
+{{ if eq .chezmoi.os "darwin" -}}
+#!/bin/bash
+set -euo pipefail
+
+# Install mise (standalone, not via Homebrew)
+if ! command -v mise &>/dev/null; then
+    echo "→ Installing mise..."
+    curl https://mise.run | sh
+    echo "✓ mise installed"
+else
+    echo "✓ mise already installed"
+fi
+
+# mise global runtimes
+if command -v mise &>/dev/null; then
+    echo "→ Installing global mise tools (python, bun)..."
+    ~/.local/bin/mise use --global python@latest
+    ~/.local/bin/mise use --global bun@latest
+    echo "✓ mise tools installed"
+fi
+echo ""
+
+# Postico license (reads from env, 1Password, or ~/.postico-license)
+configure_postico_license() {
+    local license_key=""
+    local license_source=""
+
+    if [[ -n "${POSTICO_LICENSE_KEY:-}" ]]; then
+        license_key="${POSTICO_LICENSE_KEY}"
+        license_source="POSTICO_LICENSE_KEY env var"
+    elif [[ -n "${POSTICO_LICENSE_OP_REF:-}" ]]; then
+        if command -v op &>/dev/null; then
+            local op_value=""
+            if op_value="$(op read "${POSTICO_LICENSE_OP_REF}" 2>/dev/null)"; then
+                license_key="$(printf '%s' "$op_value" | head -n 1 | tr -d '\r\n' | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')"
+                license_source="1Password CLI (POSTICO_LICENSE_OP_REF)"
+            else
+                echo "⚠️  Could not read Postico license from 1Password. Run 'op signin' first."
+                return 0
+            fi
+        else
+            echo "⚠️  1Password CLI not found; skipping Postico license."
+            return 0
+        fi
+    elif [[ -n "${POSTICO_LICENSE_KEY_FILE:-}" && -f "${POSTICO_LICENSE_KEY_FILE}" ]]; then
+        license_key="$(head -n 1 "${POSTICO_LICENSE_KEY_FILE}" | tr -d '\r\n' | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')"
+        license_source="POSTICO_LICENSE_KEY_FILE"
+    elif [[ -f "$HOME/.postico-license" ]]; then
+        license_key="$(head -n 1 "$HOME/.postico-license" | tr -d '\r\n' | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')"
+        license_source="$HOME/.postico-license"
+    fi
+
+    if [[ -z "$license_key" ]]; then
+        return 0
+    fi
+
+    local existing_key=""
+    existing_key="$(defaults read at.eggerapps.Postico AutoActivateLicenseKey 2>/dev/null || true)"
+    if [[ "$existing_key" == "$license_key" ]]; then
+        echo "✓ Postico license already configured"
+        return 0
+    fi
+
+    echo "→ Configuring Postico license (automatic activation)..."
+    defaults write at.eggerapps.Postico AutoActivateLicenseKey "$license_key"
+    echo "✓ Postico license configured (source: $license_source)"
+}
+
+configure_postico_license
+echo ""
+
+echo "=========================================="
+echo "  Bootstrap complete!"
+echo "=========================================="
+echo ""
+echo "Next steps:"
+echo "  • Restart your terminal to ensure all paths are set"
+echo "  • Configure your apps (1Password, Raycast, etc.)"
+echo ""
+echo "Chrome setup:"
+echo "  • Open Chrome → Profile icon → Add → Sign in"
+echo "  • Sign in with your Google accounts"
+echo ""
+echo "Raycast setup:"
+echo "  • Open Raycast → Sign in to sync settings and extensions"
+echo ""
+echo "Things setup:"
+echo "  • Open Things → Settings → Things Cloud → Sign in"
+echo ""
+echo "Manual installs (no Homebrew cask):"
+echo "  • Wispr Flow: https://www.wispr.flow"
+echo ""
+{{ end -}}

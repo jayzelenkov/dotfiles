@@ -1,0 +1,71 @@
+{{ if eq .chezmoi.os "darwin" -}}
+#!/bin/bash
+set -euo pipefail
+
+echo "=========================================="
+echo "  macOS Bootstrap (chezmoi run_once)"
+echo "=========================================="
+echo ""
+
+# Keep sudo alive (ask once, reuse throughout)
+echo "→ Requesting sudo access (you'll only be asked once)..."
+sudo -v
+while true; do
+    sleep 10
+    sudo -n true 2>/dev/null
+done &
+SUDO_KEEPALIVE_PID=$!
+trap 'kill $SUDO_KEEPALIVE_PID 2>/dev/null || true' EXIT
+echo ""
+
+# Xcode Command Line Tools
+if xcode-select -p &>/dev/null; then
+    echo "✓ Xcode Command Line Tools already installed"
+else
+    echo "→ Installing Xcode Command Line Tools..."
+    xcode-select --install
+    echo "  Waiting for Xcode CLI tools installation..."
+    until xcode-select -p &>/dev/null; do
+        sleep 5
+    done
+    echo "✓ Xcode Command Line Tools installed"
+fi
+echo ""
+
+# Homebrew
+if command -v brew &>/dev/null; then
+    echo "✓ Homebrew already installed"
+else
+    echo "→ Installing Homebrew..."
+    NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    if [[ -f "/opt/homebrew/bin/brew" ]]; then
+        eval "$(/opt/homebrew/bin/brew shellenv)"
+    fi
+    echo "✓ Homebrew installed"
+fi
+
+echo "→ Updating Homebrew..."
+brew update
+echo "✓ Homebrew updated"
+echo ""
+
+# Install mas first so App Store entries work in brew bundle
+if ! command -v mas &>/dev/null; then
+    brew install mas
+fi
+
+# Install all packages from Brewfile
+echo "→ Installing packages from Brewfile..."
+echo "  (This may take a while)"
+echo ""
+if brew bundle --file=/dev/stdin <<EOF
+{{ include "Brewfile" }}
+EOF
+then
+    echo ""
+    echo "✓ All packages installed"
+else
+    echo ""
+    echo "⚠️  Some packages failed to install. Run 'brew bundle --file=<Brewfile>' to retry."
+fi
+{{ end -}}

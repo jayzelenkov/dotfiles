@@ -1,0 +1,130 @@
+eval "$(~/.local/bin/mise activate zsh)"
+
+# Source machine-local secrets (not tracked by chezmoi or git)
+if [ -f "$HOME/.secrets" ]; then
+    source "$HOME/.secrets"
+fi
+
+# Enable persistent history
+HISTFILE=~/.zsh_history
+HISTSIZE=100000
+SAVEHIST=100000
+setopt INC_APPEND_HISTORY
+setopt SHARE_HISTORY
+setopt HIST_IGNORE_ALL_DUPS
+
+# Configure the push directory stack (most people don't need this)
+setopt AUTO_PUSHD
+setopt PUSHD_IGNORE_DUPS
+setopt PUSHD_SILENT
+
+setopt autocd
+
+# Initialize completion
+autoload -U compinit; compinit
+
+alias rr='source ~/.zshrc'
+
+# eza aliases with your preferred defaults
+alias ls='eza --icons --git'
+alias ll='eza --icons --git --long --header --group'
+alias la='eza --icons --git --long --header --group --all'
+alias lt='eza --icons --git --tree --level=2'
+#export EZA_COLORS="da=36:gm=33"
+export EZA_ICONS_AUTO=1
+
+# ripgrep aliases
+alias grep='rg'
+alias rgi='rg --ignore-case'
+alias rgf='rg --files | rg'
+
+# Set up fzf key bindings and fuzzy completion
+source <(fzf --zsh)
+
+# Set up zoxide to move between folders efficiently
+eval "$(zoxide init zsh)"
+
+# Set up the Starship prompt
+eval "$(starship init zsh)"
+
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+# Docker Desktop CLI completions
+fpath=($HOME/.docker/completions $fpath)
+autoload -Uz compinit
+compinit
+
+# Ensure ~/.local/bin is on PATH
+if [[ ":$PATH:" != *":$HOME/.local/bin:"* ]]; then
+  export PATH="$HOME/.local/bin:$PATH"
+fi
+
+# Add ~/dotfiles/bin to PATH if it exists
+if [ -d "$HOME/dotfiles/bin" ]; then
+  case ":$PATH:" in
+    *":$HOME/dotfiles/bin:"*) ;;
+    *) PATH="$HOME/dotfiles/bin:$PATH" ;;
+  esac
+fi
+
+alias dbtf="$HOME/.local/bin/dbt"
+
+
+# Git helper methods
+git-catchup() {
+    git fetch origin staging:staging
+    git rebase staging
+}
+
+git-catchup-push() {
+    git fetch origin staging:staging
+    git rebase staging
+    git push --force-with-lease
+}
+
+alias gc='git-catchup'
+alias gcp='git-catchup-push'
+alias gss='git switch staging'
+alias gsm='git switch main'
+alias gp='git pull'
+alias glola="git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' --all"
+alias gsb='git-squash-branch'
+
+
+export PATH="$HOME/.bun/bin:$PATH"
+
+awt() {
+    local base_dir="$HOME/.workingtrees"
+    mkdir -p "$base_dir"
+
+    # 1. Generate ID and Path
+    local uuid=$(python3 -c 'import uuid; print(uuid.uuid4())')
+    local target_path="$base_dir/$uuid"
+
+    echo "--- Creating Agent Sandbox ---"
+
+    # 2. Add the worktree
+    if git worktree add "$target_path" HEAD; then
+        echo "Successfully created: $uuid"
+
+        # 3. Jump into it
+        # This triggers mise/zsh hooks naturally
+        cd "$target_path"
+
+        echo "Ready for Claude. Run 'claude' or 'mise run test' etc."
+        echo "To cleanup later: git worktree remove --force ."
+    else
+        echo "Error: Failed to create git worktree."
+        return 1
+    fi
+}
+
+
+# TypeID <-> UUID conversion helpers (requires: bun add -g typeid-js)
+typeid_to_uuid() {
+  bun -e "import { TypeID } from 'typeid-js'; console.log(TypeID.fromString('$1').toUUID());"
+}
+
+uuid_to_typeid_enc() {
+  bun -e "import { TypeID } from 'typeid-js'; console.log(TypeID.fromUUID('enc', '$1').toString());"
+}
+
