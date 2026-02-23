@@ -66,6 +66,22 @@ configure_postico_license() {
     echo "✓ Postico license configured (source: $license_source)"
 }
 
+# Clone dotfiles to ~/workspace/dotfiles so chezmoi uses it as the source
+mkdir -p "$HOME/workspace"
+if [[ ! -d "$HOME/workspace/dotfiles/.git" ]]; then
+    echo "→ Cloning dotfiles to ~/workspace/dotfiles..."
+    REMOTE_URL="$(git -C "{{ .chezmoi.sourceDir }}" remote get-url origin 2>/dev/null || true)"
+    if [[ -n "$REMOTE_URL" ]]; then
+        git clone "$REMOTE_URL" "$HOME/workspace/dotfiles"
+        echo "✓ Dotfiles cloned to ~/workspace/dotfiles"
+    else
+        echo "⚠️  Could not determine git remote; skipping dotfiles clone."
+    fi
+else
+    echo "✓ ~/workspace/dotfiles already exists"
+fi
+echo ""
+
 configure_postico_license
 echo ""
 

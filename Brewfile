@@ -24,14 +24,14 @@ brew "gnupg"                   # GPG for signing commits/encryption
 brew "go"                      # Go programming language
 brew "graphite2"               # Stacked PRs workflow (gt CLI)
 brew "jq"                      # JSON processor
-brew "jlv"                     # JSON log viewer
+tap "hedhyw/main"
+brew "hedhyw/main/jlv"         # Interactive JSON log viewer
 brew "lazygit"                 # Terminal UI for git
 brew "node"                    # Node.js
 brew "ripgrep"                 # Fast recursive search (rg)
 brew "sqlite"                  # Embedded SQL database
 
 # Infrastructure & services
-brew "buildkite-agent"         # CI/CD agent
 brew "doppler"                 # Secrets manager CLI
 brew "granted"                 # AWS role switching
 brew "k9s"                     # Kubernetes TUI
