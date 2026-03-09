@@ -17,7 +17,7 @@ This single command will:
 3. Install Xcode Command Line Tools
 4. Install Homebrew
 5. Install all packages from the Brewfile (formulae, casks, App Store apps)
-6. Apply dotfiles (`~/.zshrc`)
+6. Apply dotfiles (`~/.zshrc`, `~/.aerospace.toml`)
 7. Install global runtimes via mise (python, bun)
 8. Configure Postico license (if available)
 
@@ -34,6 +34,17 @@ This single command will:
 - Git helpers (`gc`, `gcp`, `glola`, etc.)
 - `awt` — creates git worktree sandboxes for AI coding agents
 - TypeID/UUID conversion helpers
+
+### Window management (`dot_aerospace.toml` → `~/.aerospace.toml`)
+
+- **[AeroSpace](https://github.com/nikitabobko/AeroSpace)** — i3-like tiling window manager for macOS
+- **[JankyBorders](https://github.com/FelixKratz/JankyBorders)** — active/inactive window border highlights (launched by AeroSpace on startup)
+
+Apps can be excluded from tiling by adding `[[on-window-detected]]` blocks to `~/.aerospace.toml`. To find an app's bundle ID:
+
+```bash
+osascript -e 'id of app "App Name"'
+```
 
 ### Brewfile
 
@@ -58,6 +69,7 @@ export POSTICO_LICENSE_KEY="..."
 ├── AGENTS.md                                # Instructions for AI coding agents
 ├── README.md                                # This file
 ├── Brewfile                                 # Homebrew packages (included in install script)
+├── dot_aerospace.toml                       # → ~/.aerospace.toml
 ├── dot_zshrc                                # → ~/.zshrc
 ├── run_once_before_install-packages.sh.tmpl # Xcode CLT + Homebrew + brew bundle
 └── run_once_after_setup-mise.sh.tmpl        # mise runtimes + Postico license + next steps

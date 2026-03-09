@@ -47,6 +47,12 @@ brew "mas"                     # Mac App Store CLI
 brew "python@3"                # Latest Python 3
 brew "tesseract"               # OCR engine
 
+# Window management
+tap "nikitabobko/tap"
+cask "nikitabobko/tap/aerospace" # AeroSpace tiling window manager
+tap "FelixKratz/formulae"
+brew "borders"                 # JankyBorders — window border highlights
+
 # Casks - Apps
 cask "1password"               # 1Password password manager
 cask "1password-cli"           # 1Password CLI (op)
