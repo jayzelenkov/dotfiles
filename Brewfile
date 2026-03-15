@@ -54,20 +54,55 @@ tap "FelixKratz/formulae"
 brew "borders"                 # JankyBorders — window border highlights
 
 # Casks - Apps
+tap "updatest/tap", "https://github.com/updatest/tap.git"
+cask "updatest/tap/updatest"   # Updatest — menu bar app updater
+
+# AI & productivity
+cask "chatgpt"                 # ChatGPT desktop app
+cask "claude"                  # Claude AI desktop app
+cask "cursor"                  # AI-powered code editor
+cask "granola"                 # AI meeting notes
+cask "obsidian"                # Knowledge base / second brain
+cask "raycast"                 # Launcher & productivity tool
+cask "wispr-flow"              # Voice-to-text
+
+# Communication
+cask "signal"                  # Encrypted messaging
+cask "telegram"                # Messaging
+cask "whatsapp"                # Messaging
+cask "zoom"                    # Video conferencing
+
+# Dev tools
+cask "docker-desktop"          # Docker Desktop
+cask "ghostty"                 # Ghostty terminal emulator
+cask "github"                  # GitHub Desktop
+cask "ngrok"                   # Secure tunnels to localhost
+cask "visual-studio-code"      # VS Code editor
+
+# Media & entertainment
+cask "movist-pro"              # Media player
+cask "spotify"                 # Music streaming
+
+# macOS utilities
 cask "1password"               # 1Password password manager
 cask "1password-cli"           # 1Password CLI (op)
 cask "adguard"                 # Ad blocker
 cask "bartender"               # Menu bar organizer
-cask "chatgpt"                 # ChatGPT desktop app
-cask "claude"                  # Claude AI desktop app
 cask "cleanshot"               # Screenshot & recording tool
-cask "visual-studio-code"      # VS Code editor
-cask "docker-desktop"          # Docker Desktop
-cask "ghostty"                 # Ghostty terminal emulator
-cask "github"                  # GitHub Desktop
+cask "copilot-money"           # Personal finance
+cask "daisydisk"               # Disk space analyzer
 cask "google-chrome"           # Web browser
+cask "google-drive"            # Cloud storage
 cask "homerow"                 # Keyboard navigation for macOS
-cask "raycast"                 # Launcher & productivity tool
+cask "karabiner-elements"      # Keyboard customizer
+cask "keka"                    # File archiver
+cask "screen-studio"           # Screen recording
+cask "tailscale-app"           # Mesh VPN
+
+# Hardware
+cask "elgato-wave-link"        # Elgato audio mixer
+cask "logi-options+"           # Logitech device config
+cask "mac-mouse-fix"           # Mouse utility
 
 # Mac App Store
 mas "Things 3", id: 904280696

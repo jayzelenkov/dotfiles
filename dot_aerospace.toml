@@ -60,7 +60,7 @@ run = 'layout floating'
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 # See: https://nikitabobko.github.io/AeroSpace/commands#mode
 # A callback that runs every time binding mode changes
-on-mode-changed = []
+# on-mode-changed = []
 # Possible values: (qwerty|dvorak|colemak)
 
 # See https://nikitabobko.github.io/AeroSpace/guide#key-mapping
@@ -225,3 +225,4 @@ on-mode-changed = []
     alt-shift-j = ['join-with down', 'mode main']
     alt-shift-k = ['join-with up', 'mode main']
     alt-shift-l = ['join-with right', 'mode main']
+

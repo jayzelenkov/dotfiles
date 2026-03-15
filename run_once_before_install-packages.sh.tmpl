@@ -64,6 +64,7 @@ fi
 brew tap nikitabobko/tap 2>/dev/null || true
 brew tap FelixKratz/formulae 2>/dev/null || true
 brew tap hedhyw/main 2>/dev/null || true
+brew tap updatest/tap https://github.com/updatest/tap.git 2>/dev/null || true
 
 # Install all packages from Brewfile
 echo "→ Installing packages from Brewfile..."
@@ -79,4 +80,15 @@ else
     echo ""
     echo "⚠️  Some packages failed to install. Run 'brew bundle --file=<Brewfile>' to retry."
 fi
+
+echo ""
+echo "=========================================="
+echo "  Manual installs required"
+echo "=========================================="
+echo ""
+echo "The following apps are not available via Homebrew and must be installed manually:"
+echo ""
+echo "  • pCloud   https://www.pcloud.com/download-free-online-cloud-file-storage.html"
+echo ""
+
 {{ end -}}
