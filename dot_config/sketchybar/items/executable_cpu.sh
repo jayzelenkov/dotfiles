@@ -4,6 +4,7 @@ cpu_top=(
   label.font="$FONT:Bold:7"
   label=CPU
   icon.drawing=off
+  drawing=off
   width=0
   padding_right=15
   y_offset=6

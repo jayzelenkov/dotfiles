@@ -7,6 +7,7 @@ volume_slider=(
   updates=on
   label.drawing=off
   icon.drawing=off
+  slider.width=0
   slider.highlight_color=$BLUE
   slider.background.height=5
   slider.background.corner_radius=3

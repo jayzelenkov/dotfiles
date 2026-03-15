@@ -1,32 +1,26 @@
 #!/usr/bin/env bash
 
-# $1 is the workspace ID this item represents
-WORKSPACE_ID="$1"
+source "$HOME/.config/sketchybar/colors.sh"
 
-update() {
-  SELECTED=false
-  [ "$FOCUSED_WORKSPACE" = "$WORKSPACE_ID" ] && SELECTED=true
+LABEL_FONT="Hack Nerd Font Mono:Bold:13.0"
+LABEL_HIGHLIGHT_FONT="Hack Nerd Font Mono:Bold:13.0"
 
-  WIDTH="dynamic"
-  [ "$SELECTED" = "true" ] && WIDTH="0"
-
-  # Get app icons for this workspace using sketchybar-app-font
-  APPS=$(aerospace list-windows --workspace "$WORKSPACE_ID" 2>/dev/null \
-    | awk -F'|' '{gsub(/^ *| *$/, "", $2); print $2}')
-
-  icon_strip=" "
-  if [ -n "$APPS" ]; then
-    while IFS= read -r app; do
-      icon_strip+=" $($HOME/.config/sketchybar/plugins/icon_map.sh "$app")"
-    done <<< "$APPS"
+if [ "$SENDER" = "aerospace_service_mode_enabled_changed" ]; then
+  if [ "$AEROSPACE_SERVICE_MODE_ENABLED" = "true" ]; then
+    sketchybar --set workspaces_service_mode label.drawing=on
+  else
+    sketchybar --set workspaces_service_mode label.drawing=off
   fi
+fi
 
-  sketchybar --animate tanh 20 \
-             --set "$NAME"     \
-             icon.highlight="$SELECTED" \
-             label.width="$WIDTH"       \
-             label="$icon_strip"        \
-             label.drawing=on
-}
-
-update
+if [ "$SENDER" = "aerospace_workspace_change" ]; then
+  if [ "$1" = "$FOCUSED_WORKSPACE" ]; then
+    sketchybar --set "$NAME" \
+                     label.highlight=on \
+                     label.font="$LABEL_HIGHLIGHT_FONT"
+  else
+    sketchybar --set "$NAME" \
+                     label.highlight=off \
+                     label.font="$LABEL_FONT"
+  fi
+fi
