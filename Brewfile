@@ -52,6 +52,9 @@ tap "nikitabobko/tap"
 cask "nikitabobko/tap/aerospace" # AeroSpace tiling window manager
 tap "FelixKratz/formulae"
 brew "borders"                 # JankyBorders — window border highlights
+brew "sketchybar"              # Highly customizable macOS status bar
+brew "switchaudio-osx"         # Switch audio source (used by sketchybar)
+brew "nowplaying-cli"          # Now playing info (used by sketchybar)
 
 # Casks - Apps
 tap "updatest/tap", "https://github.com/updatest/tap.git"
@@ -109,12 +112,14 @@ mas "Things 3", id: 904280696
 mas "Tot", id: 1491071483
 
 # Casks - Fonts
+cask "sf-symbols"              # SF Symbols app (used by sketchybar)
 cask "font-cascadia-code"
 cask "font-cascadia-code-nf"
 cask "font-cascadia-code-pl"
 cask "font-cascadia-mono"
 cask "font-cascadia-mono-nf"
 cask "font-cascadia-mono-pl"
+cask "font-hack-nerd-font"
 cask "font-hermit"
 cask "font-iosevka-nerd-font"
 cask "font-jetbrains-mono-nerd-font"

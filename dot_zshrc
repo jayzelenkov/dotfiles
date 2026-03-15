@@ -47,6 +47,9 @@ eval "$(zoxide init zsh)"
 # Set up the Starship prompt
 eval "$(starship init zsh)"
 
+export EDITOR="code --wait"
+export VISUAL="$EDITOR"
+
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 # Docker Desktop CLI completions
 fpath=($HOME/.docker/completions $fpath)

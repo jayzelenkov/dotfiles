@@ -48,6 +48,10 @@
 # # Just for example:
 # resize-overlay-duration = 4s 200ms
 
+# Font
+font-family = Hack Nerd Font Mono
+font-family = monospace
+
 # Smyck color scheme (brightened)
 palette = 0=#2A2A2A
 palette = 1=#F06B62
