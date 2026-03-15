@@ -25,6 +25,9 @@ autoload -U compinit; compinit
 
 alias rr='source ~/.zshrc'
 
+# bat — cat replacement
+alias cat='bat'
+
 # eza aliases with your preferred defaults
 alias ls='eza --icons --git'
 alias ll='eza --icons --git --long --header --group'
@@ -33,7 +36,8 @@ alias lt='eza --icons --git --tree --level=2'
 #export EZA_COLORS="da=36:gm=33"
 export EZA_ICONS_AUTO=1
 
-# ripgrep aliases
+# ripgrep — config file sets defaults, RIPGREP_CONFIG_PATH points to it
+export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/ripgreprc"
 alias grep='rg'
 alias rgi='rg --ignore-case'
 alias rgf='rg --files | rg'
@@ -130,4 +134,12 @@ typeid_to_uuid() {
 uuid_to_typeid_enc() {
   bun -e "import { TypeID } from 'typeid-js'; console.log(TypeID.fromUUID('enc', '$1').toString());"
 }
+
+# ZSH plugins (must be sourced near the end)
+[ -f /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh ] && \
+  source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# zsh-syntax-highlighting must be sourced last
+[ -f /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && \
+  source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 

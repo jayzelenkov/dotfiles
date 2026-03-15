@@ -1,0 +1,12 @@
+# Global fd ignore patterns (~/.config/fd/ignore is loaded automatically)
+.git/
+node_modules/
+.DS_Store
+__pycache__/
+*.pyc
+.venv/
+venv/
+dist/
+build/
+.next/
+.cache/

@@ -1,16 +1,22 @@
 # Shell & terminal
 brew "bash"                    # Updated bash (macOS ships ancient 3.x)
+brew "bat"                     # cat with syntax highlighting, line numbers, git diff
 brew "btop"                    # Resource monitor (htop alternative)
 brew "coreutils"               # GNU coreutils (gdate, greadlink, etc.)
 brew "curl"                    # Updated curl with HTTP/3 support
 brew "direnv"                  # Per-directory environment variables
 brew "eza"                     # Modern ls replacement with icons/git
+brew "fd"                      # find but faster and saner syntax
 brew "fzf"                     # Fuzzy finder for shell
+brew "htop"                    # Interactive process viewer
+brew "pandoc"                  # Universal document converter (md → pdf/docx/html)
 brew "starship"                # Cross-shell prompt
 brew "telnet"                  # Removed from macOS, still useful for debugging
 brew "tmux"                    # Terminal multiplexer
 brew "tree"                    # Directory tree viewer
 brew "zoxide"                  # Smart cd with frecency
+brew "zsh-syntax-highlighting" # Fish-like syntax highlighting for zsh
+brew "zsh-autosuggestions"     # Fish-like autosuggestions for zsh
 
 # Dev tools
 brew "biome"                   # JS/TS linter and formatter
@@ -23,7 +29,7 @@ brew "git-lfs"                 # Git large file storage
 brew "gnupg"                   # GPG for signing commits/encryption
 brew "go"                      # Go programming language
 brew "graphite2"               # Stacked PRs workflow (gt CLI)
-brew "jq"                      # JSON processor
+brew "jq"                      # JSON processor (also used by sketchybar plugins)
 tap "hedhyw/main"
 brew "hedhyw/main/jlv"         # Interactive JSON log viewer
 brew "lazygit"                 # Terminal UI for git
@@ -53,7 +59,7 @@ cask "nikitabobko/tap/aerospace" # AeroSpace tiling window manager
 tap "FelixKratz/formulae"
 brew "borders"                 # JankyBorders — window border highlights
 brew "sketchybar"              # Highly customizable macOS status bar
-brew "switchaudio-osx"         # Switch audio source (used by sketchybar)
+brew "switchaudio-osx"         # Switch audio output source (sketchybar volume_click)
 brew "nowplaying-cli"          # Now playing info (used by sketchybar)
 
 # Casks - Apps
@@ -99,6 +105,7 @@ cask "google-drive"            # Cloud storage
 cask "homerow"                 # Keyboard navigation for macOS
 cask "karabiner-elements"      # Keyboard customizer
 cask "keka"                    # File archiver
+cask "cheatsheet"              # Hold ⌘ to see all shortcuts for current app
 cask "screen-studio"           # Screen recording
 cask "tailscale-app"           # Mesh VPN
 

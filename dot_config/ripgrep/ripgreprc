@@ -1,0 +1,11 @@
+# Case-insensitive if pattern is all-lowercase, case-sensitive otherwise
+--smart-case
+
+# Search hidden files and directories (respects .gitignore)
+--hidden
+
+# Follow symbolic links
+--follow
+
+# Show line numbers
+--line-number
