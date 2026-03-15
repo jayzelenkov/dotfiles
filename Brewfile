@@ -61,20 +61,15 @@ cask "bartender"               # Menu bar organizer
 cask "chatgpt"                 # ChatGPT desktop app
 cask "claude"                  # Claude AI desktop app
 cask "cleanshot"               # Screenshot & recording tool
-cask "cursor"                  # Cursor IDE
+cask "visual-studio-code"      # VS Code editor
 cask "docker-desktop"          # Docker Desktop
 cask "ghostty"                 # Ghostty terminal emulator
 cask "github"                  # GitHub Desktop
 cask "google-chrome"           # Web browser
 cask "homerow"                 # Keyboard navigation for macOS
-cask "linear-linear"           # Linear project management
-cask "notion"                  # Notion workspace
-cask "postico"                 # PostgreSQL client for Mac
 cask "raycast"                 # Launcher & productivity tool
-cask "tailscale-app"           # Tailscale VPN
 
 # Mac App Store
-mas "Okta Verify", id: 490179405
 mas "Things 3", id: 904280696
 mas "Tot", id: 1491071483
 

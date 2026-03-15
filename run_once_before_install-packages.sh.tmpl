@@ -7,15 +7,21 @@ echo "  macOS Bootstrap (chezmoi run_once)"
 echo "=========================================="
 echo ""
 
-# Keep sudo alive (ask once, reuse throughout)
+# Authenticate once and share that session across all subprocesses.
+#
+# By default macOS sudo uses per-TTY tickets (tty_tickets), so brew's internal
+# sudo calls — which run in subprocess contexts — each prompt separately.
+# We temporarily disable tty_tickets and extend the timeout for this user so
+# that the single sudo -v below covers the entire install. The sudoers file is
+# removed on exit.
 echo "→ Requesting sudo access (you'll only be asked once)..."
 sudo -v
-while true; do
-    sleep 10
-    sudo -n true 2>/dev/null
-done &
-SUDO_KEEPALIVE_PID=$!
-trap 'kill $SUDO_KEEPALIVE_PID 2>/dev/null || true' EXIT
+
+SUDOERS_BOOTSTRAP=/etc/sudoers.d/chezmoi-bootstrap
+printf 'Defaults:%s !tty_tickets\nDefaults:%s timestamp_timeout=120\n' "$USER" "$USER" \
+    | sudo tee "$SUDOERS_BOOTSTRAP" > /dev/null
+sudo chmod 440 "$SUDOERS_BOOTSTRAP"
+trap 'sudo rm -f "$SUDOERS_BOOTSTRAP" 2>/dev/null || true' EXIT
 echo ""
 
 # Xcode Command Line Tools
@@ -53,6 +59,11 @@ echo ""
 if ! command -v mas &>/dev/null; then
     brew install mas
 fi
+
+# Add taps before bundle so formula names resolve correctly
+brew tap nikitabobko/tap 2>/dev/null || true
+brew tap FelixKratz/formulae 2>/dev/null || true
+brew tap hedhyw/main 2>/dev/null || true
 
 # Install all packages from Brewfile
 echo "→ Installing packages from Brewfile..."

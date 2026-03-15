@@ -19,7 +19,6 @@ This single command will:
 5. Install all packages from the Brewfile (formulae, casks, App Store apps)
 6. Apply dotfiles (`~/.zshrc`, `~/.aerospace.toml`)
 7. Install global runtimes via mise (python, bun)
-8. Configure Postico license (if available)
 
 ## What's included
 
@@ -62,7 +61,7 @@ export POSTICO_LICENSE_KEY="..."
 
 ## Structure
 
-```
+```text
 ~/.local/share/chezmoi/
 ├── .chezmoiignore                           # Files to keep in repo but not apply to ~
 ├── .gitignore                               # Files excluded from git
