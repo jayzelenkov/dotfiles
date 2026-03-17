@@ -1,12 +1,11 @@
 #!/usr/bin/env bash
 
-# Colors taken from tokyonight theme
-red="0xfff7768e"
-blue="0xff7aa2f7"
+# Warm golden yellow — easy on the eyes, clearly visible on dark backgrounds
+yellow="0xffE5C07B"
 
 options=(
-	active_color="$red"
-	inactive_color="$blue"
+	active_color="$yellow"
+	inactive_color="0x00ffffff"
 	hidpi=on
 	style=round
 	width=6.0

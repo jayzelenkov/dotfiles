@@ -16,7 +16,7 @@ after-startup-command = [
 exec-on-workspace-change = [
     '/bin/bash',
     '-c',
-    'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE',
+    '$HOME/.config/aerospace/on-workspace-change.sh',
 ]
 
 # Start AeroSpace at login
@@ -195,10 +195,10 @@ l = 'join-with right'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#resize
 # Resize windows
-left = 'resize width +50'
+left = 'resize width -50'
 down = 'resize height -50'
 up = 'resize height +50'
-right = 'resize width -50'
+right = 'resize width +50'
 shift-down = 'resize smart -50'
 shift-up = 'resize smart +50'
 
