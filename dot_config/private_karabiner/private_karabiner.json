@@ -4,6 +4,164 @@
             "complex_modifications": {
                 "rules": [
                     {
+                        "description": "Hyper + shift + symbol/digit → Cmd Ctrl Option Shift + key (shift-sensitive keys need explicit rule to beat the generic one)",
+                        "manipulators": [
+                            {
+                                "conditions": [{ "name": "hyper", "type": "variable_if", "value": 1 }],
+                                "from": { "key_code": "comma", "modifiers": { "mandatory": ["shift"] } },
+                                "to": [{ "key_code": "f13", "modifiers": ["command", "control", "option"] }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [{ "name": "hyper", "type": "variable_if", "value": 1 }],
+                                "from": { "key_code": "period", "modifiers": { "mandatory": ["shift"] } },
+                                "to": [{ "key_code": "f14", "modifiers": ["command", "control", "option"] }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [{ "name": "hyper", "type": "variable_if", "value": 1 }],
+                                "from": { "key_code": "slash", "modifiers": { "mandatory": ["shift"] } },
+                                "to": [{ "key_code": "f15", "modifiers": ["command", "control", "option"] }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [{ "name": "hyper", "type": "variable_if", "value": 1 }],
+                                "from": { "key_code": "1", "modifiers": { "mandatory": ["shift"] } },
+                                "to": [{ "key_code": "1", "modifiers": ["command", "control", "option"] }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [{ "name": "hyper", "type": "variable_if", "value": 1 }],
+                                "from": { "key_code": "2", "modifiers": { "mandatory": ["shift"] } },
+                                "to": [{ "key_code": "2", "modifiers": ["command", "control", "option"] }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [{ "name": "hyper", "type": "variable_if", "value": 1 }],
+                                "from": { "key_code": "3", "modifiers": { "mandatory": ["shift"] } },
+                                "to": [{ "key_code": "3", "modifiers": ["command", "control", "option"] }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [{ "name": "hyper", "type": "variable_if", "value": 1 }],
+                                "from": { "key_code": "4", "modifiers": { "mandatory": ["shift"] } },
+                                "to": [{ "key_code": "4", "modifiers": ["command", "control", "option"] }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [{ "name": "hyper", "type": "variable_if", "value": 1 }],
+                                "from": { "key_code": "5", "modifiers": { "mandatory": ["shift"] } },
+                                "to": [{ "key_code": "5", "modifiers": ["command", "control", "option"] }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [{ "name": "hyper", "type": "variable_if", "value": 1 }],
+                                "from": { "key_code": "6", "modifiers": { "mandatory": ["shift"] } },
+                                "to": [{ "key_code": "6", "modifiers": ["command", "control", "option"] }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [{ "name": "hyper", "type": "variable_if", "value": 1 }],
+                                "from": { "key_code": "7", "modifiers": { "mandatory": ["shift"] } },
+                                "to": [{ "key_code": "7", "modifiers": ["command", "control", "option"] }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [{ "name": "hyper", "type": "variable_if", "value": 1 }],
+                                "from": { "key_code": "8", "modifiers": { "mandatory": ["shift"] } },
+                                "to": [{ "key_code": "8", "modifiers": ["command", "control", "option"] }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [{ "name": "hyper", "type": "variable_if", "value": 1 }],
+                                "from": { "key_code": "9", "modifiers": { "mandatory": ["shift"] } },
+                                "to": [{ "key_code": "9", "modifiers": ["command", "control", "option"] }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [{ "name": "hyper", "type": "variable_if", "value": 1 }],
+                                "from": { "key_code": "0", "modifiers": { "mandatory": ["shift"] } },
+                                "to": [{ "key_code": "0", "modifiers": ["command", "control", "option"] }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Hyper + comma → F13 proxy (avoids Carbon shift+, = < bug)",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "hyper",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "comma",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "f13",
+                                        "modifiers": ["command", "control", "option"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Hyper + dot → F14 proxy (avoids Carbon shift+. = > bug)",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "hyper",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "period",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "f14",
+                                        "modifiers": ["command", "control", "option"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Hyper + slash → F15 proxy (avoids Carbon shift+/ = ? bug)",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "hyper",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "slash",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "f15",
+                                        "modifiers": ["command", "control", "option"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
                         "description": "While hyper is active, send Command Control Option Shift plus key",
                         "manipulators": [
                             {
@@ -885,11 +1043,95 @@
                                     }
                                 ],
                                 "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "hyper",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "hyphen",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "hyphen",
+                                        "modifiers": ["command", "control", "option", "shift"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "hyper",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "equal_sign",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "equal_sign",
+                                        "modifiers": ["command", "control", "option", "shift"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "hyper",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "grave_accent_and_tilde",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "grave_accent_and_tilde",
+                                        "modifiers": ["command", "control", "option", "shift"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [{ "name": "hyper", "type": "variable_if", "value": 1 }],
+                                "from": { "key_code": "left_arrow", "modifiers": { "optional": ["any"] } },
+                                "to": [{ "key_code": "left_arrow", "modifiers": ["command", "control", "option", "shift"] }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [{ "name": "hyper", "type": "variable_if", "value": 1 }],
+                                "from": { "key_code": "right_arrow", "modifiers": { "optional": ["any"] } },
+                                "to": [{ "key_code": "right_arrow", "modifiers": ["command", "control", "option", "shift"] }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [{ "name": "hyper", "type": "variable_if", "value": 1 }],
+                                "from": { "key_code": "up_arrow", "modifiers": { "optional": ["any"] } },
+                                "to": [{ "key_code": "up_arrow", "modifiers": ["command", "control", "option", "shift"] }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [{ "name": "hyper", "type": "variable_if", "value": 1 }],
+                                "from": { "key_code": "down_arrow", "modifiers": { "optional": ["any"] } },
+                                "to": [{ "key_code": "down_arrow", "modifiers": ["command", "control", "option", "shift"] }],
+                                "type": "basic"
                             }
                         ]
                     },
                     {
-                        "description": "Caps Lock sets hyper variable while held. Tap sends Escape.",
+                        "description": "Caps Lock sets hyper variable while held. Tap toggles tile layout.",
                         "manipulators": [
                             {
                                 "from": {
