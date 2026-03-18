@@ -76,8 +76,15 @@ run = 'layout floating'
 if.app-id = 'com.raycast.macos'
 run = 'layout floating'
 
-# Float 1Password by default
-# See: https://nikitabobko.github.io/AeroSpace/guide#on-window-detected-callback
+# Float 1Password — Quick Access palette needs an explicit title rule because its
+# title initializes asynchronously, causing on-window-detected to race with
+# AeroSpace's own dialog heuristic and produce inconsistent float/tile behavior.
+[[on-window-detected]]
+if.app-id = 'com.1password.1password'
+if.window-title-regex-substring = 'Quick Access'
+run = 'layout floating'
+
+# Catch-all: float main window, Settings, and any other 1Password windows
 [[on-window-detected]]
 if.app-id = 'com.1password.1password'
 run = 'layout floating'

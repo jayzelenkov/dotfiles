@@ -41,9 +41,10 @@ export BATTERY_25=$(printf '\xef\x89\x83')       # U+F243 nf-fa-battery-quarter
 export BATTERY_0=$(printf '\xef\x89\x84')        # U+F244 nf-fa-battery-empty
 export BATTERY_CHARGING=$(printf '\xef\x83\xa7') # U+F0E7 nf-fa-bolt
 
-# Volume Icons (nf-md-* supplementary PUA — safe in Nerd Fonts v3)
-export VOLUME_100=$(printf '\xf3\xb0\x95\xbe')  # U+F057E nf-md-volume-high
-export VOLUME_66=$(printf '\xf3\xb0\x96\x80')   # U+F0580 nf-md-volume-medium
-export VOLUME_33=$(printf '\xf3\xb0\x95\xbd')   # U+F057D nf-md-volume-low
-export VOLUME_10=$(printf '\xf3\xb0\x95\xbd')   # U+F057D nf-md-volume-low
-export VOLUME_0=$(printf '\xf3\xb0\x96\x81')    # U+F0581 nf-md-volume-mute
+# Volume Icons — code points verified against ryanoasis/nerd-fonts/glyphnames.json
+# U+F057D does not exist in Nerd Fonts; correct low-volume glyph is U+F057F.
+export VOLUME_100=$(printf '\xf3\xb0\x95\xbe')  # U+F057E nf-md-volume_high
+export VOLUME_66=$(printf '\xf3\xb0\x96\x80')   # U+F0580 nf-md-volume_medium
+export VOLUME_33=$(printf '\xf3\xb0\x95\xbf')   # U+F057F nf-md-volume_low
+export VOLUME_10=$(printf '\xf3\xb0\x95\xbf')   # U+F057F nf-md-volume_low
+export VOLUME_0=$(printf '\xf3\xb0\x96\x81')    # U+F0581 nf-md-volume_off
