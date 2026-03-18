@@ -11,17 +11,21 @@ NUM_HIGHLIGHT_FONT="Hack Nerd Font Mono:Bold:17.0"
 _ICON_ACTIVITY_MONITOR=$(printf '\xf3\xb0\xb4\x84')  # U+F0D04 nf-md-chart_areaspline_variant
 _ICON_CALENDAR=$(printf '\xf3\xb0\x85\x96')          # U+F0156 nf-md-calendar
 _ICON_DISCORD=$(printf '\xf3\xb0\x99\xa2')           # U+F0662 nf-md-discord
-_ICON_GHOSTTY=$(printf '\xf3\xb0\xaa\x96')           # U+F0A96 nf-md-ghost
+_ICON_GHOSTTY=$(printf '\xf3\xb0\x8a\xa0')           # U+F02A0 nf-md-ghost
 _ICON_CHROME=$(printf '\xf3\xb0\x8a\xaf')            # U+F02AF nf-md-google_chrome
 _ICON_MESSAGES=$(printf '\xf3\xb0\x8e\x86')          # U+F0386 nf-md-message
 _ICON_MUSIC=$(printf '\xf3\xb0\x9d\x9a')             # U+F075A nf-md-music_note
 _ICON_PREVIEW=$(printf '\xf3\xb0\x88\x88')           # U+F0208 nf-md-eye
 _ICON_RAYCAST=$(printf '\xf3\xb0\x8d\x89')           # U+F0349 nf-md-magnify
 _ICON_SAFARI=$(printf '\xf3\xb0\x96\x9f')            # U+F059F nf-md-web
-_ICON_SPOTIFY=$(printf '\xf3\xb0\xad\x88')           # U+F0B48 nf-md-spotify
+_ICON_SPOTIFY=$(printf '\xf3\xb0\x9d\x9a')           # U+F075A nf-md-music_note (nf-md-spotify renders incorrectly in HNF Mono)
 _ICON_SYSTEM=$(printf '\xf3\xb0\x92\x93')            # U+F0493 nf-md-cog
 _ICON_TELEGRAM=$(printf '\xf3\xb0\x92\x8a')          # U+F048A nf-md-send
 _ICON_TERMINAL=$(printf '\xf3\xb0\xa9\xb0')          # U+F0A70 nf-md-console_line
+_ICON_DIAMOND=$(printf '\xf3\xb0\xae\x8a')             # U+F0B8A nf-md-diamond
+_ICON_NOTES=$(printf '\xf3\xb0\xa7\xb0')              # U+F09F0 nf-md-note_text
+_ICON_NUMBERS=$(printf '\xf3\xb0\x84\xa8')            # U+F0128 nf-md-chart_bar
+_ICON_PAGES=$(printf '\xf3\xb0\x88\x99')              # U+F0219 nf-md-file_document
 _ICON_WHATSAPP=$(printf '\xf3\xb0\x98\x87')          # U+F0607 nf-md-whatsapp
 _ICON_XCODE=$(printf '\xf3\xb0\x8a\x95')             # U+F0295 nf-md-hammer
 
@@ -48,8 +52,11 @@ app_icon() {
     "IINA")                           echo "󰕼" ;;
     "Messages")                       echo "$_ICON_MESSAGES" ;;
     "Music")                          echo "$_ICON_MUSIC" ;;
+    "Notes")                          echo "$_ICON_NOTES" ;;
     "Notion")                         echo "󰎚" ;;
-    "Obsidian")                       echo "󱔗" ;;
+    "Numbers")                        echo "$_ICON_NUMBERS" ;;
+    "Obsidian")                       echo "$_ICON_DIAMOND" ;;
+    "Pages")                          echo "$_ICON_PAGES" ;;
     "Preview")                        echo "$_ICON_PREVIEW" ;;
     "Raycast")                        echo "$_ICON_RAYCAST" ;;
     "Safari")                         echo "$_ICON_SAFARI" ;;
