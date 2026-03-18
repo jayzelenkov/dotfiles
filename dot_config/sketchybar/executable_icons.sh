@@ -7,7 +7,7 @@
 export LOADING=$(printf '\xef\x84\x90')          # U+F110 nf-fa-spinner
 export APPLE=$(printf '\xef\x85\xb9')            # U+F179 nf-fa-apple
 export PREFERENCES=$(printf '\xef\x80\x93')      # U+F013 nf-fa-cog
-export ACTIVITY=$(printf '\xef\x88\x81')         # U+F201 nf-fa-line-chart
+export ACTIVITY=$(printf '\xef\x80\x82')         # U+F002 nf-fa-search
 export LOCK=$(printf '\xef\x80\xa3')             # U+F023 nf-fa-lock
 export BELL=$(printf '\xef\x83\xb3')             # U+F0F3 nf-fa-bell
 export BELL_DOT=$(printf '\xef\x87\xb6')         # U+F1F6 nf-fa-bell-slash
@@ -41,9 +41,9 @@ export BATTERY_25=$(printf '\xef\x89\x83')       # U+F243 nf-fa-battery-quarter
 export BATTERY_0=$(printf '\xef\x89\x84')        # U+F244 nf-fa-battery-empty
 export BATTERY_CHARGING=$(printf '\xef\x83\xa7') # U+F0E7 nf-fa-bolt
 
-# Volume Icons
-export VOLUME_100=$(printf '\xef\x80\xa8')       # U+F028 nf-fa-volume-up
-export VOLUME_66=$(printf '\xef\x80\xa8')        # U+F028 nf-fa-volume-up
-export VOLUME_33=$(printf '\xef\x80\xa7')        # U+F027 nf-fa-volume-down
-export VOLUME_10=$(printf '\xef\x80\xa6')        # U+F026 nf-fa-volume-off
-export VOLUME_0=$(printf '\xef\x9a\xa9')         # U+F6A9 nf-fa-volume-mute
+# Volume Icons (nf-md-* supplementary PUA — safe in Nerd Fonts v3)
+export VOLUME_100=$(printf '\xf3\xb0\x95\xbe')  # U+F057E nf-md-volume-high
+export VOLUME_66=$(printf '\xf3\xb0\x96\x80')   # U+F0580 nf-md-volume-medium
+export VOLUME_33=$(printf '\xf3\xb0\x95\xbd')   # U+F057D nf-md-volume-low
+export VOLUME_10=$(printf '\xf3\xb0\x95\xbd')   # U+F057D nf-md-volume-low
+export VOLUME_0=$(printf '\xf3\xb0\x96\x81')    # U+F0581 nf-md-volume-mute

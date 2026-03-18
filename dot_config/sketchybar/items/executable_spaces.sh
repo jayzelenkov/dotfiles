@@ -1,11 +1,16 @@
 #!/bin/bash
 
-# AeroSpace workspace indicators — per-monitor brackets, simple number labels
+# AeroSpace workspace indicators.
+# icon = workspace number (highlighted yellow when active)
+# label = Nerd Font app icons for all windows in that workspace (no highlight)
+# Icons are populated at bar init via the 'routine' event on workspaces_service_mode.
+
 sketchybar --add event aerospace_workspace_change
 sketchybar --add event aerospace_service_mode_enabled_changed
 
-LABEL_FONT="$FONT:Bold:13.0"
-LABEL_HIGHLIGHT_FONT="$FONT:Bold:13.0"
+NUM_FONT="$FONT:Bold:13.0"
+NUM_HIGHLIGHT_FONT="$FONT:Bold:17.0"
+ICON_FONT="$FONT:Regular:18.0"
 
 create_workspace_bracket_for_monitor() {
   local monitor_id="$1"
@@ -28,11 +33,17 @@ create_workspace_bracket_for_monitor() {
                --set       "space.$monitor_id.$workspace_id" \
                            background.drawing=off \
                            click_script="aerospace workspace $workspace_id" \
-                           label="$workspace_id" \
-                           label.width=30 \
-                           label.font="$LABEL_FONT" \
-                           label.color=$LABEL_COLOR \
-                           label.highlight_color=0xffE5C07B \
+                           icon="$workspace_id" \
+                           icon.font="$NUM_FONT" \
+                           icon.color=$LABEL_COLOR \
+                           icon.highlight_color=0xffE5C07B \
+                           icon.padding_left=4 \
+                           icon.padding_right=2 \
+                           label="" \
+                           label.font="$ICON_FONT" \
+                           label.color=$GREY \
+                           label.padding_left=0 \
+                           label.padding_right=6 \
                            script="$PLUGIN_DIR/aerospace.sh $workspace_id"
   done
 
@@ -44,15 +55,16 @@ create_workspace_bracket_for_monitor() {
                           label="|"
   else
     sketchybar --add item workspaces_service_mode left \
-               --subscribe workspaces_service_mode aerospace_service_mode_enabled_changed \
+               --subscribe workspaces_service_mode aerospace_service_mode_enabled_changed routine front_app_switched \
                --set       workspaces_service_mode \
                            background.drawing=off \
                            label.drawing=off \
                            label.highlight=on \
                            label.highlight_color=0xffE5C07B \
-                           label.font="$LABEL_HIGHLIGHT_FONT" \
+                           label.font="$NUM_HIGHLIGHT_FONT" \
                            label="[s]" \
                            label.padding_right=10 \
+                           update_freq=4 \
                            script="$PLUGIN_DIR/aerospace.sh service_mode"
 
     sketchybar --add item workspaces_spacer_right left \

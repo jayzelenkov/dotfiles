@@ -12,6 +12,23 @@ PADDINGS=3
 # Unload macOS volume OSD
 launchctl unload -F /System/Library/LaunchAgents/com.apple.OSDUIHelper.plist > /dev/null 2>&1 &
 
+# Detect notch: apply when built-in display is active and machine has a notch.
+# Mac14,* and Mac15,* = MacBook Pro M2/M3/M4 (all have notch).
+# We check if aerospace sees a monitor that isn't a known external brand;
+# if so, the built-in screen is likely active.
+NOTCH_WIDTH=0
+MACHINE=$(sysctl -n hw.model 2>/dev/null)
+case "$MACHINE" in
+  Mac14,*|Mac15,*|Mac16,*|MacBookPro18,*|MacBookPro19,*)
+    MONITOR_COUNT=$(aerospace list-monitors 2>/dev/null | wc -l | tr -d ' ')
+    EXTERNAL_COUNT=$(aerospace list-monitors 2>/dev/null | \
+      grep -ic "studio\|dell\|lg \|samsung\|acer\|asus\|benq\|viewsonic\|hp\|eizo")
+    if [ "$EXTERNAL_COUNT" -lt "$MONITOR_COUNT" ]; then
+      NOTCH_WIDTH=220
+    fi
+    ;;
+esac
+
 bar=(
   height=39
   color=$BAR_COLOR
@@ -24,7 +41,7 @@ bar=(
   y_offset=0
   margin=0
   blur_radius=20
-  notch_width=0
+  notch_width=$NOTCH_WIDTH
 )
 sketchybar --bar "${bar[@]}"
 
