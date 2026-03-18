@@ -29,10 +29,10 @@ create_workspace_bracket_for_monitor() {
                            background.drawing=off \
                            click_script="aerospace workspace $workspace_id" \
                            label="$workspace_id" \
-                           label.width=25 \
+                           label.width=30 \
                            label.font="$LABEL_FONT" \
                            label.color=$LABEL_COLOR \
-                           label.highlight_color=$RED \
+                           label.highlight_color=0xffE5C07B \
                            script="$PLUGIN_DIR/aerospace.sh $workspace_id"
   done
 
@@ -49,7 +49,7 @@ create_workspace_bracket_for_monitor() {
                            background.drawing=off \
                            label.drawing=off \
                            label.highlight=on \
-                           label.highlight_color=$RED \
+                           label.highlight_color=0xffE5C07B \
                            label.font="$LABEL_HIGHLIGHT_FONT" \
                            label="[s]" \
                            label.padding_right=10 \

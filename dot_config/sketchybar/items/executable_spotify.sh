@@ -33,7 +33,8 @@ spotify_title=(
   icon.drawing=off
   padding_left=0
   padding_right=0
-  width=0
+  width=220        # non-zero: makes popup account for the text column in its width
+  label.width=220
   label.font="$FONT:Bold:15.0"
   y_offset=55
 )
@@ -43,7 +44,8 @@ spotify_artist=(
   y_offset=30
   padding_left=0
   padding_right=0
-  width=0
+  width=0          # stacks inside title's column
+  label.width=220
 )
 
 spotify_album=(
@@ -51,7 +53,8 @@ spotify_album=(
   padding_left=0
   padding_right=0
   y_offset=15
-  width=0
+  width=0          # stacks inside title's column
+  label.width=220
 )
 
 spotify_state=(
@@ -66,13 +69,13 @@ spotify_state=(
   padding_left=0
   padding_right=0
   y_offset=-15
-  width=0
+  width=0          # stacks inside title's column; slider.width fits: 220-35-35=150
   slider.background.height=6
   slider.background.corner_radius=1
   slider.background.color=$GREY
   slider.highlight_color=$GREEN
   slider.percentage=40
-  slider.width=115
+  slider.width=150
   script="$PLUGIN_DIR/spotify.sh"
   update_freq=1
   updates=when_shown

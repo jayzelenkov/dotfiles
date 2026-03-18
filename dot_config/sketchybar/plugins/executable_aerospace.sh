@@ -3,7 +3,7 @@
 source "$HOME/.config/sketchybar/colors.sh"
 
 LABEL_FONT="Hack Nerd Font Mono:Bold:13.0"
-LABEL_HIGHLIGHT_FONT="Hack Nerd Font Mono:Bold:13.0"
+LABEL_HIGHLIGHT_FONT="Hack Nerd Font Mono:Bold:17.0"
 
 if [ "$SENDER" = "aerospace_service_mode_enabled_changed" ]; then
   if [ "$AEROSPACE_SERVICE_MODE_ENABLED" = "true" ]; then

@@ -9,12 +9,6 @@ PLUGIN_DIR="$HOME/.config/sketchybar/plugins"
 FONT="Hack Nerd Font Mono"
 PADDINGS=3
 
-# Build the helper (C-based CPU graph)
-HELPER=git.felix.helper
-killall helper 2>/dev/null
-cd "$HOME/.config/sketchybar/helper" && make 2>/dev/null
-"$HOME/.config/sketchybar/helper/helper" $HELPER > /dev/null 2>&1 &
-
 # Unload macOS volume OSD
 launchctl unload -F /System/Library/LaunchAgents/com.apple.OSDUIHelper.plist > /dev/null 2>&1 &
 
@@ -60,18 +54,21 @@ sketchybar --default "${defaults[@]}"
 # Left
 source "$ITEM_DIR/apple.sh"
 source "$ITEM_DIR/spaces.sh"
-source "$ITEM_DIR/front_app.sh"
 
 # Center
 source "$ITEM_DIR/spotify.sh"
 
 # Right
 source "$ITEM_DIR/calendar.sh"
-source "$ITEM_DIR/brew.sh"
-source "$ITEM_DIR/github.sh"
+source "$ITEM_DIR/keyboard.sh"
 source "$ITEM_DIR/battery.sh"
 source "$ITEM_DIR/volume.sh"
-source "$ITEM_DIR/cpu.sh"
 
 sketchybar --update
+
+# Poll cfprefsd directly (via defaults) for keyboard layout changes.
+# Faster than fswatch because macOS batches plist disk writes — defaults is always current.
+pkill -f "keyboard-watcher.sh" 2>/dev/null
+"$HOME/.config/sketchybar/plugins/keyboard-watcher.sh" &
+
 echo "sketchybar configuration loaded.."

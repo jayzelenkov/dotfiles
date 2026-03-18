@@ -61,6 +61,7 @@ brew "borders"                 # JankyBorders — window border highlights
 brew "sketchybar"              # Highly customizable macOS status bar
 brew "switchaudio-osx"         # Switch audio output source (sketchybar volume_click)
 brew "nowplaying-cli"          # Now playing info (used by sketchybar)
+brew "fswatch"                 # File change watcher via FSEvents (sketchybar keyboard layout)
 
 # Casks - Apps
 tap "updatest/tap", "https://github.com/updatest/tap.git"

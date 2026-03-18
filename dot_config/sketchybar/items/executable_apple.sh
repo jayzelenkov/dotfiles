@@ -1,15 +1,16 @@
 #!/bin/bash
 
 POPUP_OFF="sketchybar --set apple.logo popup.drawing=off"
-POPUP_CLICK_SCRIPT="sketchybar --set \$NAME popup.drawing=toggle"
 
 apple_logo=(
   icon=$APPLE
   icon.font="$FONT:Bold:16.0"
-  icon.color=$GREEN
+  icon.color=0xffE5C07B
+  padding_left=8
   padding_right=15
+  y_offset=2
   label.drawing=off
-  click_script="$POPUP_CLICK_SCRIPT"
+  script="$PLUGIN_DIR/apple.sh"
 )
 
 apple_prefs=(
@@ -27,11 +28,13 @@ apple_activity=(
 apple_lock=(
   icon=$LOCK
   label="Lock Screen"
-  click_script="pmset displaysleepnow; $POPUP_OFF"
+  click_script="osascript -e 'tell application \"System Events\" to keystroke \"q\" using {control down, command down}'; $POPUP_OFF"
 )
 
 sketchybar --add item apple.logo left                  \
            --set apple.logo "${apple_logo[@]}"         \
+           --subscribe apple.logo mouse.clicked        \
+                       mouse.exited.global             \
                                                        \
            --add item apple.prefs popup.apple.logo     \
            --set apple.prefs "${apple_prefs[@]}"       \
