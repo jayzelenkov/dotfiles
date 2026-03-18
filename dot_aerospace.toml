@@ -149,10 +149,10 @@ cmd-alt-ctrl-shift-k = 'fullscreen'
 
 # Switch window focus
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
-cmd-alt-ctrl-shift-left = 'focus left'
-cmd-alt-ctrl-shift-down = 'focus down'
-cmd-alt-ctrl-shift-up = 'focus up'
-cmd-alt-ctrl-shift-right = 'focus right'
+cmd-alt-ctrl-shift-left = 'focus left --ignore-floating'
+cmd-alt-ctrl-shift-down = 'focus down --ignore-floating'
+cmd-alt-ctrl-shift-up = 'focus up --ignore-floating'
+cmd-alt-ctrl-shift-right = 'focus right --ignore-floating'
 
 # Move windows in the given direction
 # See: https://nikitabobko.github.io/AeroSpace/commands#move

@@ -25,6 +25,14 @@ _ICON_TERMINAL=$(printf '\xf3\xb0\xa9\xb0')          # U+F0A70 nf-md-console_lin
 _ICON_WHATSAPP=$(printf '\xf3\xb0\x98\x87')          # U+F0607 nf-md-whatsapp
 _ICON_XCODE=$(printf '\xf3\xb0\x8a\x95')             # U+F0295 nf-md-hammer
 
+# Apps to hide from workspace icon lists (overlays, non-focusable utilities)
+SKIP_APPS="Wispr Flow"
+
+skip_app() {
+  case ":${SKIP_APPS}:" in *":$1:"*) return 0 ;; esac
+  return 1
+}
+
 app_icon() {
   case "$1" in
     "1Password")                      echo "󰦝" ;;
@@ -52,7 +60,6 @@ app_icon() {
     "Terminal")                       echo "$_ICON_TERMINAL" ;;
     "Things 3")                       echo "󰄬" ;;
     "WhatsApp")                       echo "$_ICON_WHATSAPP" ;;
-    "Wispr Flow")                     echo "󰔊" ;;
     "Xcode")                          echo "$_ICON_XCODE" ;;
     "Zoom")                           echo "󰙯" ;;
     *)                                echo "󰘔" ;;
@@ -94,6 +101,7 @@ update_all_workspaces() {
     while IFS=$'\t' read -r w app; do
       [ "$w" = "$ws" ] || continue
       [ -z "$app" ] && continue
+      skip_app "$app" && continue
       case ":${seen}:" in *":${app}:"*) continue ;; esac
       seen="${seen}:${app}"
       icons="${icons}$(app_icon "$app") "
@@ -104,12 +112,15 @@ update_all_workspaces() {
       sketchybar --set "/space\\..*\\.$ws/" \
                        icon.highlight=on \
                        icon.font="$NUM_HIGHLIGHT_FONT" \
-                       label="$icons"
+                       label="$icons" \
+                       background.drawing=on \
+                       background.color=0xffE5C07B
     else
       sketchybar --set "/space\\..*\\.$ws/" \
                        icon.highlight=off \
                        icon.font="$NUM_FONT" \
-                       label="$icons"
+                       label="$icons" \
+                       background.drawing=off
     fi
   done < <(aerospace list-workspaces --all 2>/dev/null)
 }
@@ -141,6 +152,7 @@ if [ "$SENDER" = "aerospace_workspace_change" ]; then
   while IFS=$'\t' read -r ws app; do
     [ "$ws" = "$workspace_id" ] || continue
     [ -z "$app" ] && continue
+    skip_app "$app" && continue
     case ":${seen}:" in *":${app}:"*) continue ;; esac
     seen="${seen}:${app}"
     icons="${icons}$(app_icon "$app") "
@@ -151,11 +163,14 @@ if [ "$SENDER" = "aerospace_workspace_change" ]; then
     sketchybar --set "$NAME" \
                      icon.highlight=on \
                      icon.font="$NUM_HIGHLIGHT_FONT" \
-                     label="$icons"
+                     label="$icons" \
+                     background.drawing=on \
+                     background.color=0xffE5C07B
   else
     sketchybar --set "$NAME" \
                      icon.highlight=off \
                      icon.font="$NUM_FONT" \
-                     label="$icons"
+                     label="$icons" \
+                     background.drawing=off
   fi
 fi

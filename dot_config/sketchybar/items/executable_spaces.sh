@@ -10,7 +10,7 @@ sketchybar --add event aerospace_service_mode_enabled_changed
 
 NUM_FONT="$FONT:Bold:13.0"
 NUM_HIGHLIGHT_FONT="$FONT:Bold:17.0"
-ICON_FONT="$FONT:Regular:18.0"
+ICON_FONT="$FONT:Regular:20.0"
 
 create_workspace_bracket_for_monitor() {
   local monitor_id="$1"
@@ -42,8 +42,12 @@ create_workspace_bracket_for_monitor() {
                            label="" \
                            label.font="$ICON_FONT" \
                            label.color=$GREY \
-                           label.padding_left=0 \
+                           label.padding_left=6 \
                            label.padding_right=6 \
+                           background.height=3 \
+                           background.corner_radius=1 \
+                           background.y_offset=-17 \
+                           background.drawing=off \
                            script="$PLUGIN_DIR/aerospace.sh $workspace_id"
   done
 
