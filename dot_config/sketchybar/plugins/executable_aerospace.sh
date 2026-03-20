@@ -22,12 +22,17 @@ _ICON_SPOTIFY=$(printf '\xf3\xb0\x9d\x9a')           # U+F075A nf-md-music_note 
 _ICON_SYSTEM=$(printf '\xf3\xb0\x92\x93')            # U+F0493 nf-md-cog
 _ICON_TELEGRAM=$(printf '\xf3\xb0\x92\x8a')          # U+F048A nf-md-send
 _ICON_TERMINAL=$(printf '\xf3\xb0\xa9\xb0')          # U+F0A70 nf-md-console_line
-_ICON_DIAMOND=$(printf '\xf3\xb0\xae\x8a')             # U+F0B8A nf-md-diamond
-_ICON_NOTES=$(printf '\xf3\xb0\xa7\xb0')              # U+F09F0 nf-md-note_text
-_ICON_NUMBERS=$(printf '\xf3\xb0\x84\xa8')            # U+F0128 nf-md-chart_bar
-_ICON_PAGES=$(printf '\xf3\xb0\x88\x99')              # U+F0219 nf-md-file_document
+_ICON_DIAMOND=$(printf '\xf3\xb0\xae\x8a')           # U+F0B8A nf-md-diamond
+_ICON_NOTES=$(printf '\xf3\xb0\xa7\xb0')             # U+F09F0 nf-md-note_text
+_ICON_NUMBERS=$(printf '\xf3\xb0\x84\xa8')           # U+F0128 nf-md-chart_bar
+_ICON_PAGES=$(printf '\xf3\xb0\x88\x99')             # U+F0219 nf-md-file_document
 _ICON_WHATSAPP=$(printf '\xf3\xb0\x98\x87')          # U+F0607 nf-md-whatsapp
 _ICON_XCODE=$(printf '\xf3\xb0\x8a\x95')             # U+F0295 nf-md-hammer
+_ICON_LLAMA=$(printf '\xf3\xb1\x96\xbf')             # U+F15BF nf-md-horse (llama stand-in)
+_ICON_TICK_TICK=$(printf '\xf3\xb0\x84\xb4')         # U+F0134 nf-md-checkbox_marked_circle_outline
+_ICON_TRAY=$(printf '\xf3\xb0\x84\x9d')              # U+F011D nf-md-tray
+_ICON_PHOTOS=$(printf '\xf3\xb0\x8b\xa9')            # U+F02E9 nf-md-image
+_ICON_CURRENCY=$(printf '\xf3\xb0\x87\x81')          # U+F01C1 nf-md-currency_usd
 
 # Apps to hide from workspace icon lists (overlays, non-focusable utilities)
 SKIP_APPS="Wispr Flow"
@@ -65,7 +70,11 @@ app_icon() {
     "System Preferences"|"System Settings") echo "$_ICON_SYSTEM" ;;
     "Telegram")                       echo "$_ICON_TELEGRAM" ;;
     "Terminal")                       echo "$_ICON_TERMINAL" ;;
-    "Things 3")                       echo "󰄬" ;;
+    "Things")                         echo "$_ICON_TRAY" ;;
+    "TickTick")                       echo "$_ICON_TICK_TICK" ;;
+    "llamalife.co")                   echo "$_ICON_LLAMA" ;;
+    "Photos")                         echo "$_ICON_PHOTOS" ;;
+    "Copilot")                        echo "$_ICON_CURRENCY" ;;
     "WhatsApp")                       echo "$_ICON_WHATSAPP" ;;
     "Xcode")                          echo "$_ICON_XCODE" ;;
     "Zoom")                           echo "󰙯" ;;
