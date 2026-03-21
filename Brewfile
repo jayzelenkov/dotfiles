@@ -50,6 +50,7 @@ brew "temporal"                # Workflow orchestration CLI
 brew "ghostscript"             # PostScript/PDF interpreter (for tesseract)
 brew "libpq"                   # PostgreSQL client library
 brew "mas"                     # Mac App Store CLI
+brew "ocrmypdf"                # Add OCR text layer to scanned PDFs
 brew "python@3"                # Latest Python 3
 brew "tesseract"               # OCR engine
 
