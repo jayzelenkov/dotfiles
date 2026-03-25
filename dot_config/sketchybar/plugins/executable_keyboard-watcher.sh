@@ -6,8 +6,11 @@
 
 prev=""
 while true; do
-  current=$(defaults read ~/Library/Preferences/com.apple.HIToolbox.plist AppleSelectedInputSources \
-    | awk -F'"' '/KeyboardLayout Name/ { print $4 }')
+  plist=$(defaults read ~/Library/Preferences/com.apple.HIToolbox.plist AppleSelectedInputSources)
+  # Combine keyboard layout name + input mode to detect both layout and input method switches
+  layout=$(echo "$plist" | awk -F'"' '/KeyboardLayout Name/ { print $4 }')
+  mode=$(echo "$plist" | awk -F'"' '/Input Mode/ { print $4 }')
+  current="${layout}${mode}"
   if [ "$current" != "$prev" ]; then
     /opt/homebrew/bin/sketchybar --trigger keyboard_layout_change
     prev="$current"
