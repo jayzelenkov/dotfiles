@@ -101,8 +101,13 @@ icons_for_workspace() {
 
 # Full refresh: update every workspace item in one pass (used at init via routine).
 update_all_workspaces() {
-  local focused
-  focused=$(aerospace list-workspaces --focused 2>/dev/null | head -1)
+  # Build set of visible workspaces (one per monitor) so each monitor highlights its own
+  local visible_workspaces=":"
+  while read -r mid _; do
+    local vws
+    vws=$(aerospace list-workspaces --monitor "$mid" --visible 2>/dev/null | head -1)
+    [ -n "$vws" ] && visible_workspaces="${visible_workspaces}${vws}:"
+  done < <(aerospace list-monitors 2>/dev/null)
 
   # Load all windows at once
   local all_windows
@@ -124,7 +129,7 @@ update_all_workspaces() {
     done <<< "$all_windows"
     icons="${icons% }"
 
-    if [ "$ws" = "$focused" ]; then
+    if [[ "$visible_workspaces" == *":${ws}:"* ]]; then
       sketchybar --set "/space\\..*\\.$ws/" \
                        icon.highlight=on \
                        icon.font="$NUM_HIGHLIGHT_FONT" \
@@ -162,6 +167,13 @@ fi
 if [ "$SENDER" = "aerospace_workspace_change" ]; then
   workspace_id="$1"
 
+  # Build set of visible workspaces (one per monitor)
+  visible_workspaces=":"
+  while read -r mid _; do
+    vws=$(aerospace list-workspaces --monitor "$mid" --visible 2>/dev/null | head -1)
+    [ -n "$vws" ] && visible_workspaces="${visible_workspaces}${vws}:"
+  done < <(aerospace list-monitors 2>/dev/null)
+
   # Compute icons for this workspace
   icons=""
   seen=""
@@ -175,7 +187,7 @@ if [ "$SENDER" = "aerospace_workspace_change" ]; then
   done < <(aerospace list-windows --all --format "%{workspace}	%{app-name}" 2>/dev/null)
   icons="${icons% }"
 
-  if [ "$workspace_id" = "$FOCUSED_WORKSPACE" ]; then
+  if [[ "$visible_workspaces" == *":${workspace_id}:"* ]]; then
     sketchybar --set "$NAME" \
                      icon.highlight=on \
                      icon.font="$NUM_HIGHLIGHT_FONT" \

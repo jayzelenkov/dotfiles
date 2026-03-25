@@ -55,7 +55,7 @@ automatically-unhide-macos-hidden-apps = false
 # even when they are invisible.
 # This config version is only available since 'config-version = 2'
 # Fallback value (if you omit the key): persistent-workspaces = []
-persistent-workspaces = ["1", "2", "3", "4", "5"]
+persistent-workspaces = ["1", "2", "3", "4", "5", "6"]
 
 # Float Wispr Flow by default
 # See: https://nikitabobko.github.io/AeroSpace/guide#on-window-detected-callback
@@ -130,6 +130,7 @@ inner.vertical = 16
 
 [workspace-to-monitor-force-assignment]
 5 = 'secondary'
+6 = 'secondary'
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -174,6 +175,7 @@ cmd-alt-ctrl-shift-2 = 'workspace 2'
 cmd-alt-ctrl-shift-3 = 'workspace 3'
 cmd-alt-ctrl-shift-4 = 'workspace 4'
 cmd-alt-ctrl-shift-5 = 'workspace 5'
+cmd-alt-ctrl-shift-6 = 'workspace 6'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
 cmd-alt-ctrl-1 = 'move-node-to-workspace 1'
@@ -181,6 +183,7 @@ cmd-alt-ctrl-2 = 'move-node-to-workspace 2'
 cmd-alt-ctrl-3 = 'move-node-to-workspace 3'
 cmd-alt-ctrl-4 = 'move-node-to-workspace 4'
 cmd-alt-ctrl-5 = 'move-node-to-workspace 5'
+cmd-alt-ctrl-6 = 'move-node-to-workspace 6'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
 alt-tab = 'workspace-back-and-forth'
