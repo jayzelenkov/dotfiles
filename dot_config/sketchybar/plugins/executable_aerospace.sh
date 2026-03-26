@@ -56,6 +56,8 @@ app_icon() {
     "Google Chrome")                  echo "$_ICON_CHROME" ;;
     "IINA")                           echo "󰕼" ;;
     "Messages")                       echo "$_ICON_MESSAGES" ;;
+    "Microsoft Excel")                echo "$_ICON_NUMBERS" ;;
+    "Microsoft Word")                 echo "$_ICON_PAGES" ;;
     "Music")                          echo "$_ICON_MUSIC" ;;
     "Notes")                          echo "$_ICON_NOTES" ;;
     "Notion")                         echo "󰎚" ;;

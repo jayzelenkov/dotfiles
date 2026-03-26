@@ -72,14 +72,12 @@ sketchybar --default "${defaults[@]}"
 source "$ITEM_DIR/apple.sh"
 source "$ITEM_DIR/spaces.sh"
 
-# Center
-source "$ITEM_DIR/spotify.sh"
-
 # Right
 source "$ITEM_DIR/calendar.sh"
 source "$ITEM_DIR/keyboard.sh"
 source "$ITEM_DIR/battery.sh"
 source "$ITEM_DIR/volume.sh"
+source "$ITEM_DIR/spotify.sh"
 
 sketchybar --update
 
