@@ -185,6 +185,10 @@ cmd-alt-ctrl-4 = 'move-node-to-workspace 4'
 cmd-alt-ctrl-5 = 'move-node-to-workspace 5'
 cmd-alt-ctrl-6 = 'move-node-to-workspace 6'
 
+# Cycle through workspaces
+cmd-alt-ctrl-shift-leftSquareBracket = 'workspace --wrap-around prev'
+cmd-alt-ctrl-shift-rightSquareBracket = 'workspace --wrap-around next'
+
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
 alt-tab = 'workspace-back-and-forth'
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor

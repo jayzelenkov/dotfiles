@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Notify Sketchybar about workspace change
-/opt/homebrew/bin/sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE="$AEROSPACE_FOCUSED_WORKSPACE"
+/opt/homebrew/bin/sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE="$AEROSPACE_FOCUSED_WORKSPACE" PREV_WORKSPACE="$AEROSPACE_PREV_WORKSPACE"
 
 # Move Wispr Flow overlay windows to the focused workspace so they remain usable
 # regardless of which workspace is active.

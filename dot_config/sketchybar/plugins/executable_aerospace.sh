@@ -164,41 +164,23 @@ fi
 
 # Per-workspace update on workspace switch.
 # $NAME = "space.<monitor>.<workspace_id>", $1 = this item's workspace_id
+# $FOCUSED_WORKSPACE and $PREV_WORKSPACE are passed via the event trigger.
+# Only the newly focused and previously focused workspaces need updating —
+# all other items exit immediately for near-instant response.
 if [ "$SENDER" = "aerospace_workspace_change" ]; then
   workspace_id="$1"
 
-  # Build set of visible workspaces (one per monitor)
-  visible_workspaces=":"
-  while read -r mid _; do
-    vws=$(aerospace list-workspaces --monitor "$mid" --visible 2>/dev/null | head -1)
-    [ -n "$vws" ] && visible_workspaces="${visible_workspaces}${vws}:"
-  done < <(aerospace list-monitors 2>/dev/null)
-
-  # Compute icons for this workspace
-  icons=""
-  seen=""
-  while IFS=$'\t' read -r ws app; do
-    [ "$ws" = "$workspace_id" ] || continue
-    [ -z "$app" ] && continue
-    skip_app "$app" && continue
-    case ":${seen}:" in *":${app}:"*) continue ;; esac
-    seen="${seen}:${app}"
-    icons="${icons}$(app_icon "$app") "
-  done < <(aerospace list-windows --all --format "%{workspace}	%{app-name}" 2>/dev/null)
-  icons="${icons% }"
-
-  if [[ "$visible_workspaces" == *":${workspace_id}:"* ]]; then
+  if [ "$workspace_id" = "$FOCUSED_WORKSPACE" ]; then
     sketchybar --set "$NAME" \
                      icon.highlight=on \
                      icon.font="$NUM_HIGHLIGHT_FONT" \
-                     label="$icons" \
                      background.drawing=on \
                      background.color=0xffE5C07B
-  else
+  elif [ "$workspace_id" = "$PREV_WORKSPACE" ]; then
     sketchybar --set "$NAME" \
                      icon.highlight=off \
                      icon.font="$NUM_FONT" \
-                     label="$icons" \
                      background.drawing=off
   fi
+  # Other workspaces: no change needed, skip entirely
 fi
