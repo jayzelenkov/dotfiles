@@ -107,6 +107,7 @@ cask "google-drive"            # Cloud storage
 cask "homerow"                 # Keyboard navigation for macOS
 cask "karabiner-elements"      # Keyboard customizer
 cask "keka"                    # File archiver
+cask "notunes"                 # Prevent Apple Music from opening on media key
 cask "cheatsheet"              # Hold ⌘ to see all shortcuts for current app
 cask "screen-studio"           # Screen recording
 cask "tailscale-app"           # Mesh VPN

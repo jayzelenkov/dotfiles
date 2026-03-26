@@ -128,14 +128,14 @@ slash2 = 'f15'
 [gaps]
 outer.top = [
     # offset of 32 on internal display, because of notch (16" MPB)
-    { monitor.'built-in.*' = 16 },
+    { monitor.'built-in.*' = 2 },
     48,
 ]
-outer.right = 16
-outer.bottom = 16
-outer.left = 16
-inner.horizontal = 16
-inner.vertical = 16
+outer.bottom = 2
+outer.right = 3
+outer.left = 3
+inner.horizontal = 6
+inner.vertical = 6
 
 [workspace-to-monitor-force-assignment]
 5 = 'secondary'
@@ -217,10 +217,26 @@ cmd-alt-ctrl-shift-q = [
 
 # Move windows to other nodes
 # See: https://nikitabobko.github.io/AeroSpace/commands#join-with
-h = 'join-with left'
-j = 'join-with down'
-k = 'join-with up'
-l = 'join-with right'
+h = [
+    'join-with left',
+    'mode main',
+    'exec-and-forget sketchybar --trigger aerospace_service_mode_enabled_changed AEROSPACE_SERVICE_MODE_ENABLED=false',
+]
+j = [
+    'join-with down',
+    'mode main',
+    'exec-and-forget sketchybar --trigger aerospace_service_mode_enabled_changed AEROSPACE_SERVICE_MODE_ENABLED=false',
+]
+k = [
+    'join-with up',
+    'mode main',
+    'exec-and-forget sketchybar --trigger aerospace_service_mode_enabled_changed AEROSPACE_SERVICE_MODE_ENABLED=false',
+]
+l = [
+    'join-with right',
+    'mode main',
+    'exec-and-forget sketchybar --trigger aerospace_service_mode_enabled_changed AEROSPACE_SERVICE_MODE_ENABLED=false',
+]
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#resize
 # Resize windows

@@ -9,7 +9,7 @@ NEXT_ICON=$(printf '\xf3\xb0\x92\xad')   # U+F04AD nf-md-skip_next
 
 spotify_anchor=(
   script="$PLUGIN_DIR/spotify.sh"
-  click_script="osascript -e 'tell application \"Spotify\" to playpause'"
+  click_script="$PLUGIN_DIR/spotify.sh toggle_label"
   popup.horizontal=on
   popup.align=right
   popup.height=120
@@ -134,11 +134,13 @@ sketchybar --add event spotify_change $SPOTIFY_EVENT                       \
            --add item spotify.anchor right                                 \
            --set spotify.anchor "${spotify_anchor[@]}"                     \
            --subscribe spotify.anchor spotify_change system_woke           \
-                                      mouse.entered mouse.exited.global    \
+                                      mouse.entered mouse.exited           \
+                                      mouse.exited.global                  \
                                       front_app_switched                   \
                                                                            \
            --add item spotify.cover popup.spotify.anchor                   \
            --set spotify.cover "${spotify_cover[@]}"                       \
+           --subscribe spotify.cover mouse.entered mouse.exited            \
                                                                            \
            --add item spotify.title popup.spotify.anchor                   \
            --set spotify.title "${spotify_title[@]}"                       \
@@ -152,18 +154,22 @@ sketchybar --add event spotify_change $SPOTIFY_EVENT                       \
            --add item spotify.back popup.spotify.anchor                    \
            --set spotify.back "${spotify_back[@]}"                         \
            --subscribe spotify.back mouse.clicked                          \
+                                    mouse.entered mouse.exited             \
                                                                            \
            --add item spotify.play popup.spotify.anchor                    \
            --set spotify.play "${spotify_play[@]}"                         \
            --subscribe spotify.play mouse.clicked                          \
+                                    mouse.entered mouse.exited             \
                                                                            \
            --add item spotify.next popup.spotify.anchor                    \
            --set spotify.next "${spotify_next[@]}"                         \
            --subscribe spotify.next mouse.clicked                          \
+                                    mouse.entered mouse.exited             \
                                                                            \
            --add item spotify.open popup.spotify.anchor                    \
            --set spotify.open "${spotify_open[@]}"                         \
            --subscribe spotify.open mouse.clicked                          \
+                                    mouse.entered mouse.exited             \
                                                                            \
            --add item spotify.spacer popup.spotify.anchor                  \
            --set spotify.spacer width=5
