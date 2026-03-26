@@ -74,9 +74,17 @@ popup() {
   sketchybar --set spotify.anchor popup.drawing=$1
 }
 
+check_running() {
+  if ! pgrep -xq "Spotify"; then
+    sketchybar -m --set spotify.anchor drawing=off popup.drawing=off
+  fi
+}
+
 case "$SENDER" in
   "mouse.clicked") mouse_clicked ;;
   "mouse.entered") popup on ;;
-  "mouse.exited"|"mouse.exited.global") popup off ;;
+  "mouse.exited.global") popup off ;;
+  "front_app_switched") popup off; check_running ;;
+  "routine") check_running ;;
   *) update ;;
 esac

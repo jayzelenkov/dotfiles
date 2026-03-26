@@ -11,7 +11,7 @@ spotify_anchor=(
   script="$PLUGIN_DIR/spotify.sh"
   click_script="osascript -e 'tell application \"Spotify\" to playpause'"
   popup.horizontal=on
-  popup.align=center
+  popup.align=right
   popup.height=120
   icon="$MUSIC_ICON"
   icon.font="$FONT:Regular:16.0"
@@ -20,6 +20,8 @@ spotify_anchor=(
   label.font="$FONT:Regular:12.0"
   label.max_chars=30
   label=""
+  updates=on
+  update_freq=5
   drawing=off
   padding_left=8
   padding_right=0
@@ -44,7 +46,8 @@ spotify_title=(
   width=0
   label.font="$FONT:Bold:13.0"
   label.color=$WHITE
-  label.max_chars=25
+  label.width=150
+  label.max_chars=40
   label.scroll_duration=200
   scroll_texts=on
   y_offset=35
@@ -57,9 +60,8 @@ spotify_artist=(
   width=0
   label.font="$FONT:Regular:11.0"
   label.color=$GREY
-  label.max_chars=25
-  label.scroll_duration=200
-  scroll_texts=on
+  label.width=150
+  label.max_chars=20
   y_offset=12
 )
 
@@ -70,9 +72,8 @@ spotify_album=(
   width=0
   label.font="$FONT:Regular:10.0"
   label.color=$GREY
-  label.max_chars=25
-  label.scroll_duration=200
-  scroll_texts=on
+  label.width=150
+  label.max_chars=20
   y_offset=-8
 )
 
@@ -133,8 +134,8 @@ sketchybar --add event spotify_change $SPOTIFY_EVENT                       \
            --add item spotify.anchor right                                 \
            --set spotify.anchor "${spotify_anchor[@]}"                     \
            --subscribe spotify.anchor spotify_change system_woke           \
-                                      mouse.entered mouse.exited           \
-                                      mouse.exited.global                  \
+                                      mouse.entered mouse.exited.global    \
+                                      front_app_switched                   \
                                                                            \
            --add item spotify.cover popup.spotify.anchor                   \
            --set spotify.cover "${spotify_cover[@]}"                       \
