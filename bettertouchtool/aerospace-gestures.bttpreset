@@ -1,0 +1,39 @@
+{
+  "BTTPresetName": "AeroSpace Gestures",
+  "BTTPresetUUID": "A43CF24E-714F-4B17-B270-FFC6E9E41532",
+  "BTTPresetContent": [
+    {
+      "BTTAppBundleIdentifier": "BT.G",
+      "BTTAppName": "Global",
+      "BTTAppAutoInvertIcon": 1,
+      "BTTTriggers": [
+        {
+          "BTTTriggerType": 105,
+          "BTTTriggerTypeDescription": "4 Finger Swipe Right",
+          "BTTTriggerClass": "BTTTriggerTypeTouchpadAll",
+          "BTTPredefinedActionType": 137,
+          "BTTPredefinedActionName": "Execute Terminal Command (Async, non-blocking)",
+          "BTTTerminalCommand": "/opt/homebrew/bin/aerospace workspace --no-stdin next",
+          "BTTEnabled2": 1,
+          "BTTEnabled": 1,
+          "BTTOrder": 0,
+          "BTTUUID": "5EBF0647-CB8A-47A7-9DB2-EEB2B1172EDC",
+          "BTTGestureNotes": "4 Finger Swipe Right"
+        },
+        {
+          "BTTTriggerType": 106,
+          "BTTTriggerTypeDescription": "4 Finger Swipe Left",
+          "BTTTriggerClass": "BTTTriggerTypeTouchpadAll",
+          "BTTPredefinedActionType": 137,
+          "BTTPredefinedActionName": "Execute Terminal Command (Async, non-blocking)",
+          "BTTTerminalCommand": "/opt/homebrew/bin/aerospace workspace --no-stdin prev",
+          "BTTEnabled2": 1,
+          "BTTEnabled": 1,
+          "BTTOrder": 1,
+          "BTTUUID": "B7A3D1F0-8E42-4C95-A6D8-3F9E0B5C7A21",
+          "BTTGestureNotes": "4 Finger Swipe Left"
+        }
+      ]
+    }
+  ]
+}

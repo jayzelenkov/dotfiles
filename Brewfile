@@ -99,6 +99,7 @@ cask "1password"               # 1Password password manager
 cask "1password-cli"           # 1Password CLI (op)
 cask "adguard"                 # Ad blocker
 cask "bartender"               # Menu bar organizer
+cask "bettertouchtool"         # Trackpad gesture customizer (AeroSpace swipe)
 cask "cleanshot"               # Screenshot & recording tool
 cask "copilot-money"           # Personal finance
 cask "daisydisk"               # Disk space analyzer
