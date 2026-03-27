@@ -172,17 +172,33 @@ fi
 if [ "$SENDER" = "aerospace_workspace_change" ]; then
   workspace_id="$1"
 
-  if [ "$workspace_id" = "$FOCUSED_WORKSPACE" ]; then
-    sketchybar --set "$NAME" \
-                     icon.highlight=on \
-                     icon.font="$NUM_HIGHLIGHT_FONT" \
-                     background.drawing=on \
-                     background.color=0xffE5C07B
-  elif [ "$workspace_id" = "$PREV_WORKSPACE" ]; then
-    sketchybar --set "$NAME" \
-                     icon.highlight=off \
-                     icon.font="$NUM_FONT" \
-                     background.drawing=off
+  if [ "$workspace_id" = "$FOCUSED_WORKSPACE" ] || [ "$workspace_id" = "$PREV_WORKSPACE" ]; then
+    # Refresh app icons for this workspace
+    icons=""
+    seen=""
+    while IFS=$'\t' read -r app; do
+      [ -z "$app" ] && continue
+      skip_app "$app" && continue
+      case ":${seen}:" in *":${app}:"*) continue ;; esac
+      seen="${seen}:${app}"
+      icons="${icons}$(app_icon "$app") "
+    done < <(aerospace list-windows --workspace "$workspace_id" --format "%{app-name}" 2>/dev/null)
+    icons="${icons% }"
+
+    if [ "$workspace_id" = "$FOCUSED_WORKSPACE" ]; then
+      sketchybar --set "$NAME" \
+                       icon.highlight=on \
+                       icon.font="$NUM_HIGHLIGHT_FONT" \
+                       label="$icons" \
+                       background.drawing=on \
+                       background.color=0xffE5C07B
+    else
+      sketchybar --set "$NAME" \
+                       icon.highlight=off \
+                       icon.font="$NUM_FONT" \
+                       label="$icons" \
+                       background.drawing=off
+    fi
   fi
   # Other workspaces: no change needed, skip entirely
 fi

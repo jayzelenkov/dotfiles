@@ -198,6 +198,10 @@ cmd-alt-ctrl-6 = 'move-node-to-workspace 6'
 cmd-alt-ctrl-shift-leftSquareBracket = 'workspace --wrap-around prev'
 cmd-alt-ctrl-shift-rightSquareBracket = 'workspace --wrap-around next'
 
+# Move current window to next/prev workspace and follow it
+cmd-alt-ctrl-rightSquareBracket = ['move-node-to-workspace --wrap-around next', 'workspace --wrap-around next']
+cmd-alt-ctrl-leftSquareBracket = ['move-node-to-workspace --wrap-around prev', 'workspace --wrap-around prev']
+
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
 alt-tab = 'workspace-back-and-forth'
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor
