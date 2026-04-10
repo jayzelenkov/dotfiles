@@ -20,22 +20,43 @@ brew "zsh-autosuggestions"     # Fish-like autosuggestions for zsh
 
 # Dev tools
 brew "biome"                   # JS/TS linter and formatter
+brew "caddy"                   # Local web server / reverse proxy
 brew "chezmoi"                 # Dotfile manager
 brew "cloc"                    # Count lines of code
+brew "create-dmg"              # Create macOS .dmg disk images
+brew "deno"                    # JavaScript/TypeScript runtime
+brew "duti"                    # Set default app for file types/extensions
+brew "fabric-ai"               # AI-powered workflow tool (fabric)
+brew "ffmpeg"                  # Multimedia processing
+brew "fnm"                     # Fast Node.js version manager
+brew "folderify"               # Generate folder icons with emoji masks
 brew "gcc"                     # GNU compiler collection
 brew "gh"                      # GitHub CLI
 brew "git"                     # Version control
 brew "git-lfs"                 # Git large file storage
+brew "gitleaks"                # Secret scanner for git repos
 brew "gnupg"                   # GPG for signing commits/encryption
 brew "go"                      # Go programming language
 brew "graphite2"               # Stacked PRs workflow (gt CLI)
+brew "hugo"                    # Static site generator
+brew "ical-buddy"              # iCal/Calendar CLI
+brew "imagemagick"             # Image manipulation CLI
+brew "jj"                      # Jujutsu VCS
 brew "jq"                      # JSON processor (also used by sketchybar plugins)
 tap "hedhyw/main"
 brew "hedhyw/main/jlv"         # Interactive JSON log viewer
 brew "lazygit"                 # Terminal UI for git
+brew "memo"                    # CLI memo/note tool
 brew "node"                    # Node.js
+brew "openai-whisper"          # OpenAI Whisper speech recognition
+brew "pipx"                    # Install Python CLI apps in isolated envs
+brew "pyenv"                   # Python version manager
 brew "ripgrep"                 # Fast recursive search (rg)
 brew "sqlite"                  # Embedded SQL database
+brew "watch"                   # Run commands periodically
+brew "wget"                    # File downloader
+brew "yarn"                    # JavaScript package manager
+brew "yt-dlp"                  # Video downloader (YouTube etc.)
 
 # Infrastructure & services
 brew "doppler"                 # Secrets manager CLI
@@ -91,13 +112,18 @@ cask "ngrok"                   # Secure tunnels to localhost
 cask "visual-studio-code"      # VS Code editor
 
 # Media & entertainment
+cask "calibre"                 # Ebook manager and converter
 cask "movist-pro"              # Media player
 cask "spotify"                 # Music streaming
+cask "vlc"                     # Open-source media player
 
 # macOS utilities
 cask "1password"               # 1Password password manager
 cask "1password-cli"           # 1Password CLI (op)
 cask "adguard"                 # Ad blocker
+cask "linear-linear"           # Linear project management
+cask "notion"                  # Notes and wiki workspace
+cask "postico"                 # PostgreSQL GUI client
 cask "bartender"               # Menu bar organizer
 cask "bettertouchtool"         # Trackpad gesture customizer (AeroSpace swipe)
 cask "cleanshot"               # Screenshot & recording tool

@@ -135,6 +135,9 @@ uuid_to_typeid_enc() {
   bun -e "import { TypeID } from 'typeid-js'; console.log(TypeID.fromUUID('enc', '$1').toString());"
 }
 
+# jj (Jujutsu VCS) completions
+source <(jj util completion zsh)
+
 # ZSH plugins (must be sourced near the end)
 [ -f /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh ] && \
   source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
