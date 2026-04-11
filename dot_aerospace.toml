@@ -60,7 +60,17 @@ persistent-workspaces = ["1", "2", "3", "4", "5", "6"]
 # Float Wispr Flow by default
 # See: https://nikitabobko.github.io/AeroSpace/guide#on-window-detected-callback
 [[on-window-detected]]
+if.app-id = 'com.electron.wispr-flow'
+run = 'layout floating'
+
+# Float Wispr Flow accessibility helper
+[[on-window-detected]]
 if.app-id = 'com.electron.wispr-flow.accessibility-mac-app'
+run = 'layout floating'
+
+# Float Fastmail by default
+[[on-window-detected]]
+if.app-id = 'com.fastmail.mac.Fastmail'
 run = 'layout floating'
 
 # Float CleanShot X windows by default
@@ -94,10 +104,10 @@ run = 'layout floating'
 if.app-id = 'com.anthropic.claudefordesktop'
 run = 'move-node-to-workspace 2'
 
-# Open Spotify on workspace 5 (external monitor)
+# Open Spotify on workspace 6 (external monitor)
 [[on-window-detected]]
 if.app-id = 'com.spotify.client'
-run = 'move-node-to-workspace 5'
+run = 'move-node-to-workspace 6'
 
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 # See: https://nikitabobko.github.io/AeroSpace/commands#mode
