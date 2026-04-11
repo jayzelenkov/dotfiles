@@ -25,6 +25,7 @@ brew "chezmoi"                 # Dotfile manager
 brew "cloc"                    # Count lines of code
 brew "create-dmg"              # Create macOS .dmg disk images
 brew "deno"                    # JavaScript/TypeScript runtime
+brew "duckdb"                  # In-process analytical SQL database
 brew "duti"                    # Set default app for file types/extensions
 brew "fabric-ai"               # AI-powered workflow tool (fabric)
 brew "ffmpeg"                  # Multimedia processing
