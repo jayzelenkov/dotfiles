@@ -73,6 +73,11 @@ run = 'layout floating'
 if.app-id = 'com.fastmail.mac.Fastmail'
 run = 'layout floating'
 
+# Float Activity Monitor by default
+[[on-window-detected]]
+if.app-id = 'com.apple.ActivityMonitor'
+run = 'layout floating'
+
 # Float CleanShot X windows by default
 # See: https://nikitabobko.github.io/AeroSpace/guide#on-window-detected-callback
 [[on-window-detected]]

@@ -73,6 +73,9 @@ if [ -d "$HOME/dotfiles/bin" ]; then
   esac
 fi
 
+# Setup direnv
+eval "$(direnv hook zsh)"
+
 alias dbtf="$HOME/.local/bin/dbt"
 
 
@@ -137,6 +140,9 @@ uuid_to_typeid_enc() {
 
 # jj (Jujutsu VCS) completions
 source <(jj util completion zsh)
+
+# granted.dev — assume must be sourced so env vars reach the parent shell
+alias assume="source assume"
 
 # ZSH plugins (must be sourced near the end)
 [ -f /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh ] && \

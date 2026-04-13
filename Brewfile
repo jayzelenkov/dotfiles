@@ -60,8 +60,9 @@ brew "yarn"                    # JavaScript package manager
 brew "yt-dlp"                  # Video downloader (YouTube etc.)
 
 # Infrastructure & services
+brew "awscli"                  # AWS CLI
 brew "doppler"                 # Secrets manager CLI
-brew "granted"                 # AWS role switching
+brew "granted"                 # AWS role switching (granted.dev)
 brew "k9s"                     # Kubernetes TUI
 brew "kubectx"                 # Switch kube contexts/namespaces
 brew "kubernetes-cli"          # kubectl
