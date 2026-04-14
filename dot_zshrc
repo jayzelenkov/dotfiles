@@ -144,6 +144,17 @@ source <(jj util completion zsh)
 # granted.dev — assume must be sourced so env vars reach the parent shell
 alias assume="source assume"
 
+# 1Password CLI — sign in (session lasts 30 min of inactivity)
+# Usage: opin           -> sign in to default account
+#        opin ACCOUNT   -> sign in to a specific account
+opin() {
+  if [ -n "$1" ]; then
+    eval "$(op signin --account "$1")"
+  else
+    eval "$(op signin)"
+  fi
+}
+
 # ZSH plugins (must be sourced near the end)
 [ -f /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh ] && \
   source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
