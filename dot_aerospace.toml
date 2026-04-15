@@ -83,6 +83,11 @@ run = 'layout floating'
 if.app-id = 'com.apple.FaceTime'
 run = 'layout floating'
 
+# Float Screen Sharing by default
+[[on-window-detected]]
+if.app-id = 'com.apple.ScreenSharing'
+run = 'layout floating'
+
 # Float CleanShot X windows by default
 # See: https://nikitabobko.github.io/AeroSpace/guide#on-window-detected-callback
 [[on-window-detected]]
