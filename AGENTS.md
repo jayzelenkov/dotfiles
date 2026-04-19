@@ -27,3 +27,28 @@ This is a chezmoi-managed dotfiles repository for macOS.
 - **macOS only.** All run scripts are gated with `{{ if eq .chezmoi.os "darwin" }}`.
 - When adding new shell tools, add both the Homebrew formula to `Brewfile` and the shell integration to `dot_zshrc`.
 - Keep the Brewfile commented — each formula/cask should have an inline comment explaining what it is.
+
+## SketchyBar Nerd Font icons
+
+Workspace app icons in `dot_config/sketchybar/plugins/executable_aerospace.sh` are Nerd Font glyphs encoded as 4-byte UTF-8 (`printf '\xf3\xb0\x..\x..'`). The bar font is **Hack Nerd Font Mono 3.4.0** at `~/Library/Fonts/HackNerdFontMono-Bold.ttf`.
+
+**Never guess codepoints from documentation or memory.** Many MDI codepoints differ from older versions. Always introspect the installed font:
+
+```python
+from fontTools.ttLib import TTFont
+font = TTFont('/Users/jzelenkov/Library/Fonts/HackNerdFontMono-Bold.ttf')
+cmap = font.getBestCmap()  # {codepoint: glyph_name}
+import re
+pattern = re.compile('rainbow', re.IGNORECASE)
+for cp, name in cmap.items():
+    if pattern.search(name):
+        print(f'U+{cp:05X}  {chr(cp)}  {name}')
+```
+
+Glyph name prefixes: `md-` (Material Design), `fa-` (Font Awesome), `cod-` (Codicons), `dev-` (Devicons), `weather-`, `fae-` (FontAwesome Extension), `oct-` (Octicons), `seti-`.
+
+Convert codepoint → printf escape:
+
+```python
+''.join(f'\\\\x{b:02x}' for b in chr(0xF1234).encode('utf-8'))
+```

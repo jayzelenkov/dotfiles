@@ -33,6 +33,9 @@ _ICON_TICK_TICK=$(printf '\xf3\xb0\x84\xb4')         # U+F0134 nf-md-checkbox_ma
 _ICON_TRAY=$(printf '\xf3\xb0\x84\x9d')              # U+F011D nf-md-tray
 _ICON_PHOTOS=$(printf '\xf3\xb0\x8b\xa9')            # U+F02E9 nf-md-image
 _ICON_CURRENCY=$(printf '\xf3\xb0\x87\x81')          # U+F01C1 nf-md-currency_usd
+_ICON_SUNRISE=$(printf '\xf3\xb0\x96\x99')           # U+F0599 nf-md-weather_sunny (Dia)
+_ICON_COMET=$(printf '\xee\x89\xad')                 # U+E26D nf-fae-comet (Comet)
+_ICON_NOTEBOOK=$(printf '\xf3\xb0\xba\xbf')          # U+F0EBF nf-md-notebook_outline (reMarkable)
 
 # Apps to hide from workspace icon lists (overlays, non-focusable utilities)
 SKIP_APPS="Wispr Flow"
@@ -50,6 +53,8 @@ app_icon() {
     "Calendar")                       echo "$_ICON_CALENDAR" ;;
     "Claude")                         echo "󱙺" ;;
     "Code"|"Visual Studio Code")      echo "󰨞" ;;
+    "Comet")                          echo "$_ICON_COMET" ;;
+    "Dia")                            echo "$_ICON_SUNRISE" ;;
     "Discord")                        echo "$_ICON_DISCORD" ;;
     "Finder")                         echo "󰀶" ;;
     "Ghostty")                        echo "$_ICON_GHOSTTY" ;;
@@ -66,6 +71,7 @@ app_icon() {
     "Pages")                          echo "$_ICON_PAGES" ;;
     "Preview")                        echo "$_ICON_PREVIEW" ;;
     "Raycast")                        echo "$_ICON_RAYCAST" ;;
+    "reMarkable")                     echo "$_ICON_NOTEBOOK" ;;
     "Safari")                         echo "$_ICON_SAFARI" ;;
     "Signal")                         echo "󰍡" ;;
     "Spotify")                        echo "$_ICON_SPOTIFY" ;;
