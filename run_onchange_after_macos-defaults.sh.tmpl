@@ -1,0 +1,26 @@
+{{ if eq .chezmoi.os "darwin" -}}
+#!/bin/bash
+set -euo pipefail
+
+echo "=========================================="
+echo "  macOS defaults"
+echo "=========================================="
+
+# Group windows by application in Mission Control.
+# Fixes tiny-thumbnail issue when using AeroSpace (AeroSpace hides windows
+# from inactive workspaces by parking them off-screen; without grouping,
+# Mission Control rescales every thumbnail to fit them all).
+# See: https://nikitabobko.github.io/AeroSpace/guide#a-note-on-mission-control
+defaults write com.apple.dock expose-group-apps -bool true
+
+# Disable macOS 4-finger horizontal swipe between Spaces.
+# Frees the gesture so BetterTouchTool can bind it to AeroSpace
+# workspace-switching commands (see bettertouchtool/aerospace-gestures.bttpreset).
+defaults write com.apple.AppleMultitouchTrackpad TrackpadFourFingerHorizSwipeGesture -int 0
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadFourFingerHorizSwipeGesture -int 0
+
+# Apply Dock changes
+killall Dock 2>/dev/null || true
+
+echo "✓ macOS defaults applied"
+{{ end -}}

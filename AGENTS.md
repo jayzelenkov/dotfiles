@@ -8,6 +8,7 @@ This is a chezmoi-managed dotfiles repository for macOS.
 - `Brewfile` — Homebrew formulae, casks, and Mac App Store apps (not applied to `~`, included inline by the install script)
 - `run_once_before_install-packages.sh.tmpl` — Runs once before dotfiles are applied: installs Xcode CLT, Homebrew, and all Brewfile packages
 - `run_once_after_setup-mise.sh.tmpl` — Runs once after dotfiles are applied: installs mise runtimes (python, bun), configures Postico license, prints next steps
+- `run_onchange_after_macos-defaults.sh.tmpl` — Re-runs whenever its content changes: applies `defaults write` commands (Mission Control grouping, trackpad gesture overrides, etc.). Add new `defaults write` lines here to persist them across machines.
 - `.chezmoiignore` — Lists files that exist in this repo but should not be applied to the home directory (e.g., `Brewfile`, `README.md`, `AGENTS.md`)
 - `.gitignore` — Files excluded from version control
 
