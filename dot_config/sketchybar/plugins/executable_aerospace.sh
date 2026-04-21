@@ -9,7 +9,10 @@ NUM_HIGHLIGHT_FONT="Hack Nerd Font Mono:Bold:17.0"
 # Icons using 4-byte supplementary PUA (U+F0000+) are safe in Nerd Fonts v3.
 # BMP PUA icons (U+E000-U+F8FF) are avoided for workspace labels to prevent ? rendering.
 _ICON_ACTIVITY_MONITOR=$(printf '\xf3\xb0\xb4\x84')  # U+F0D04 nf-md-chart_areaspline_variant
-_ICON_CALENDAR=$(printf '\xf3\xb0\x85\x96')          # U+F0156 nf-md-calendar
+_ICON_CALENDAR=$(printf '\xf3\xb0\x83\xad')          # U+F00ED nf-md-calendar (was U+F0156 which is actually md-close)
+_ICON_MAP=$(printf '\xf3\xb0\x8d\x8d')               # U+F034D nf-md-map (Apple Maps)
+_ICON_BOOK=$(printf '\xef\x80\xad')                  # U+F02D nf-fa-book (Apple Books)
+_ICON_DIAMOND_STONE=$(printf '\xf3\xb0\x87\x88')     # U+F01C8 nf-md-diamond_stone (Obsidian)
 _ICON_DISCORD=$(printf '\xf3\xb0\x99\xa2')           # U+F0662 nf-md-discord
 _ICON_GHOSTTY=$(printf '\xf3\xb0\x8a\xa0')           # U+F02A0 nf-md-ghost
 _ICON_CHROME=$(printf '\xf3\xb0\x8a\xaf')            # U+F02AF nf-md-google_chrome
@@ -33,7 +36,7 @@ _ICON_TICK_TICK=$(printf '\xf3\xb0\x84\xb4')         # U+F0134 nf-md-checkbox_ma
 _ICON_TRAY=$(printf '\xf3\xb0\x84\x9d')              # U+F011D nf-md-tray
 _ICON_PHOTOS=$(printf '\xf3\xb0\x8b\xa9')            # U+F02E9 nf-md-image
 _ICON_CURRENCY=$(printf '\xf3\xb0\x87\x81')          # U+F01C1 nf-md-currency_usd
-_ICON_SUNRISE=$(printf '\xf3\xb0\x96\x99')           # U+F0599 nf-md-weather_sunny (Dia)
+_ICON_WEB=$(printf '\xf3\xb0\x96\x9f')               # U+F059F nf-md-web (Dia)
 _ICON_COMET=$(printf '\xee\x89\xad')                 # U+E26D nf-fae-comet (Comet)
 _ICON_NOTEBOOK=$(printf '\xf3\xb0\xba\xbf')          # U+F0EBF nf-md-notebook_outline (reMarkable)
 
@@ -54,11 +57,13 @@ app_icon() {
     "Claude")                         echo "󱙺" ;;
     "Code"|"Visual Studio Code")      echo "󰨞" ;;
     "Comet")                          echo "$_ICON_COMET" ;;
-    "Dia")                            echo "$_ICON_SUNRISE" ;;
+    "Dia")                            echo "$_ICON_WEB" ;;
     "Discord")                        echo "$_ICON_DISCORD" ;;
     "Finder")                         echo "󰀶" ;;
     "Ghostty")                        echo "$_ICON_GHOSTTY" ;;
     "Google Chrome")                  echo "$_ICON_CHROME" ;;
+    "Books")                          echo "$_ICON_BOOK" ;;
+    "Maps")                           echo "$_ICON_MAP" ;;
     "IINA")                           echo "󰕼" ;;
     "Messages")                       echo "$_ICON_MESSAGES" ;;
     "Microsoft Excel")                echo "$_ICON_NUMBERS" ;;
@@ -67,7 +72,7 @@ app_icon() {
     "Notes")                          echo "$_ICON_NOTES" ;;
     "Notion")                         echo "󰎚" ;;
     "Numbers")                        echo "$_ICON_NUMBERS" ;;
-    "Obsidian")                       echo "$_ICON_DIAMOND" ;;
+    "Obsidian")                       echo "$_ICON_DIAMOND_STONE" ;;
     "Pages")                          echo "$_ICON_PAGES" ;;
     "Preview")                        echo "$_ICON_PREVIEW" ;;
     "Raycast")                        echo "$_ICON_RAYCAST" ;;

@@ -93,6 +93,22 @@ run = 'layout floating'
 if.app-id = 'com.hegenberg.BetterTouchTool'
 run = 'layout floating'
 
+# Float Apple Maps by default
+[[on-window-detected]]
+if.app-id = 'com.apple.Maps'
+run = 'layout floating'
+
+# Float Apple Calendar by default
+[[on-window-detected]]
+if.app-id = 'com.apple.iCal'
+run = 'layout floating'
+
+# Float llamalife.co (Safari Web App — bundle ID has machine-specific UUID,
+# so match by app name instead)
+[[on-window-detected]]
+if.app-name-regex-substring = 'llamalife'
+run = 'layout floating'
+
 # Float CleanShot X windows by default
 # See: https://nikitabobko.github.io/AeroSpace/guide#on-window-detected-callback
 [[on-window-detected]]
