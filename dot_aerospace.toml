@@ -103,6 +103,21 @@ run = 'layout floating'
 if.app-id = 'com.apple.iCal'
 run = 'layout floating'
 
+# Float Voice Memos by default
+[[on-window-detected]]
+if.app-id = 'com.apple.VoiceMemos'
+run = 'layout floating'
+
+# Float Finder by default
+[[on-window-detected]]
+if.app-id = 'com.apple.finder'
+run = 'layout floating'
+
+# Float Messages by default
+[[on-window-detected]]
+if.app-id = 'com.apple.MobileSMS'
+run = 'layout floating'
+
 # Float llamalife.co (Safari Web App — bundle ID has machine-specific UUID,
 # so match by app name instead)
 [[on-window-detected]]
