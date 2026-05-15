@@ -2,3 +2,4 @@
 .secrets
 agent-memory.md
 .DS_Store
+.claude/

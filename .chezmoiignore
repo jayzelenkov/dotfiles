@@ -5,3 +5,7 @@ AGENTS.md
 TODO.md
 Smyck.terminal
 bettertouchtool
+raycast
+.claude/plugins/cache
+.claude/projects
+.claude/skills/*.zip

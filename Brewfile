@@ -107,11 +107,13 @@ cask "whatsapp"                # Messaging
 cask "zoom"                    # Video conferencing
 
 # Dev tools
+cask "android-studio"          # Android IDE
 cask "docker-desktop"          # Docker Desktop
 cask "ghostty"                 # Ghostty terminal emulator
 cask "github"                  # GitHub Desktop
 cask "ngrok"                   # Secure tunnels to localhost
 cask "visual-studio-code"      # VS Code editor
+cask "zulu@17"                 # Azul Zulu OpenJDK 17 (Android Studio runtime)
 
 # Media & entertainment
 cask "calibre"                 # Ebook manager and converter
@@ -123,7 +125,7 @@ cask "vlc"                     # Open-source media player
 cask "1password"               # 1Password password manager
 cask "1password-cli"           # 1Password CLI (op)
 cask "adguard"                 # Ad blocker
-cask "linear-linear"           # Linear project management
+cask "linear"                  # Linear project management
 cask "notion"                  # Notes and wiki workspace
 cask "postico"                 # PostgreSQL GUI client
 cask "bartender"               # Menu bar organizer
@@ -140,6 +142,7 @@ cask "notunes"                 # Prevent Apple Music from opening on media key
 cask "cheatsheet"              # Hold ⌘ to see all shortcuts for current app
 cask "screen-studio"           # Screen recording
 cask "tailscale-app"           # Mesh VPN
+cask "wallspace"               # Per-Space wallpaper manager
 
 # Hardware
 cask "elgato-wave-link"        # Elgato audio mixer

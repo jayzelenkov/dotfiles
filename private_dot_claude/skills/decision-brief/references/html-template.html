@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{TITLE}} ({{YYYY-MM-DD}})</title>
+<style>
+  :root {
+    --text: #1a1a1a;
+    --muted: #5a5a5a;
+    --border: #e5e5e5;
+    --bg-pros: #f0f9f4;
+    --accent-pros: #0a7d3e;
+    --bg-cons: #fdf2f2;
+    --accent-cons: #b91c1c;
+    --bg-neutral: #f5f5f5;
+    --bg-profile: #f7f9fc;
+    --accent-link: #1d4ed8;
+    --row-alt: #fafafa;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    color: var(--text);
+    line-height: 1.65;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 4rem;
+    background: #ffffff;
+    font-size: 16px;
+  }
+  h1 { font-size: 2rem; line-height: 1.25; margin: 0 0 0.4rem; letter-spacing: -0.02em; }
+  h2 { font-size: 1.5rem; margin: 2.5rem 0 0.8rem; padding-bottom: 0.3rem; border-bottom: 2px solid var(--border); letter-spacing: -0.01em; }
+  h3 { font-size: 1.25rem; margin: 1.8rem 0 0.5rem; letter-spacing: -0.01em; }
+  h4 { font-size: 1rem; margin: 1rem 0 0.4rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); }
+  p { margin: 0.6rem 0; }
+  a { color: var(--accent-link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  header.page-header { margin-bottom: 1.5rem; }
+  .date { color: var(--muted); font-size: 0.95rem; }
+
+  .profile-box {
+    background: var(--bg-profile);
+    border-left: 4px solid var(--accent-link);
+    padding: 1rem 1.2rem;
+    border-radius: 6px;
+    margin: 1rem 0 1.5rem;
+    font-size: 0.95rem;
+  }
+  .profile-box h4 { margin-top: 0; color: var(--accent-link); }
+  .profile-box ul { margin: 0.3rem 0; padding-left: 1.2rem; }
+
+  .exec-summary {
+    background: #fffbea;
+    border: 1px solid #fde68a;
+    border-radius: 8px;
+    padding: 1.2rem 1.4rem;
+    margin: 1.5rem 0 2.5rem;
+    font-size: 1.02rem;
+  }
+  .exec-summary h2 { border: none; margin: 0 0 0.5rem; padding: 0; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.08em; color: #92400e; }
+
+  .table-wrap { overflow-x: auto; margin: 1rem 0 1.8rem; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+    border: 1px solid var(--border);
+  }
+  thead th {
+    background: #f1f3f5;
+    text-align: left;
+    padding: 0.6rem 0.7rem;
+    font-weight: 600;
+    border-bottom: 2px solid var(--border);
+    white-space: nowrap;
+  }
+  tbody td {
+    padding: 0.55rem 0.7rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  tbody tr:nth-child(even) td { background: var(--row-alt); }
+
+  .specs-table { font-size: 0.88rem; }
+  .specs-table td:first-child { font-weight: 600; width: 30%; color: var(--muted); }
+
+  .pill {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+  .pill-rec { background: #dcfce7; color: #065f46; border: 1px solid #86efac; }
+  .pill-alt { background: #fef3c7; color: #854d0e; border: 1px solid #fcd34d; }
+  .pill-skip { background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; }
+
+  article.option {
+    margin: 2.5rem 0;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--border);
+  }
+  article.option:first-of-type { border-top: none; }
+
+  .option-meta { color: var(--muted); font-size: 0.95rem; margin-bottom: 0.6rem; }
+  .option-meta .price { color: var(--text); font-weight: 600; }
+
+  .hero-img, .hero-placeholder {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 0.8rem 0 1rem;
+    display: block;
+  }
+  .hero-placeholder {
+    background: linear-gradient(135deg, #1e293b 0%, #475569 100%);
+    color: #fff;
+    text-align: center;
+    padding: 3rem 1rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+  .hero-placeholder small { display: block; font-size: 0.8rem; font-weight: 400; opacity: 0.7; margin-top: 0.4rem; letter-spacing: 0.05em; text-transform: uppercase; }
+
+  .pros, .cons, .worst {
+    border-radius: 6px;
+    padding: 0.85rem 1.1rem;
+    margin: 0.8rem 0;
+    font-size: 0.95rem;
+  }
+  .pros {
+    background: var(--bg-pros);
+    border-left: 4px solid var(--accent-pros);
+  }
+  .pros h4 { color: var(--accent-pros); margin-top: 0; }
+  .cons {
+    background: var(--bg-cons);
+    border-left: 4px solid var(--accent-cons);
+  }
+  .cons h4 { color: var(--accent-cons); margin-top: 0; }
+  .worst {
+    background: var(--bg-neutral);
+    border-left: 4px solid #6b7280;
+    font-size: 0.9rem;
+  }
+  .worst strong { color: #374151; }
+  .pros ul, .cons ul { margin: 0.3rem 0; padding-left: 1.3rem; }
+  .pros li, .cons li { margin: 0.25rem 0; }
+
+  .verdict {
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    border-radius: 6px;
+    padding: 0.8rem 1.1rem;
+    margin: 0.8rem 0 0;
+    font-size: 0.98rem;
+  }
+  .verdict strong { color: #1e3a8a; }
+
+  .final-rec {
+    background: #ecfdf5;
+    border: 2px solid #6ee7b7;
+    border-radius: 10px;
+    padding: 1.5rem 1.6rem;
+    margin: 2rem 0;
+  }
+  .final-rec h2 { border: none; margin-top: 0; color: #065f46; }
+  .final-rec .primary, .final-rec .backup {
+    margin: 0.8rem 0;
+    padding: 0.6rem 0.9rem;
+    background: #fff;
+    border-radius: 6px;
+    border-left: 4px solid var(--accent-pros);
+  }
+  .final-rec .backup { border-left-color: #d97706; }
+  .final-rec .label {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent-pros);
+    margin-bottom: 0.2rem;
+  }
+  .final-rec .backup .label { color: #92400e; }
+
+  .fifth-option {
+    border: 2px dashed #a78bfa;
+    background: #faf5ff;
+    border-radius: 10px;
+    padding: 1.2rem 1.4rem;
+    margin: 1.5rem 0;
+  }
+  .fifth-option h3 { margin-top: 0; color: #6d28d9; }
+
+  .hard-truths {
+    border-left: 4px solid #f97316;
+    background: #fff7ed;
+    padding: 1rem 1.2rem;
+    border-radius: 6px;
+    margin: 1.5rem 0;
+  }
+  .hard-truths h3 { margin-top: 0; color: #c2410c; }
+
+  .references {
+    font-size: 0.88rem;
+    line-height: 1.5;
+  }
+  .references ol { padding-left: 1.5rem; }
+  .references li { margin: 0.35rem 0; word-break: break-word; }
+
+  .stars { color: #d97706; letter-spacing: 1px; }
+  .stars-empty { color: #d1d5db; letter-spacing: 1px; }
+
+  nav.toc-table a { font-weight: 500; }
+
+  /* Cross-modal head-to-head matrix (used by cross-modal Adviser) */
+  .matrix td.win { background: #dcfce7; }
+  .matrix td.tie { background: #fef3c7; }
+  .matrix td.lose { background: #fee2e2; }
+
+  @media print {
+    body { max-width: 100%; padding: 1rem; font-size: 11pt; }
+    a { color: inherit; text-decoration: none; }
+    .hero-img, .hero-placeholder { max-height: 220px; object-fit: cover; }
+    article.option { page-break-before: always; page-break-inside: avoid; }
+    article.option:first-of-type { page-break-before: auto; }
+    .final-rec, .references { page-break-before: always; }
+    nav.toc-table a::after { content: ""; }
+  }
+</style>
+</head>
+<body>
+
+<!--
+  STRUCTURE GUIDE FOR THE ADVISER
+  ================================
+  1. <header class="page-header"> with h1, .date, .profile-box
+  2. <section class="exec-summary"> with 2-3 sentence verdict
+  3. <h2>Options Overview</h2> + <nav class="toc-table"> with anchor-linked comparison table
+  4. <article class="option" id="option-N"> repeated per option, each containing:
+     - <div class="hero-placeholder">Brand Name<small>placeholder</small></div>
+     - <div class="option-meta"><span class="price">$X</span> · <a>vendor link</a> · <span class="pill pill-rec/alt/skip">Verdict</span></div>
+     - <table class="specs-table">…</table>
+     - <div class="pros"><h4>Pros</h4><ul>…</ul></div>
+     - <div class="cons"><h4>Cons & Critic Concerns</h4><ul>…</ul></div>
+     - <div class="worst"><strong>Worst-case scenario:</strong> …</div>
+     - <div class="verdict"><strong>Verdict:</strong> …</div>
+  5. <div class="hard-truths"> with cross-cutting Critic insights
+  6. <div class="fifth-option"> if Critic surfaced a non-obvious alternative
+  7. <div class="final-rec"> with .primary and .backup blocks
+  8. <section class="references"> with numbered <ol>
+-->
+
+<header class="page-header">
+  <h1>{{TITLE}}</h1>
+  <div class="date">{{SUBTITLE}} · <strong>{{YYYY-MM-DD}}</strong></div>
+  <div class="profile-box">
+    <h4>User Profile</h4>
+    <ul>
+      <li><strong>Use case:</strong> {{...}}</li>
+      <li><strong>Constraints:</strong> {{...}}</li>
+      <li><strong>Top priority:</strong> {{...}}</li>
+      <li><strong>Budget:</strong> {{...}}</li>
+    </ul>
+  </div>
+</header>
+
+<section class="exec-summary">
+  <h2>Executive Summary</h2>
+  <p>{{2-3 sentences naming primary + backup recommendation, no hedging}}</p>
+</section>
+
+<!-- Repeat the structure above per the guide, then close: -->
+</body>
+</html>

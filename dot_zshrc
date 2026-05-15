@@ -42,6 +42,10 @@ alias grep='rg'
 alias rgi='rg --ignore-case'
 alias rgf='rg --files | rg'
 
+# Helper: pretty disk free
+alias freegb='df -k / | awk '\''NR==2 {printf "%.2f GB\n", $4*1024/1000000000}'\'''
+
+
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
 
@@ -163,3 +167,10 @@ opin() {
 [ -f /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && \
   source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+
+# opencode
+export PATH=/Users/jzelenkov/.opencode/bin:$PATH
+
+
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/emulator:$ANDROID_HOME/platform-tools
