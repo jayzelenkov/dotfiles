@@ -133,15 +133,17 @@ cask "bettertouchtool"         # Trackpad gesture customizer (AeroSpace swipe)
 cask "cleanshot"               # Screenshot & recording tool
 cask "copilot-money"           # Personal finance
 cask "daisydisk"               # Disk space analyzer
+cask "brave-browser"           # Privacy-focused Chromium browser
+cask "fastmail"                # Fastmail desktop app
 cask "google-chrome"           # Web browser
-cask "google-drive"            # Cloud storage
+cask "thebrowsercompany-dia"   # Dia AI browser by The Browser Company
+cask "videopaper"              # Video transcript / paper reader
 cask "homerow"                 # Keyboard navigation for macOS
 cask "karabiner-elements"      # Keyboard customizer
 cask "keka"                    # File archiver
 cask "notunes"                 # Prevent Apple Music from opening on media key
 cask "cheatsheet"              # Hold ⌘ to see all shortcuts for current app
 cask "screen-studio"           # Screen recording
-cask "tailscale-app"           # Mesh VPN
 cask "wallspace"               # Per-Space wallpaper manager
 
 # Hardware

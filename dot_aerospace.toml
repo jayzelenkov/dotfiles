@@ -23,7 +23,13 @@ exec-on-workspace-change = [
 start-at-login = true
 
 # Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization
-enable-normalization-flatten-containers = true
+# flatten-containers is intentionally OFF so the nested containers built by
+# auto-layout-{3,4,5}.sh survive when windows close (otherwise AeroSpace
+# auto-collapses single-child containers and breaks the layout).
+# Tradeoff: closing a window in a nested split can leave a "ghost" container;
+# next opened window may tile in surprising orientation. Use service mode `r`
+# (flatten-workspace-tree) if you hit weird behavior.
+enable-normalization-flatten-containers = false
 enable-normalization-opposite-orientation-for-nested-containers = true
 
 # See: https://nikitabobko.github.io/AeroSpace/guide#layouts
@@ -61,67 +67,86 @@ persistent-workspaces = ["1", "2", "3", "4", "5", "6"]
 # See: https://nikitabobko.github.io/AeroSpace/guide#on-window-detected-callback
 [[on-window-detected]]
 if.app-id = 'com.electron.wispr-flow'
+check-further-callbacks = true
 run = 'layout floating'
 
 # Float Wispr Flow accessibility helper
 [[on-window-detected]]
 if.app-id = 'com.electron.wispr-flow.accessibility-mac-app'
+check-further-callbacks = true
 run = 'layout floating'
 
 # Float Fastmail by default
 [[on-window-detected]]
 if.app-id = 'com.fastmail.mac.Fastmail'
+check-further-callbacks = true
 run = 'layout floating'
 
 # Float Activity Monitor by default
 [[on-window-detected]]
 if.app-id = 'com.apple.ActivityMonitor'
+check-further-callbacks = true
 run = 'layout floating'
 
 # Float FaceTime by default
 [[on-window-detected]]
 if.app-id = 'com.apple.FaceTime'
+check-further-callbacks = true
 run = 'layout floating'
 
 # Float Screen Sharing by default
 [[on-window-detected]]
 if.app-id = 'com.apple.ScreenSharing'
+check-further-callbacks = true
 run = 'layout floating'
 
 # Float BetterTouchTool by default
 [[on-window-detected]]
 if.app-id = 'com.hegenberg.BetterTouchTool'
+check-further-callbacks = true
 run = 'layout floating'
 
 # Float Apple Maps by default
 [[on-window-detected]]
 if.app-id = 'com.apple.Maps'
+check-further-callbacks = true
 run = 'layout floating'
 
 # Float Apple Calendar by default
 [[on-window-detected]]
 if.app-id = 'com.apple.iCal'
+check-further-callbacks = true
 run = 'layout floating'
 
 # Float Voice Memos by default
 [[on-window-detected]]
 if.app-id = 'com.apple.VoiceMemos'
+check-further-callbacks = true
 run = 'layout floating'
 
 # Float Finder by default
 [[on-window-detected]]
 if.app-id = 'com.apple.finder'
+check-further-callbacks = true
 run = 'layout floating'
 
 # Float Messages by default
 [[on-window-detected]]
 if.app-id = 'com.apple.MobileSMS'
+check-further-callbacks = true
+run = 'layout floating'
+
+# Float Raindrop.io by default
+[[on-window-detected]]
+if.app-id = 'io.raindrop.macapp'
+check-further-callbacks = true
 run = 'layout floating'
 
 # Float llamalife.co (Safari Web App — bundle ID has machine-specific UUID,
 # so match by app name instead)
 [[on-window-detected]]
 if.app-name-regex-substring = 'llamalife'
+check-further-callbacks = true
 run = 'layout floating'
 
 # Float CleanShot X windows by default
@@ -135,6 +160,7 @@ run = 'layout floating'
 # See: https://nikitabobko.github.io/AeroSpace/guide#on-window-detected-callback
 [[on-window-detected]]
 if.app-id = 'com.raycast.macos'
+check-further-callbacks = true
 run = 'layout floating'
 
 # Float 1Password — Quick Access palette needs an explicit title rule because its
@@ -143,21 +169,25 @@ run = 'layout floating'
 [[on-window-detected]]
 if.app-id = 'com.1password.1password'
 if.window-title-regex-substring = 'Quick Access'
+check-further-callbacks = true
 run = 'layout floating'
 
 # Catch-all: float main window, Settings, and any other 1Password windows
 [[on-window-detected]]
 if.app-id = 'com.1password.1password'
+check-further-callbacks = true
 run = 'layout floating'
 
 # Open Claude on workspace 2
 [[on-window-detected]]
 if.app-id = 'com.anthropic.claudefordesktop'
+check-further-callbacks = true
 run = 'move-node-to-workspace 2'
 
 # Open Spotify on workspace 6 (external monitor)
 [[on-window-detected]]
 if.app-id = 'com.spotify.client'
+check-further-callbacks = true
 run = 'move-node-to-workspace 6'
 
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -248,12 +278,13 @@ cmd-alt-ctrl-shift-5 = 'workspace 5'
 cmd-alt-ctrl-shift-6 = 'workspace 6'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
-cmd-alt-ctrl-1 = 'move-node-to-workspace 1'
-cmd-alt-ctrl-2 = 'move-node-to-workspace 2'
-cmd-alt-ctrl-3 = 'move-node-to-workspace 3'
-cmd-alt-ctrl-4 = 'move-node-to-workspace 4'
-cmd-alt-ctrl-5 = 'move-node-to-workspace 5'
-cmd-alt-ctrl-6 = 'move-node-to-workspace 6'
+# Move window to workspace AND follow it (switch to that workspace)
+cmd-alt-ctrl-1 = ['move-node-to-workspace 1', 'workspace 1']
+cmd-alt-ctrl-2 = ['move-node-to-workspace 2', 'workspace 2']
+cmd-alt-ctrl-3 = ['move-node-to-workspace 3', 'workspace 3']
+cmd-alt-ctrl-4 = ['move-node-to-workspace 4', 'workspace 4']
+cmd-alt-ctrl-5 = ['move-node-to-workspace 5', 'workspace 5']
+cmd-alt-ctrl-6 = ['move-node-to-workspace 6', 'workspace 6']
 
 # Cycle through workspaces
 cmd-alt-ctrl-shift-leftSquareBracket = 'workspace --wrap-around prev'
@@ -279,6 +310,27 @@ cmd-alt-ctrl-shift-q = [
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 [mode.service.binding]
+
+# Layout shortcuts:
+#   3 — 3-way: W1 left 50%, W2 top-right 25%, W3+ bottom-right 25%
+#   4 — 2x2 grid: 25% per cell
+#   5 — 4 columns, bottom-right column has overflow stack (W4..WN)
+# The `r` binding below already flattens (resets to default).
+3 = [
+    'exec-and-forget /bin/bash -c "$HOME/.config/aerospace/auto-layout-3.sh"',
+    'mode main',
+    'exec-and-forget sketchybar --trigger aerospace_service_mode_enabled_changed AEROSPACE_SERVICE_MODE_ENABLED=false',
+]
+4 = [
+    'exec-and-forget /bin/bash -c "$HOME/.config/aerospace/auto-layout-4.sh"',
+    'mode main',
+    'exec-and-forget sketchybar --trigger aerospace_service_mode_enabled_changed AEROSPACE_SERVICE_MODE_ENABLED=false',
+]
+5 = [
+    'exec-and-forget /bin/bash -c "$HOME/.config/aerospace/auto-layout-5.sh"',
+    'mode main',
+    'exec-and-forget sketchybar --trigger aerospace_service_mode_enabled_changed AEROSPACE_SERVICE_MODE_ENABLED=false',
+]
 
 # Move windows to other nodes
 # See: https://nikitabobko.github.io/AeroSpace/commands#join-with
