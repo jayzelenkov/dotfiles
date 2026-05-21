@@ -142,6 +142,18 @@ if.app-id = 'io.raindrop.macapp'
 check-further-callbacks = true
 run = 'layout floating'
 
+# Float Parcel by default
+[[on-window-detected]]
+if.app-id = 'com.mr-brightside.myParcel'
+check-further-callbacks = true
+run = 'layout floating'
+
+# Float reMarkable by default
+[[on-window-detected]]
+if.app-id = 'com.remarkable.desktop'
+check-further-callbacks = true
+run = 'layout floating'
+
 # Float llamalife.co (Safari Web App — bundle ID has machine-specific UUID,
 # so match by app name instead)
 [[on-window-detected]]
