@@ -19,8 +19,9 @@ exec-on-workspace-change = [
     '$HOME/.config/aerospace/on-workspace-change.sh',
 ]
 
-# Start AeroSpace at login
-start-at-login = true
+# Start AeroSpace at login (off — launch manually via `open -a AeroSpace`
+# or flip this to `true` to re-enable autostart).
+start-at-login = false
 
 # Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization
 # flatten-containers is intentionally OFF so the nested containers built by
