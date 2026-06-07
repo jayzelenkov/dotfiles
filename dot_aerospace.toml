@@ -7,10 +7,13 @@ config-version = 2
 
 # You can use it to add commands that run after AeroSpace startup.
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
-after-startup-command = [
-    'exec-and-forget sketchybar',
-    'exec-and-forget borders',
-]
+# Disabled — sketchybar and borders are stopped. Re-enable by uncommenting
+# the lines below.
+after-startup-command = []
+# after-startup-command = [
+#     'exec-and-forget sketchybar',
+#     'exec-and-forget borders',
+# ]
 
 # Notify Sketchybar about workspace change
 exec-on-workspace-change = [
