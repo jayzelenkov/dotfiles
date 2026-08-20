@@ -6,15 +6,9 @@ if [[ -f /opt/homebrew/bin/brew ]]; then
     eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
-# zshrc activates ~/.local/bin/mise (Homebrew installs to /opt/homebrew/bin)
-mkdir -p "$HOME/.local/bin"
 if command -v mise &>/dev/null; then
-    ln -sfn "$(command -v mise)" "$HOME/.local/bin/mise"
-fi
-
-if [[ -x "$HOME/.local/bin/mise" ]]; then
     echo "→ Installing mise tools (node, python, bun)..."
-    "$HOME/.local/bin/mise" install
+    mise install
     echo "✓ mise tools installed"
 fi
 {{ end -}}

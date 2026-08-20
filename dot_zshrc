@@ -1,4 +1,7 @@
-eval "$(~/.local/bin/mise activate zsh)"
+# mise is installed via Homebrew (/opt/homebrew/bin/mise)
+if command -v mise >/dev/null 2>&1; then
+  eval "$(mise activate zsh)"
+fi
 
 # Source machine-local secrets (not tracked by chezmoi or git)
 if [ -f "$HOME/.secrets" ]; then
