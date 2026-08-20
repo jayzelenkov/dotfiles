@@ -2,59 +2,19 @@
 #!/bin/bash
 set -euo pipefail
 
-# Install mise (standalone, not via Homebrew)
-if ! command -v mise &>/dev/null; then
-    echo "→ Installing mise..."
-    curl https://mise.run | sh
-    echo "✓ mise installed"
-else
-    echo "✓ mise already installed"
+if [[ -f /opt/homebrew/bin/brew ]]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
-# mise global runtimes
+# zshrc activates ~/.local/bin/mise (Homebrew installs to /opt/homebrew/bin)
+mkdir -p "$HOME/.local/bin"
 if command -v mise &>/dev/null; then
-    echo "→ Installing global mise tools (python, bun)..."
-    ~/.local/bin/mise use --global python@latest
-    ~/.local/bin/mise use --global bun@latest
+    ln -sfn "$(command -v mise)" "$HOME/.local/bin/mise"
+fi
+
+if [[ -x "$HOME/.local/bin/mise" ]]; then
+    echo "→ Installing mise tools (node, python, bun)..."
+    "$HOME/.local/bin/mise" install
     echo "✓ mise tools installed"
 fi
-echo ""
-
-# Clone dotfiles to ~/Documents/GitHub/dotfiles so chezmoi uses it as the source
-mkdir -p "$HOME/Documents/GitHub"
-if [[ ! -d "$HOME/Documents/GitHub/dotfiles/.git" ]]; then
-    echo "→ Cloning dotfiles to ~/Documents/GitHub/dotfiles..."
-    REMOTE_URL="$(git -C "{{ .chezmoi.sourceDir }}" remote get-url origin 2>/dev/null || true)"
-    if [[ -n "$REMOTE_URL" ]]; then
-        git clone "$REMOTE_URL" "$HOME/Documents/GitHub/dotfiles"
-        echo "✓ Dotfiles cloned to ~/Documents/GitHub/dotfiles"
-    else
-        echo "⚠️  Could not determine git remote; skipping dotfiles clone."
-    fi
-else
-    echo "✓ ~/Documents/GitHub/dotfiles already exists"
-fi
-echo ""
-
-echo "=========================================="
-echo "  Bootstrap complete!"
-echo "=========================================="
-echo ""
-echo "Next steps:"
-echo "  • Restart your terminal to ensure all paths are set"
-echo "  • Configure your apps (1Password, Raycast, etc.)"
-echo ""
-echo "Chrome setup:"
-echo "  • Open Chrome → Profile icon → Add → Sign in"
-echo "  • Sign in with your Google accounts"
-echo ""
-echo "Raycast setup:"
-echo "  • Open Raycast → Sign in to sync settings and extensions"
-echo ""
-echo "Things setup:"
-echo "  • Open Things → Settings → Things Cloud → Sign in"
-echo ""
-echo "Manual installs (no Homebrew cask):"
-echo "  • Wispr Flow: https://www.wispr.flow"
-echo ""
 {{ end -}}
