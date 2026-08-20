@@ -45,7 +45,6 @@ alias rgf='rg --files | rg'
 # Helper: pretty disk free
 alias freegb='df -k / | awk '\''NR==2 {printf "%.2f GB\n", $4*1024/1000000000}'\'''
 
-
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
 
@@ -55,10 +54,9 @@ eval "$(zoxide init zsh)"
 # Set up the Starship prompt
 eval "$(starship init zsh)"
 
-export EDITOR="code --wait"
+export EDITOR="subl"
 export VISUAL="$EDITOR"
 
-export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 # Docker Desktop CLI completions
 fpath=($HOME/.docker/completions $fpath)
 autoload -Uz compinit
@@ -69,19 +67,8 @@ if [[ ":$PATH:" != *":$HOME/.local/bin:"* ]]; then
   export PATH="$HOME/.local/bin:$PATH"
 fi
 
-# Add ~/dotfiles/bin to PATH if it exists
-if [ -d "$HOME/dotfiles/bin" ]; then
-  case ":$PATH:" in
-    *":$HOME/dotfiles/bin:"*) ;;
-    *) PATH="$HOME/dotfiles/bin:$PATH" ;;
-  esac
-fi
-
 # Setup direnv
 eval "$(direnv hook zsh)"
-
-alias dbtf="$HOME/.local/bin/dbt"
-
 
 # Git helper methods
 git-catchup() {
@@ -102,48 +89,6 @@ alias gsm='git switch main'
 alias gp='git pull'
 alias glola="git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' --all"
 alias gsb='git-squash-branch'
-
-
-export PATH="$HOME/.bun/bin:$PATH"
-
-awt() {
-    local base_dir="$HOME/.workingtrees"
-    mkdir -p "$base_dir"
-
-    # 1. Generate ID and Path
-    local uuid=$(python3 -c 'import uuid; print(uuid.uuid4())')
-    local target_path="$base_dir/$uuid"
-
-    echo "--- Creating Agent Sandbox ---"
-
-    # 2. Add the worktree
-    if git worktree add "$target_path" HEAD; then
-        echo "Successfully created: $uuid"
-
-        # 3. Jump into it
-        # This triggers mise/zsh hooks naturally
-        cd "$target_path"
-
-        echo "Ready for Claude. Run 'claude' or 'mise run test' etc."
-        echo "To cleanup later: git worktree remove --force ."
-    else
-        echo "Error: Failed to create git worktree."
-        return 1
-    fi
-}
-
-
-# TypeID <-> UUID conversion helpers (requires: bun add -g typeid-js)
-typeid_to_uuid() {
-  bun -e "import { TypeID } from 'typeid-js'; console.log(TypeID.fromString('$1').toUUID());"
-}
-
-uuid_to_typeid_enc() {
-  bun -e "import { TypeID } from 'typeid-js'; console.log(TypeID.fromUUID('enc', '$1').toString());"
-}
-
-# jj (Jujutsu VCS) completions
-source <(jj util completion zsh)
 
 # granted.dev — assume must be sourced so env vars reach the parent shell
 alias assume="source assume"
@@ -166,11 +111,3 @@ opin() {
 # zsh-syntax-highlighting must be sourced last
 [ -f /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && \
   source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-
-# opencode
-export PATH=/Users/jzelenkov/.opencode/bin:$PATH
-
-
-export ANDROID_HOME=$HOME/Library/Android/sdk
-export PATH=$PATH:$ANDROID_HOME/emulator:$ANDROID_HOME/platform-tools

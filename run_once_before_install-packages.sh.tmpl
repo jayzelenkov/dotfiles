@@ -61,9 +61,6 @@ if ! command -v mas &>/dev/null; then
 fi
 
 # Add taps before bundle so formula names resolve correctly
-brew tap nikitabobko/tap 2>/dev/null || true
-brew tap FelixKratz/formulae 2>/dev/null || true
-brew tap hedhyw/main 2>/dev/null || true
 brew tap updatest/tap https://github.com/updatest/tap.git 2>/dev/null || true
 
 # Install all packages from Brewfile
@@ -81,30 +78,7 @@ else
     echo "⚠️  Some packages failed to install. Run 'brew bundle --file=<Brewfile>' to retry."
 fi
 
-# SketchyBar app font
-echo "→ Installing sketchybar-app-font..."
-curl -fsSL https://github.com/kvndrsslr/sketchybar-app-font/releases/download/v2.0.28/sketchybar-app-font.ttf \
-    -o "$HOME/Library/Fonts/sketchybar-app-font.ttf"
-echo "✓ sketchybar-app-font installed"
-echo ""
-
-# SbarLua
-echo "→ Installing SbarLua..."
-git clone https://github.com/FelixKratz/SbarLua.git /tmp/SbarLua \
-    && cd /tmp/SbarLua \
-    && make install \
-    && rm -rf /tmp/SbarLua
-echo "✓ SbarLua installed"
-echo ""
-
-echo ""
-echo "=========================================="
-echo "  Manual installs required"
-echo "=========================================="
-echo ""
-echo "The following apps are not available via Homebrew and must be installed manually:"
-echo ""
-echo "  • pCloud   https://www.pcloud.com/download-free-online-cloud-file-storage.html"
-echo ""
+mkdir -p "$HOME/.local/bin"
+ln -sfn "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" "$HOME/.local/bin/subl"
 
 {{ end -}}

@@ -11,7 +11,6 @@ brew "fzf"                     # Fuzzy finder for shell
 brew "htop"                    # Interactive process viewer
 brew "pandoc"                  # Universal document converter (md → pdf/docx/html)
 brew "starship"                # Cross-shell prompt
-brew "telnet"                  # Removed from macOS, still useful for debugging
 brew "tmux"                    # Terminal multiplexer
 brew "tree"                    # Directory tree viewer
 brew "zoxide"                  # Smart cd with frecency
@@ -19,41 +18,18 @@ brew "zsh-syntax-highlighting" # Fish-like syntax highlighting for zsh
 brew "zsh-autosuggestions"     # Fish-like autosuggestions for zsh
 
 # Dev tools
-brew "biome"                   # JS/TS linter and formatter
-brew "caddy"                   # Local web server / reverse proxy
 brew "chezmoi"                 # Dotfile manager
 brew "cloc"                    # Count lines of code
-brew "create-dmg"              # Create macOS .dmg disk images
-brew "deno"                    # JavaScript/TypeScript runtime
-brew "duckdb"                  # In-process analytical SQL database
-brew "duti"                    # Set default app for file types/extensions
-brew "fabric-ai"               # AI-powered workflow tool (fabric)
 brew "ffmpeg"                  # Multimedia processing
-brew "fnm"                     # Fast Node.js version manager
-brew "folderify"               # Generate folder icons with emoji masks
 brew "gcc"                     # GNU compiler collection
 brew "gh"                      # GitHub CLI
 brew "git"                     # Version control
 brew "git-lfs"                 # Git large file storage
-brew "gitleaks"                # Secret scanner for git repos
-brew "gnupg"                   # GPG for signing commits/encryption
-brew "go"                      # Go programming language
-brew "graphite2"               # Stacked PRs workflow (gt CLI)
-brew "hugo"                    # Static site generator
-brew "ical-buddy"              # iCal/Calendar CLI
 brew "imagemagick"             # Image manipulation CLI
-brew "jj"                      # Jujutsu VCS
-brew "jq"                      # JSON processor (also used by sketchybar plugins)
-tap "hedhyw/main"
-brew "hedhyw/main/jlv"         # Interactive JSON log viewer
+brew "jq"                      # JSON processor
 brew "lazygit"                 # Terminal UI for git
-brew "memo"                    # CLI memo/note tool
-brew "node"                    # Node.js
-brew "openai-whisper"          # OpenAI Whisper speech recognition
-brew "pipx"                    # Install Python CLI apps in isolated envs
-brew "pyenv"                   # Python version manager
+brew "mise"                    # Runtime version manager (node, python, bun)
 brew "ripgrep"                 # Fast recursive search (rg)
-brew "sqlite"                  # Embedded SQL database
 brew "watch"                   # Run commands periodically
 brew "wget"                    # File downloader
 brew "yarn"                    # JavaScript package manager
@@ -61,31 +37,11 @@ brew "yt-dlp"                  # Video downloader (YouTube etc.)
 
 # Infrastructure & services
 brew "awscli"                  # AWS CLI
-brew "doppler"                 # Secrets manager CLI
 brew "granted"                 # AWS role switching (granted.dev)
-brew "k9s"                     # Kubernetes TUI
-brew "kubectx"                 # Switch kube contexts/namespaces
-brew "kubernetes-cli"          # kubectl
-brew "redis"                   # In-memory data store
-brew "temporal"                # Workflow orchestration CLI
 
 # Libraries & utilities
-brew "ghostscript"             # PostScript/PDF interpreter (for tesseract)
-brew "libpq"                   # PostgreSQL client library
+brew "ghostscript"             # PostScript/PDF interpreter
 brew "mas"                     # Mac App Store CLI
-brew "ocrmypdf"                # Add OCR text layer to scanned PDFs
-brew "python@3"                # Latest Python 3
-brew "tesseract"               # OCR engine
-
-# Window management
-tap "nikitabobko/tap"
-cask "nikitabobko/tap/aerospace" # AeroSpace tiling window manager
-tap "FelixKratz/formulae"
-brew "borders"                 # JankyBorders — window border highlights
-brew "sketchybar"              # Highly customizable macOS status bar
-brew "switchaudio-osx"         # Switch audio output source (sketchybar volume_click)
-brew "nowplaying-cli"          # Now playing info (used by sketchybar)
-brew "fswatch"                 # File change watcher via FSEvents (sketchybar keyboard layout)
 
 # Casks - Apps
 tap "updatest/tap", "https://github.com/updatest/tap.git"
@@ -94,10 +50,7 @@ cask "updatest/tap/updatest"   # Updatest — menu bar app updater
 # AI & productivity
 cask "chatgpt"                 # ChatGPT desktop app
 cask "claude"                  # Claude AI desktop app
-cask "cursor"                  # AI-powered code editor
-cask "granola"                 # AI meeting notes
 cask "obsidian"                # Knowledge base / second brain
-cask "raycast"                 # Launcher & productivity tool
 cask "wispr-flow"              # Voice-to-text
 
 # Communication
@@ -110,14 +63,10 @@ cask "zoom"                    # Video conferencing
 cask "android-studio"          # Android IDE
 cask "docker-desktop"          # Docker Desktop
 cask "ghostty"                 # Ghostty terminal emulator
-cask "github"                  # GitHub Desktop
-cask "ngrok"                   # Secure tunnels to localhost
-cask "visual-studio-code"      # VS Code editor
-cask "zulu@17"                 # Azul Zulu OpenJDK 17 (Android Studio runtime)
+cask "sublime-text"            # Sublime Text editor (`subl`)
 
 # Media & entertainment
 cask "calibre"                 # Ebook manager and converter
-cask "movist-pro"              # Media player
 cask "spotify"                 # Music streaming
 cask "vlc"                     # Open-source media player
 
@@ -127,36 +76,20 @@ cask "1password-cli"           # 1Password CLI (op)
 cask "adguard"                 # Ad blocker
 cask "linear"                  # Linear project management
 cask "notion"                  # Notes and wiki workspace
-cask "postico"                 # PostgreSQL GUI client
-cask "bartender"               # Menu bar organizer
-cask "bettertouchtool"         # Trackpad gesture customizer (AeroSpace swipe)
 cask "cleanshot"               # Screenshot & recording tool
 cask "copilot-money"           # Personal finance
 cask "daisydisk"               # Disk space analyzer
 cask "brave-browser"           # Privacy-focused Chromium browser
-cask "fastmail"                # Fastmail desktop app
-cask "google-chrome"           # Web browser
-cask "thebrowsercompany-dia"   # Dia AI browser by The Browser Company
 cask "videopaper"              # Video transcript / paper reader
 cask "homerow"                 # Keyboard navigation for macOS
 cask "karabiner-elements"      # Keyboard customizer
 cask "keka"                    # File archiver
-cask "notunes"                 # Prevent Apple Music from opening on media key
-cask "cheatsheet"              # Hold ⌘ to see all shortcuts for current app
 cask "screen-studio"           # Screen recording
-cask "wallspace"               # Per-Space wallpaper manager
-
-# Hardware
-cask "elgato-wave-link"        # Elgato audio mixer
-cask "logi-options+"           # Logitech device config
-cask "mac-mouse-fix"           # Mouse utility
 
 # Mac App Store
 mas "Things 3", id: 904280696
-mas "Tot", id: 1491071483
 
 # Casks - Fonts
-cask "sf-symbols"              # SF Symbols app (used by sketchybar)
 cask "font-cascadia-code"
 cask "font-cascadia-code-nf"
 cask "font-cascadia-code-pl"

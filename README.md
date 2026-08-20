@@ -17,8 +17,8 @@ This single command will:
 3. Install Xcode Command Line Tools
 4. Install Homebrew
 5. Install all packages from the Brewfile (formulae, casks, App Store apps)
-6. Apply dotfiles (`~/.zshrc`, `~/.aerospace.toml`)
-7. Install global runtimes via mise (python, bun)
+6. Apply dotfiles (`~/.zshrc`, `~/.gitconfig`)
+7. Install global runtimes via mise (python, node, bun)
 
 ## What's included
 
@@ -31,19 +31,10 @@ This single command will:
 - **[eza](https://github.com/eza-community/eza)** — modern `ls` with icons and git status
 - **[ripgrep](https://github.com/BurntSushi/ripgrep)** — fast recursive search (`grep` is aliased to `rg`)
 - Git helpers (`gc`, `gcp`, `glola`, etc.)
-- `awt` — creates git worktree sandboxes for AI coding agents
-- TypeID/UUID conversion helpers
 
-### Window management (`dot_aerospace.toml` → `~/.aerospace.toml`)
+### Git (`dot_gitconfig` → `~/.gitconfig`)
 
-- **[AeroSpace](https://github.com/nikitabobko/AeroSpace)** — i3-like tiling window manager for macOS
-- **[JankyBorders](https://github.com/FelixKratz/JankyBorders)** — active/inactive window border highlights (launched by AeroSpace on startup)
-
-Apps can be excluded from tiling by adding `[[on-window-detected]]` blocks to `~/.aerospace.toml`. To find an app's bundle ID:
-
-```bash
-osascript -e 'id of app "App Name"'
-```
+User identity, Git LFS filters, fast-forward-only `pull`, and rerere.
 
 ### Brewfile
 
@@ -56,7 +47,6 @@ Machine-local secrets go in `~/.secrets` (sourced by `.zshrc`, not tracked by gi
 ```bash
 # ~/.secrets
 export GITHUB_TOKEN="ghp_..."
-export POSTICO_LICENSE_KEY="..."
 ```
 
 ## Structure
@@ -68,10 +58,12 @@ export POSTICO_LICENSE_KEY="..."
 ├── AGENTS.md                                # Instructions for AI coding agents
 ├── README.md                                # This file
 ├── Brewfile                                 # Homebrew packages (included in install script)
-├── dot_aerospace.toml                       # → ~/.aerospace.toml
+├── dot_gitconfig                            # → ~/.gitconfig
 ├── dot_zshrc                                # → ~/.zshrc
+├── dot_config/mise/config.toml              # → ~/.config/mise/config.toml
 ├── run_once_before_install-packages.sh.tmpl # Xcode CLT + Homebrew + brew bundle
-└── run_once_after_setup-mise.sh.tmpl        # mise runtimes + Postico license + next steps
+├── run_once_after_setup-mise.sh.tmpl        # mise runtimes
+└── run_onchange_after_macos-defaults.sh.tmpl # Finder + Mission Control defaults
 ```
 
 ## Day-to-day usage
