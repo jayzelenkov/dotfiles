@@ -45,7 +45,7 @@ brew "mas"                     # Mac App Store CLI
 
 # Casks - Apps
 tap "updatest/tap", "https://github.com/updatest/tap.git"
-cask "updatest/tap/updatest"   # Updatest — menu bar app updater
+cask "updatest/tap/updatest", trusted: true  # Updatest — menu bar app updater
 
 # AI & productivity
 cask "chatgpt"                 # ChatGPT desktop app
@@ -80,7 +80,6 @@ cask "cleanshot"               # Screenshot & recording tool
 cask "copilot-money"           # Personal finance
 cask "daisydisk"               # Disk space analyzer
 cask "brave-browser"           # Privacy-focused Chromium browser
-cask "videopaper"              # Video transcript / paper reader
 cask "homerow"                 # Keyboard navigation for macOS
 cask "karabiner-elements"      # Keyboard customizer
 cask "keka"                    # File archiver

@@ -9,8 +9,29 @@ echo "=========================================="
 # Group windows by application in Mission Control.
 defaults write com.apple.dock expose-group-apps -bool true
 
+# Dock magnification: enabled, middle of the System Settings slider.
+defaults write com.apple.dock magnification -bool true
+defaults write com.apple.dock largesize -int 75
+
 # Show hidden files in Finder.
 defaults write com.apple.finder AppleShowAllFiles -bool true
+
+# Keyboard: fastest GUI key repeat and shortest delay until repeat.
+# Takes effect after logout (or reboot).
+defaults write -g KeyRepeat -int 2
+defaults write -g InitialKeyRepeat -int 15
+
+# Accessibility → Display: use shapes in addition to color.
+defaults write com.apple.universalaccess differentiateWithoutColor -bool true
+
+# Default browser: Brave. Chromium's --make-default-browser may show a
+# system confirmation dialog. Skip if the cask is not installed yet.
+if [[ -d "/Applications/Brave Browser.app" ]]; then
+    echo "→ Setting Brave as the default browser..."
+    open -a "Brave Browser" --new --args --make-default-browser
+else
+    echo "⚠️  Brave Browser is not installed; skipped default browser"
+fi
 
 # Apply Dock and Finder changes
 killall Dock 2>/dev/null || true

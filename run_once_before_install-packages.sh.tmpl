@@ -7,21 +7,32 @@ echo "  macOS Bootstrap (chezmoi run_once)"
 echo "=========================================="
 echo ""
 
-# Authenticate once and share that session across all subprocesses.
-#
-# By default macOS sudo uses per-TTY tickets (tty_tickets), so brew's internal
-# sudo calls — which run in subprocess contexts — each prompt separately.
-# We temporarily disable tty_tickets and extend the timeout for this user so
-# that the single sudo -v below covers the entire install. The sudoers file is
-# removed on exit.
+# Authenticate once. Homebrew installs Zoom/AdGuard/Karabiner via
+# `sudo installer` (and Things 3 via mas) from subprocesses with a different
+# PPID and no TTY. macOS sudo defaults to timestamp_type=tty, which falls
+# back to ppid when there is no terminal — so each pkg cask prompts again
+# even after sudo -v. A temporary NOPASSWD drop-in covers those calls for
+# this script only; it is deleted on exit.
 echo "→ Requesting sudo access (you'll only be asked once)..."
 sudo -v
 
 SUDOERS_BOOTSTRAP=/etc/sudoers.d/chezmoi-bootstrap
-printf 'Defaults:%s !tty_tickets\nDefaults:%s timestamp_timeout=120\n' "$USER" "$USER" \
-    | sudo tee "$SUDOERS_BOOTSTRAP" > /dev/null
+cleanup_bootstrap() {
+    sudo rm -f "$SUDOERS_BOOTSTRAP" 2>/dev/null || true
+}
+trap cleanup_bootstrap EXIT
+
+{
+    printf 'Defaults:%s timestamp_type=global\n' "$USER"
+    printf 'Defaults:%s timestamp_timeout=120\n' "$USER"
+    printf '%s ALL=(ALL) NOPASSWD: ALL\n' "$USER"
+} | sudo tee "$SUDOERS_BOOTSTRAP" > /dev/null
 sudo chmod 440 "$SUDOERS_BOOTSTRAP"
-trap 'sudo rm -f "$SUDOERS_BOOTSTRAP" 2>/dev/null || true' EXIT
+
+if ! sudo -n true; then
+    echo "⚠️  sudo is still prompting; pkg casks may ask for a password"
+    sudo -v
+fi
 echo ""
 
 # Xcode Command Line Tools
@@ -62,6 +73,10 @@ fi
 
 # Add taps before bundle so formula names resolve correctly
 brew tap updatest/tap https://github.com/updatest/tap.git 2>/dev/null || true
+
+# Don't resume leftover partial downloads. Zoom/Linear CDNs return 403/404
+# when Homebrew Range-requests past the real file size.
+rm -f "${HOME}/Library/Caches/Homebrew/downloads/"*.incomplete 2>/dev/null || true
 
 # Install all packages from Brewfile
 echo "→ Installing packages from Brewfile..."
