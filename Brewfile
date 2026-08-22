@@ -61,6 +61,7 @@ cask "zoom"                    # Video conferencing
 
 # Dev tools
 cask "android-studio"          # Android IDE
+cask "zulu@17"                 # Azul Zulu JDK 17 (Expo / Maestro / Android)
 cask "docker-desktop"          # Docker Desktop
 cask "ghostty"                 # Ghostty terminal emulator
 cask "sublime-text"            # Sublime Text editor (`subl`)

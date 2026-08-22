@@ -70,6 +70,12 @@ if [[ ":$PATH:" != *":$HOME/.local/bin:"* ]]; then
   export PATH="$HOME/.local/bin:$PATH"
 fi
 
+# JDK 17 — Expo / Maestro / Android (Azul Zulu via Homebrew)
+if /usr/libexec/java_home -v 17 &>/dev/null; then
+  export JAVA_HOME="$(/usr/libexec/java_home -v 17)"
+  export PATH="$JAVA_HOME/bin:$PATH"
+fi
+
 # Setup direnv
 eval "$(direnv hook zsh)"
 
