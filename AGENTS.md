@@ -8,6 +8,7 @@ This is a chezmoi-managed dotfiles repository for macOS.
 - `dot_gitconfig` — Git configuration, applied to `~/.gitconfig`
 - `Brewfile` — Homebrew formulae, casks, and Mac App Store apps (not applied to `~`, included inline by the install script)
 - `run_once_before_install-packages.sh.tmpl` — Runs once before dotfiles are applied: installs Xcode CLT, Homebrew, and all Brewfile packages; links `subl` into `~/.local/bin`
+- `dot_local/bin/executable_dotfiles-update` — Applied to `~/.local/bin/dotfiles-update`: pulls latest chezmoi source, applies tracked files, then `brew update` / `brew bundle` / `brew upgrade` (and `mise install`)
 - `run_once_after_setup-mise.sh.tmpl` — Runs once after dotfiles are applied: installs mise runtimes from `dot_config/mise/config.toml`
 - `run_onchange_after_macos-defaults.sh.tmpl` — Re-runs whenever its content changes: applies `defaults write` commands (Mission Control grouping, Finder hidden files, keyboard repeat, etc.). Add new `defaults write` lines here to persist them across machines.
 - `.chezmoiignore` — Lists files that exist in this repo but should not be applied to the home directory (e.g., `Brewfile`, `README.md`, `AGENTS.md`)
@@ -24,7 +25,7 @@ This is a chezmoi-managed dotfiles repository for macOS.
 ## Editing guidelines
 
 - **No hardcoded usernames or paths.** Use `$HOME` or `~` instead of `/Users/<name>`. This repo is designed to be portable across machines and users.
-- **Brewfile changes** only take effect when the install script runs. The Brewfile is included inline via `{{ include "Brewfile" }}` in the install template.
+- **Brewfile changes** are applied by the bootstrap install script and by `dotfiles-update`. The Brewfile is included inline via `{{ include "Brewfile" }}` in the install template.
 - **Secrets** belong in `~/.secrets` (not tracked). The `.zshrc` sources this file if it exists.
 - **macOS only.** All run scripts are gated with `{{ if eq .chezmoi.os "darwin" }}`.
 - When adding new shell tools, add both the Homebrew formula to `Brewfile` and the shell integration to `dot_zshrc`.

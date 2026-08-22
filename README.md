@@ -61,6 +61,7 @@ export GITHUB_TOKEN="ghp_..."
 ├── dot_gitconfig                            # → ~/.gitconfig
 ├── dot_zshrc                                # → ~/.zshrc
 ├── dot_config/mise/config.toml              # → ~/.config/mise/config.toml
+├── dot_local/bin/executable_dotfiles-update # → ~/.local/bin/dotfiles-update
 ├── run_once_before_install-packages.sh.tmpl # Xcode CLT + Homebrew + brew bundle
 ├── run_once_after_setup-mise.sh.tmpl        # mise runtimes
 └── run_onchange_after_macos-defaults.sh.tmpl # Finder + Mission Control defaults
@@ -69,6 +70,9 @@ export GITHUB_TOKEN="ghp_..."
 ## Day-to-day usage
 
 ```bash
+# Pull latest, apply chezmoi, then install/upgrade Brewfile packages
+dotfiles-update
+
 # Edit a managed dotfile
 chezmoi edit ~/.zshrc
 
