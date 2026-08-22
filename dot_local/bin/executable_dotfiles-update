@@ -1,0 +1,48 @@
+#!/bin/bash
+# Pull latest dotfiles, apply chezmoi, then install/upgrade Homebrew packages.
+set -euo pipefail
+
+if [[ -f /opt/homebrew/bin/brew ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
+if ! command -v chezmoi >/dev/null 2>&1; then
+  echo "error: chezmoi is not installed" >&2
+  exit 1
+fi
+
+if ! command -v brew >/dev/null 2>&1; then
+  echo "error: Homebrew is not installed" >&2
+  exit 1
+fi
+
+echo "→ Fetching latest dotfiles and applying chezmoi..."
+chezmoi update
+echo "✓ Dotfiles updated"
+echo ""
+
+brewfile="$(chezmoi source-path)/Brewfile"
+if [[ ! -f "$brewfile" ]]; then
+  echo "error: Brewfile not found at $brewfile" >&2
+  exit 1
+fi
+
+echo "→ Updating Homebrew..."
+brew update
+echo ""
+
+echo "→ Installing packages from Brewfile..."
+brew bundle --file="$brewfile"
+echo ""
+
+echo "→ Upgrading installed packages..."
+brew upgrade
+echo ""
+
+if command -v mise >/dev/null 2>&1; then
+  echo "→ Installing mise runtimes..."
+  mise install
+  echo ""
+fi
+
+echo "✓ Dotfiles, Homebrew, and runtimes are up to date"
