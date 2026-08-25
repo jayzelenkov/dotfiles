@@ -76,6 +76,11 @@ if /usr/libexec/java_home -v 17 &>/dev/null; then
   export PATH="$JAVA_HOME/bin:$PATH"
 fi
 
+# Android SDK (Android Studio)
+export ANDROID_HOME="$HOME/Library/Android/sdk"
+export ANDROID_SDK_ROOT="$ANDROID_HOME"
+export PATH="$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator:$PATH"
+
 # Setup direnv
 eval "$(direnv hook zsh)"
 
