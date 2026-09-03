@@ -1,0 +1,32 @@
+"$schema" = "https://conductor.build/schemas/settings.schema.json"
+environment_variable_files = [
+  "~/.secrets",
+]
+
+[prompts]
+create_pr = """
+If a Linear ticket is known for this PR — from a linear.app issue URL, the workspace's linked issue, the conversation, the branch name, or commit messages — the PR title MUST start with `Closes TEAM-N` using the ticket's real identifier (example: `Closes DAY-57: Short summary`). The PR body MUST begin with the same `Closes TEAM-N` line so Linear auto-closes the ticket on merge. Do not invent a ticket ID; if none is known, omit the prefix.
+"""
+rename_branch = """
+If the initial prompt names a Linear ticket — a `linear.app/.../issue/TEAM-N/...` URL, or a bare `TEAM-N` reference — the workspace name MUST start with that ticket ID, formatted as `TEAM-N: Short description` (example: `DAY-73: Always show timer component`). Use the real identifier from the prompt; do not invent one. Keep the description short, in Title Case, no trailing period. If no ticket is referenced, name it as usual with no prefix.
+"""
+
+[git]
+branch_prefix_type = "github_username"
+
+[scripts]
+# chezmoi update has no --ff-only; this is pull --ff-only + apply.
+archive = """
+if [ -x /opt/homebrew/bin/brew ]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+git -C "$(chezmoi source-path)" pull --ff-only && chezmoi apply
+"""
+
+[models]
+default = "cursor:grok-4.6"
+default_fast_mode = true
+
+[models.codex]
+default_thinking_level = "high"
+review_thinking_level = "high"

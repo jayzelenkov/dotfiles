@@ -4,3 +4,4 @@ agent-memory.md
 .DS_Store
 .claude/
 /bin/
+dot_conductor/ssh/

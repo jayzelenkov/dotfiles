@@ -36,6 +36,10 @@ This single command will:
 
 User identity, Git LFS filters, fast-forward-only `pull`, and rerere.
 
+### Conductor (`dot_conductor/settings.toml` → `~/.conductor/settings.toml`)
+
+[Conductor](https://conductor.build/) app settings (prompts, git branch prefix, default models). Archiving a workspace runs a fast-forward-only `chezmoi` pull + apply. Machine-local SSH keys in `~/.conductor/ssh/` are not tracked.
+
 ### Brewfile
 
 All Homebrew formulae, casks, and Mac App Store apps. See inline comments in `Brewfile` for what each package does.
@@ -60,6 +64,7 @@ export GITHUB_TOKEN="ghp_..."
 ├── Brewfile                                 # Homebrew packages (included in install script)
 ├── dot_gitconfig                            # → ~/.gitconfig
 ├── dot_zshrc                                # → ~/.zshrc
+├── dot_conductor/settings.toml              # → ~/.conductor/settings.toml
 ├── dot_config/mise/config.toml              # → ~/.config/mise/config.toml
 ├── dot_local/bin/executable_dotfiles-update # → ~/.local/bin/dotfiles-update
 ├── run_once_before_install-packages.sh.tmpl # Xcode CLT + Homebrew + brew bundle
