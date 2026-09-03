@@ -6,6 +6,7 @@ This is a chezmoi-managed dotfiles repository for macOS.
 
 - `dot_zshrc` — Zsh configuration, applied to `~/.zshrc`
 - `dot_gitconfig` — Git configuration, applied to `~/.gitconfig`
+- `dot_conductor/settings.toml` — Conductor settings, applied to `~/.conductor/settings.toml`. Do not add `~/.conductor/ssh/` (machine-local keys).
 - `Brewfile` — Homebrew formulae, casks, and Mac App Store apps (not applied to `~`, included inline by the install script)
 - `run_once_before_install-packages.sh.tmpl` — Runs once before dotfiles are applied: installs Xcode CLT, Homebrew, and all Brewfile packages; links `subl` into `~/.local/bin`
 - `dot_local/bin/executable_dotfiles-update` — Applied to `~/.local/bin/dotfiles-update`: pulls latest chezmoi source, applies tracked files, then `brew update` / `brew bundle` / `brew upgrade` (and `mise install`)
