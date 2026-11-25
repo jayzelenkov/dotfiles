@@ -44,7 +44,6 @@ Machine-local secrets go in `~/.secrets` (sourced by `.zshrc`, not tracked by gi
 ```bash
 # ~/.secrets
 export GITHUB_TOKEN="ghp_..."
-export POSTICO_LICENSE_KEY="..."
 ```
 
 ## Structure
@@ -58,7 +57,7 @@ export POSTICO_LICENSE_KEY="..."
 ├── Brewfile                                 # Homebrew packages (included in install script)
 ├── dot_zshrc.tmpl                           # → ~/.zshrc
 ├── run_once_before_install-packages.sh.tmpl # Xcode CLT + Homebrew + brew bundle
-└── run_once_after_setup-mise.sh.tmpl        # mise runtimes + Postico license + next steps
+└── run_once_after_setup-mise.sh.tmpl        # mise runtimes + next steps
 ```
 
 ## Day-to-day usage

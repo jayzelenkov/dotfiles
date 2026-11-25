@@ -11,7 +11,6 @@ brew "fzf"                     # Fuzzy finder for shell
 brew "htop"                    # Interactive process viewer
 brew "pandoc"                  # Universal document converter (md → pdf/docx/html)
 brew "starship"                # Cross-shell prompt
-brew "telnet"                  # Removed from macOS, still useful for debugging
 brew "tmux"                    # Terminal multiplexer
 brew "tree"                    # Directory tree viewer
 brew "zoxide"                  # Smart cd with frecency
@@ -20,14 +19,12 @@ brew "zsh-autosuggestions"     # Fish-like autosuggestions for zsh
 
 # Dev tools
 brew "biome"                   # JS/TS linter and formatter
-brew "caddy"                   # Local web server / reverse proxy
 brew "chezmoi"                 # Dotfile manager
 brew "cloc"                    # Count lines of code
 brew "create-dmg"              # Create macOS .dmg disk images
 brew "deno"                    # JavaScript/TypeScript runtime
 brew "duckdb"                  # In-process analytical SQL database
 brew "duti"                    # Set default app for file types/extensions
-brew "fabric-ai"               # AI-powered workflow tool (fabric)
 brew "ffmpeg"                  # Multimedia processing
 brew "fnm"                     # Fast Node.js version manager
 brew "folderify"               # Generate folder icons with emoji masks
@@ -39,12 +36,9 @@ brew "gitleaks"                # Secret scanner for git repos
 brew "gnupg"                   # GPG for signing commits/encryption
 brew "go"                      # Go programming language
 brew "graphite2"               # Stacked PRs workflow (gt CLI)
-brew "hugo"                    # Static site generator
 brew "ical-buddy"              # iCal/Calendar CLI
 brew "imagemagick"             # Image manipulation CLI
 brew "jq"                      # JSON processor
-tap "hedhyw/main"
-brew "hedhyw/main/jlv"         # Interactive JSON log viewer
 brew "lazygit"                 # Terminal UI for git
 brew "neovim"                  # Neovim (LazyVim is the terminal IDE)
 brew "tree-sitter"              # Tree-sitter CLI (LazyVim / nvim treesitter)
@@ -63,13 +57,11 @@ brew "yt-dlp"                  # Video downloader (YouTube etc.)
 
 # Infrastructure & services
 brew "awscli"                  # AWS CLI
-brew "doppler"                 # Secrets manager CLI
 brew "granted"                 # AWS role switching (granted.dev)
 brew "k9s"                     # Kubernetes TUI
 brew "kubectx"                 # Switch kube contexts/namespaces
 brew "kubernetes-cli"          # kubectl
 brew "redis"                   # In-memory data store
-brew "temporal"                # Workflow orchestration CLI
 
 # Libraries & utilities
 brew "ghostscript"             # PostScript/PDF interpreter (for tesseract)
@@ -89,7 +81,6 @@ cask "updatest/tap/updatest"   # Updatest — menu bar app updater
 # AI & productivity
 cask "chatgpt"                 # ChatGPT desktop app
 cask "claude"                  # Claude AI desktop app
-cask "granola"                 # AI meeting notes
 cask "obsidian"                # Knowledge base / second brain
 cask "wispr-flow"              # Voice-to-text
 
@@ -104,11 +95,9 @@ cask "ghostty"                 # Ghostty terminal emulator
 cask "orbstack"                 # Lightweight Docker engine (replaces Docker Desktop)
 cask "sublime-text"             # Fast GUI editor (subl CLI; VISUAL=subl -w)
 cask "github"                  # GitHub Desktop
-cask "ngrok"                   # Secure tunnels to localhost
 
 # Media & entertainment
 cask "calibre"                 # Ebook manager and converter
-cask "movist-pro"              # Media player
 cask "spotify"                 # Music streaming
 cask "vlc"                     # Open-source media player
 
@@ -118,18 +107,12 @@ cask "1password-cli"           # 1Password CLI (op)
 cask "adguard"                 # Ad blocker
 cask "linear"                  # Linear project management
 cask "notion"                  # Notes and wiki workspace
-cask "postico"                 # PostgreSQL GUI client
-cask "bartender"               # Menu bar organizer
 cask "daisydisk"               # Disk space analyzer
 cask "brave-browser"           # Privacy-focused Chromium browser
 cask "fastmail"                # Fastmail desktop app
-cask "google-chrome"           # Web browser
-cask "thebrowsercompany-dia"   # Dia AI browser by The Browser Company
 cask "homerow"                 # Keyboard navigation for macOS
 cask "karabiner-elements"      # Keyboard customizer
 cask "keka"                    # File archiver
-cask "notunes"                 # Prevent Apple Music from opening on media key
-cask "cheatsheet"              # Hold ⌘ to see all shortcuts for current app
 cask "screen-studio"           # Screen recording
 
 # Hardware
@@ -138,7 +121,6 @@ cask "logi-options+"           # Logitech device config
 cask "mac-mouse-fix"           # Mouse utility
 
 # Mac App Store
-mas "Tot", id: 1491071483
 
 # Casks - Fonts
 cask "sf-symbols"              # SF Symbols app
