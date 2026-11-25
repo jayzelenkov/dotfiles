@@ -165,12 +165,6 @@ opin() {
   fi
 }
 
-{{ if eq .chezmoi.hostname "mind-glider" -}}
-alias leetcode='cursor --classic "$HOME/Documents/GitHub/leetcode"'
-alias cur='cursor --classic'
-
-{{ end -}}
-
 # ZSH plugins (must be sourced near the end)
 [ -f /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh ] && \
   source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
