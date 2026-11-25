@@ -49,6 +49,7 @@ brew "lazygit"                 # Terminal UI for git
 brew "neovim"                  # Neovim (LazyVim is the terminal IDE)
 brew "tree-sitter"              # Tree-sitter CLI (LazyVim / nvim treesitter)
 brew "memo"                    # CLI memo/note tool
+brew "mise"                    # Runtime version manager (node, python, bun)
 brew "node"                    # Node.js
 brew "openai-whisper"          # OpenAI Whisper speech recognition
 brew "pipx"                    # Install Python CLI apps in isolated envs

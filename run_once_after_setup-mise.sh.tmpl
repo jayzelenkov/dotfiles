@@ -2,22 +2,20 @@
 #!/bin/bash
 set -euo pipefail
 
-# Install mise (standalone, not via Homebrew)
-if ! command -v mise &>/dev/null; then
+# mise comes from Homebrew (brew "mise" in Brewfile.shared)
+MISE=/opt/homebrew/bin/mise
+if [[ ! -x "$MISE" ]]; then
     echo "→ Installing mise..."
-    curl https://mise.run | sh
+    /opt/homebrew/bin/brew install mise
     echo "✓ mise installed"
 else
     echo "✓ mise already installed"
 fi
 
-# mise global runtimes
-if command -v mise &>/dev/null; then
-    echo "→ Installing global mise tools (python, bun)..."
-    "$HOME/.local/bin/mise" use --global python@latest
-    "$HOME/.local/bin/mise" use --global bun@latest
-    echo "✓ mise tools installed"
-fi
+# mise global runtimes (versions are pinned in ~/.config/mise/config.toml)
+echo "→ Installing global mise tools (node, python, bun)..."
+"$MISE" install
+echo "✓ mise tools installed"
 echo ""
 
 # Clone dotfiles to ~/Documents/GitHub/dotfiles so chezmoi uses it as the source

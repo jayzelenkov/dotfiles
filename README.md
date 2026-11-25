@@ -18,7 +18,7 @@ This single command will:
 4. Install Homebrew
 5. Install all packages from the Brewfile (formulae, casks, App Store apps)
 6. Apply dotfiles (`~/.zshrc` and other tracked configs)
-7. Install global runtimes via mise (python, bun)
+7. Install global runtimes via mise (node, python, bun)
 
 ## What's included
 
