@@ -110,6 +110,7 @@ cask "notion"                  # Notes and wiki workspace
 cask "daisydisk"               # Disk space analyzer
 cask "brave-browser"           # Privacy-focused Chromium browser
 cask "fastmail"                # Fastmail desktop app
+cask "google-chrome"           # Web browser
 cask "homerow"                 # Keyboard navigation for macOS
 cask "karabiner-elements"      # Keyboard customizer
 cask "keka"                    # File archiver
