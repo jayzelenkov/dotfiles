@@ -4,7 +4,7 @@ This is a chezmoi-managed dotfiles repository for macOS.
 
 ## Repository layout
 
-- `dot_zshrc` — Zsh configuration, applied to `~/.zshrc`
+- `dot_zshrc.tmpl` — Zsh configuration, applied to `~/.zshrc`
 - `Brewfile` — Homebrew formulae, casks, and Mac App Store apps (not applied to `~`, included inline by the install script)
 - `run_once_before_install-packages.sh.tmpl` — Runs once before dotfiles are applied: installs Xcode CLT, Homebrew, and all Brewfile packages
 - `run_once_after_setup-mise.sh.tmpl` — Runs once after dotfiles are applied: installs mise runtimes (python, bun), configures Postico license, prints next steps
@@ -26,6 +26,7 @@ This is a chezmoi-managed dotfiles repository for macOS.
 - **Brewfile changes** only take effect when the install script runs. The Brewfile is included inline via `{{ include "Brewfile" }}` in the install template.
 - **Secrets** belong in `~/.secrets` (not tracked). The `.zshrc` sources this file if it exists.
 - **macOS only.** All run scripts are gated with `{{ if eq .chezmoi.os "darwin" }}`.
-- When adding new shell tools, add both the Homebrew formula to `Brewfile` and the shell integration to `dot_zshrc`.
+- When adding new shell tools, add both the Homebrew formula to `Brewfile` and the shell integration to `dot_zshrc.tmpl`.
+- **Per-machine blocks.** Shared config is the default. Wrap settings that only one Mac needs in `{{ if eq .chezmoi.hostname "mind-glider" }}` (MacBook Pro, work) or `"stride-air"` (MacBook Air, always-on server), and give the file a `.tmpl` suffix.
 - Keep the Brewfile commented — each formula/cask should have an inline comment explaining what it is.
 

@@ -1,5 +1,7 @@
+{{ if eq .chezmoi.hostname "stride-air" -}}
 export PATH=/usr/local/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/Applications/iTerm.app/Contents/Resources/utilities
 . "$HOME/.cargo/env"
+{{ end -}}
 export PATH=$PATH:$HOME/.maestro/bin
 
 

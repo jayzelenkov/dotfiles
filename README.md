@@ -22,7 +22,7 @@ This single command will:
 
 ## What's included
 
-### Shell (`dot_zshrc` → `~/.zshrc`)
+### Shell (`dot_zshrc.tmpl` → `~/.zshrc`)
 
 - **[mise](https://mise.jdx.dev/)** — runtime version manager (python, node, bun)
 - **[starship](https://starship.rs/)** — cross-shell prompt
@@ -56,7 +56,7 @@ export POSTICO_LICENSE_KEY="..."
 ├── AGENTS.md                                # Instructions for AI coding agents
 ├── README.md                                # This file
 ├── Brewfile                                 # Homebrew packages (included in install script)
-├── dot_zshrc                                # → ~/.zshrc
+├── dot_zshrc.tmpl                           # → ~/.zshrc
 ├── run_once_before_install-packages.sh.tmpl # Xcode CLT + Homebrew + brew bundle
 └── run_once_after_setup-mise.sh.tmpl        # mise runtimes + Postico license + next steps
 ```
