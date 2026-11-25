@@ -59,8 +59,6 @@ export EDITOR="nvim"
 export VISUAL="subl -w"
 
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
-# Docker Desktop CLI completions
-fpath=($HOME/.docker/completions $fpath)
 autoload -Uz compinit
 compinit
 

@@ -116,7 +116,6 @@ cask "linear"                  # Linear project management
 cask "notion"                  # Notes and wiki workspace
 cask "postico"                 # PostgreSQL GUI client
 cask "bartender"               # Menu bar organizer
-cask "copilot-money"           # Personal finance
 cask "daisydisk"               # Disk space analyzer
 cask "brave-browser"           # Privacy-focused Chromium browser
 cask "fastmail"                # Fastmail desktop app
