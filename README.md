@@ -17,8 +17,8 @@ This single command will:
 3. Install Xcode Command Line Tools
 4. Install Homebrew
 5. Install all packages from the Brewfile (formulae, casks, App Store apps)
-6. Apply dotfiles (`~/.zshrc`, `~/.gitconfig`)
-7. Install global runtimes via mise (python, node, bun)
+6. Apply dotfiles (`~/.zshrc` and other tracked configs)
+7. Install global runtimes via mise (python, bun)
 
 ## What's included
 
@@ -31,14 +31,7 @@ This single command will:
 - **[eza](https://github.com/eza-community/eza)** — modern `ls` with icons and git status
 - **[ripgrep](https://github.com/BurntSushi/ripgrep)** — fast recursive search (`grep` is aliased to `rg`)
 - Git helpers (`gc`, `gcp`, `glola`, etc.)
-
-### Git (`dot_gitconfig` → `~/.gitconfig`)
-
-User identity, Git LFS filters, fast-forward-only `pull`, and rerere.
-
-### Conductor (`dot_conductor/settings.toml` → `~/.conductor/settings.toml`)
-
-[Conductor](https://conductor.build/) app settings (prompts, git branch prefix, default models). Archiving a workspace runs a fast-forward-only `chezmoi` pull + apply. Machine-local SSH keys in `~/.conductor/ssh/` are not tracked.
+- `awt` — creates git worktree sandboxes for AI coding agents
 
 ### Brewfile
 
@@ -51,6 +44,7 @@ Machine-local secrets go in `~/.secrets` (sourced by `.zshrc`, not tracked by gi
 ```bash
 # ~/.secrets
 export GITHUB_TOKEN="ghp_..."
+export POSTICO_LICENSE_KEY="..."
 ```
 
 ## Structure
@@ -62,22 +56,14 @@ export GITHUB_TOKEN="ghp_..."
 ├── AGENTS.md                                # Instructions for AI coding agents
 ├── README.md                                # This file
 ├── Brewfile                                 # Homebrew packages (included in install script)
-├── dot_gitconfig                            # → ~/.gitconfig
 ├── dot_zshrc                                # → ~/.zshrc
-├── dot_conductor/settings.toml              # → ~/.conductor/settings.toml
-├── dot_config/mise/config.toml              # → ~/.config/mise/config.toml
-├── dot_local/bin/executable_dotfiles-update # → ~/.local/bin/dotfiles-update
 ├── run_once_before_install-packages.sh.tmpl # Xcode CLT + Homebrew + brew bundle
-├── run_once_after_setup-mise.sh.tmpl        # mise runtimes
-└── run_onchange_after_macos-defaults.sh.tmpl # Finder + Mission Control defaults
+└── run_once_after_setup-mise.sh.tmpl        # mise runtimes + Postico license + next steps
 ```
 
 ## Day-to-day usage
 
 ```bash
-# Pull latest, apply chezmoi, then install/upgrade Brewfile packages
-dotfiles-update
-
 # Edit a managed dotfile
 chezmoi edit ~/.zshrc
 

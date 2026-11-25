@@ -1,7 +1,4 @@
-# mise is installed via Homebrew (/opt/homebrew/bin/mise)
-if command -v mise >/dev/null 2>&1; then
-  eval "$(mise activate zsh)"
-fi
+eval "$(~/.local/bin/mise activate zsh)"
 
 # Source machine-local secrets (not tracked by chezmoi or git)
 if [ -f "$HOME/.secrets" ]; then
@@ -48,6 +45,7 @@ alias rgf='rg --files | rg'
 # Helper: pretty disk free
 alias freegb='df -k / | awk '\''NR==2 {printf "%.2f GB\n", $4*1024/1000000000}'\'''
 
+
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
 
@@ -57,9 +55,10 @@ eval "$(zoxide init zsh)"
 # Set up the Starship prompt
 eval "$(starship init zsh)"
 
-export EDITOR="subl"
-export VISUAL="$EDITOR"
+export EDITOR="nvim"
+export VISUAL="subl -w"
 
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 # Docker Desktop CLI completions
 fpath=($HOME/.docker/completions $fpath)
 autoload -Uz compinit
@@ -70,19 +69,19 @@ if [[ ":$PATH:" != *":$HOME/.local/bin:"* ]]; then
   export PATH="$HOME/.local/bin:$PATH"
 fi
 
-# JDK 17 — Expo / Maestro / Android (Azul Zulu via Homebrew)
-if /usr/libexec/java_home -v 17 &>/dev/null; then
-  export JAVA_HOME="$(/usr/libexec/java_home -v 17)"
-  export PATH="$JAVA_HOME/bin:$PATH"
+# Add ~/dotfiles/bin to PATH if it exists
+if [ -d "$HOME/dotfiles/bin" ]; then
+  case ":$PATH:" in
+    *":$HOME/dotfiles/bin:"*) ;;
+    *) PATH="$HOME/dotfiles/bin:$PATH" ;;
+  esac
 fi
-
-# Android SDK (Android Studio)
-export ANDROID_HOME="$HOME/Library/Android/sdk"
-export ANDROID_SDK_ROOT="$ANDROID_HOME"
-export PATH="$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator:$PATH"
 
 # Setup direnv
 eval "$(direnv hook zsh)"
+
+alias dbtf="$HOME/.local/bin/dbt"
+
 
 # Git helper methods
 git-catchup() {
@@ -103,6 +102,36 @@ alias gsm='git switch main'
 alias gp='git pull'
 alias glola="git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' --all"
 alias gsb='git-squash-branch'
+
+
+export PATH="$HOME/.bun/bin:$PATH"
+
+awt() {
+    local base_dir="$HOME/.workingtrees"
+    mkdir -p "$base_dir"
+
+    # 1. Generate ID and Path
+    local uuid=$(python3 -c 'import uuid; print(uuid.uuid4())')
+    local target_path="$base_dir/$uuid"
+
+    echo "--- Creating Agent Sandbox ---"
+
+    # 2. Add the worktree
+    if git worktree add "$target_path" HEAD; then
+        echo "Successfully created: $uuid"
+
+        # 3. Jump into it
+        # This triggers mise/zsh hooks naturally
+        cd "$target_path"
+
+        echo "Ready for Claude. Run 'claude' or 'mise run test' etc."
+        echo "To cleanup later: git worktree remove --force ."
+    else
+        echo "Error: Failed to create git worktree."
+        return 1
+    fi
+}
+
 
 # granted.dev — assume must be sourced so env vars reach the parent shell
 alias assume="source assume"
@@ -125,3 +154,15 @@ opin() {
 # zsh-syntax-highlighting must be sourced last
 [ -f /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && \
   source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+
+# OpenClaw Completion
+[ -f "$HOME/.openclaw/completions/openclaw.zsh" ] && source "$HOME/.openclaw/completions/openclaw.zsh"
+export PATH=$PATH:$HOME/.maestro/bin
+
+
+# Added by Antigravity CLI installer
+export PATH="$HOME/.local/bin:$PATH"
+
+# chezmoi private source helper
+[ -f "$HOME/.config/chezmoi-private/alias.zsh" ] && source "$HOME/.config/chezmoi-private/alias.zsh"

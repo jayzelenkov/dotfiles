@@ -1,4 +1,3 @@
 [tools]
-node = "lts"
-python = "latest"
 bun = "latest"
+python = "latest"

@@ -3,5 +3,7 @@
 agent-memory.md
 .DS_Store
 .claude/
-/bin/
-dot_conductor/ssh/
+.claude/settings.local.json
+.DS_Store
+**/settings.local.json
+Brewfile.stride-air
